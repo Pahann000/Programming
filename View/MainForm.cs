@@ -1,6 +1,8 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Reflection.Emit;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Programming
 {
@@ -44,8 +46,6 @@ namespace Programming
             indexTextBox.Text = ValuesListBox.SelectedIndex.ToString();
 
         }
-
-
         private void PopulateSecondListBoxWithDataFromFirst<T>()
         {
             Type enumType = typeof(T);
@@ -53,6 +53,27 @@ namespace Programming
             {
                 ValuesListBox.Items.Add(item);
             }
+        }
+        public void WeekdayParsing(object sender, EventArgs e) 
+        {
+            Weekday weekday;
+            string userDay = weekdayTextBox.Text;
+            if(!string.IsNullOrEmpty(userDay))
+            {
+                if (Enum.TryParse(userDay, out weekday))
+                {
+                    weekdayLabel.Text = $"Этот день недели ({weekday} ={(int)weekday})";
+                }
+                else
+                {
+                    weekdayLabel.Text = "Нет такого дня недели";
+                }
+            }
+            else
+            {
+                MessageBox.Show("Введите день для проверки");
+            }
+
         }
     }
 }
