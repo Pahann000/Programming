@@ -30,18 +30,27 @@
         {
             EnumsTabControl = new TabControl();
             Enums = new TabPage();
-            weekdayLabel = new Label();
-            parseButton = new Button();
-            weekdayTextBox = new TextBox();
-            parsingLabel = new Label();
-            valueListBoxLabel = new Label();
-            enumsListBoxLabel = new Label();
-            textBoxLabel = new Label();
-            indexTextBox = new TextBox();
+            groupBox1 = new GroupBox();
+            ValueListBoxLabel = new Label();
+            EnumsListBoxLabel = new Label();
+            TextBoxLabel = new Label();
+            IndexTextBox = new TextBox();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
+            groupBox2 = new GroupBox();
+            WeekdayLabel = new Label();
+            ParseButton = new Button();
+            WeekdayTextBox = new TextBox();
+            ParsingLabel = new Label();
+            groupBox3 = new GroupBox();
+            SeasonLabel = new Label();
+            SeasonComboBox = new ComboBox();
+            SeasonButton = new Button();
             EnumsTabControl.SuspendLayout();
             Enums.SuspendLayout();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // EnumsTabControl
@@ -58,16 +67,9 @@
             // Enums
             // 
             Enums.AccessibleName = "";
-            Enums.Controls.Add(weekdayLabel);
-            Enums.Controls.Add(parseButton);
-            Enums.Controls.Add(weekdayTextBox);
-            Enums.Controls.Add(parsingLabel);
-            Enums.Controls.Add(valueListBoxLabel);
-            Enums.Controls.Add(enumsListBoxLabel);
-            Enums.Controls.Add(textBoxLabel);
-            Enums.Controls.Add(indexTextBox);
-            Enums.Controls.Add(ValuesListBox);
-            Enums.Controls.Add(EnumsListBox);
+            Enums.Controls.Add(groupBox3);
+            Enums.Controls.Add(groupBox2);
+            Enums.Controls.Add(groupBox1);
             Enums.ImeMode = ImeMode.NoControl;
             Enums.Location = new Point(4, 29);
             Enums.Name = "Enums";
@@ -77,92 +79,156 @@
             Enums.Text = "Enums";
             Enums.UseVisualStyleBackColor = true;
             // 
-            // weekdayLabel
+            // groupBox1
             // 
-            weekdayLabel.AutoSize = true;
-            weekdayLabel.Location = new Point(33, 389);
-            weekdayLabel.Name = "weekdayLabel";
-            weekdayLabel.Size = new Size(0, 20);
-            weekdayLabel.TabIndex = 9;
+            groupBox1.Controls.Add(ValueListBoxLabel);
+            groupBox1.Controls.Add(EnumsListBoxLabel);
+            groupBox1.Controls.Add(TextBoxLabel);
+            groupBox1.Controls.Add(IndexTextBox);
+            groupBox1.Controls.Add(ValuesListBox);
+            groupBox1.Controls.Add(EnumsListBox);
+            groupBox1.Location = new Point(3, 6);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(817, 263);
+            groupBox1.TabIndex = 14;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Enumerations";
             // 
-            // parseButton
+            // ValueListBoxLabel
             // 
-            parseButton.Location = new Point(217, 341);
-            parseButton.Name = "parseButton";
-            parseButton.Size = new Size(94, 29);
-            parseButton.TabIndex = 8;
-            parseButton.Text = "Parse";
-            parseButton.UseVisualStyleBackColor = true;
-            parseButton.Click += WeekdayParsing;
+            ValueListBoxLabel.AutoSize = true;
+            ValueListBoxLabel.Location = new Point(334, 38);
+            ValueListBoxLabel.Name = "ValueListBoxLabel";
+            ValueListBoxLabel.Size = new Size(100, 20);
+            ValueListBoxLabel.TabIndex = 11;
+            ValueListBoxLabel.Text = "Choose value:";
             // 
-            // weekdayTextBox
+            // EnumsListBoxLabel
             // 
-            weekdayTextBox.Location = new Point(33, 341);
-            weekdayTextBox.Name = "weekdayTextBox";
-            weekdayTextBox.Size = new Size(125, 27);
-            weekdayTextBox.TabIndex = 7;
+            EnumsListBoxLabel.AutoSize = true;
+            EnumsListBoxLabel.Location = new Point(64, 38);
+            EnumsListBoxLabel.Name = "EnumsListBoxLabel";
+            EnumsListBoxLabel.Size = new Size(149, 20);
+            EnumsListBoxLabel.TabIndex = 10;
+            EnumsListBoxLabel.Text = "Choose enumeration:";
             // 
-            // parsingLabel
+            // TextBoxLabel
             // 
-            parsingLabel.AutoSize = true;
-            parsingLabel.Location = new Point(24, 318);
-            parsingLabel.Name = "parsingLabel";
-            parsingLabel.Size = new Size(158, 20);
-            parsingLabel.TabIndex = 6;
-            parsingLabel.Text = "Type value for parsing:";
+            TextBoxLabel.AutoSize = true;
+            TextBoxLabel.Location = new Point(628, 38);
+            TextBoxLabel.Name = "TextBoxLabel";
+            TextBoxLabel.Size = new Size(68, 20);
+            TextBoxLabel.TabIndex = 9;
+            TextBoxLabel.Text = "Int value:";
             // 
-            // valueListBoxLabel
+            // IndexTextBox
             // 
-            valueListBoxLabel.AutoSize = true;
-            valueListBoxLabel.Location = new Point(303, 12);
-            valueListBoxLabel.Name = "valueListBoxLabel";
-            valueListBoxLabel.Size = new Size(100, 20);
-            valueListBoxLabel.TabIndex = 5;
-            valueListBoxLabel.Text = "Choose value:";
-            // 
-            // enumsListBoxLabel
-            // 
-            enumsListBoxLabel.AutoSize = true;
-            enumsListBoxLabel.Location = new Point(33, 12);
-            enumsListBoxLabel.Name = "enumsListBoxLabel";
-            enumsListBoxLabel.Size = new Size(149, 20);
-            enumsListBoxLabel.TabIndex = 4;
-            enumsListBoxLabel.Text = "Choose enumeration:";
-            // 
-            // textBoxLabel
-            // 
-            textBoxLabel.AutoSize = true;
-            textBoxLabel.Location = new Point(597, 12);
-            textBoxLabel.Name = "textBoxLabel";
-            textBoxLabel.Size = new Size(68, 20);
-            textBoxLabel.TabIndex = 3;
-            textBoxLabel.Text = "Int value:";
-            // 
-            // indexTextBox
-            // 
-            indexTextBox.Location = new Point(597, 35);
-            indexTextBox.Name = "indexTextBox";
-            indexTextBox.Size = new Size(125, 27);
-            indexTextBox.TabIndex = 2;
+            IndexTextBox.Location = new Point(628, 61);
+            IndexTextBox.Name = "IndexTextBox";
+            IndexTextBox.Size = new Size(125, 27);
+            IndexTextBox.TabIndex = 8;
             // 
             // ValuesListBox
             // 
             ValuesListBox.FormattingEnabled = true;
-            ValuesListBox.Location = new Point(303, 35);
+            ValuesListBox.Location = new Point(334, 61);
             ValuesListBox.Name = "ValuesListBox";
-            ValuesListBox.Size = new Size(176, 204);
-            ValuesListBox.TabIndex = 1;
-            ValuesListBox.SelectedIndexChanged += ValuesListBox_SelectedIndexChanged;
+            ValuesListBox.Size = new Size(178, 164);
+            ValuesListBox.TabIndex = 7;
             // 
             // EnumsListBox
             // 
             EnumsListBox.FormattingEnabled = true;
             EnumsListBox.Items.AddRange(new object[] { "Color ", "EducationForm", "Genre", "Manufactures", "Season", "Weekday" });
-            EnumsListBox.Location = new Point(33, 35);
+            EnumsListBox.Location = new Point(64, 61);
             EnumsListBox.Name = "EnumsListBox";
-            EnumsListBox.Size = new Size(178, 204);
-            EnumsListBox.TabIndex = 0;
-            EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
+            EnumsListBox.Size = new Size(178, 164);
+            EnumsListBox.TabIndex = 6;
+            // 
+            // groupBox2
+            // 
+            groupBox2.Controls.Add(WeekdayLabel);
+            groupBox2.Controls.Add(ParseButton);
+            groupBox2.Controls.Add(WeekdayTextBox);
+            groupBox2.Controls.Add(ParsingLabel);
+            groupBox2.Location = new Point(3, 275);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(410, 173);
+            groupBox2.TabIndex = 15;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Weekday Parsing";
+            // 
+            // WeekdayLabel
+            // 
+            WeekdayLabel.AutoSize = true;
+            WeekdayLabel.Location = new Point(16, 112);
+            WeekdayLabel.Name = "WeekdayLabel";
+            WeekdayLabel.Size = new Size(0, 20);
+            WeekdayLabel.TabIndex = 13;
+            // 
+            // ParseButton
+            // 
+            ParseButton.Location = new Point(200, 64);
+            ParseButton.Name = "ParseButton";
+            ParseButton.Size = new Size(94, 29);
+            ParseButton.TabIndex = 12;
+            ParseButton.Text = "Parse";
+            ParseButton.UseVisualStyleBackColor = true;
+            // 
+            // WeekdayTextBox
+            // 
+            WeekdayTextBox.Location = new Point(16, 66);
+            WeekdayTextBox.Name = "WeekdayTextBox";
+            WeekdayTextBox.Size = new Size(125, 27);
+            WeekdayTextBox.TabIndex = 11;
+            // 
+            // ParsingLabel
+            // 
+            ParsingLabel.AutoSize = true;
+            ParsingLabel.Location = new Point(7, 41);
+            ParsingLabel.Name = "ParsingLabel";
+            ParsingLabel.Size = new Size(158, 20);
+            ParsingLabel.TabIndex = 10;
+            ParsingLabel.Text = "Type value for parsing:";
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(SeasonLabel);
+            groupBox3.Controls.Add(SeasonComboBox);
+            groupBox3.Controls.Add(SeasonButton);
+            groupBox3.Location = new Point(419, 275);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(401, 173);
+            groupBox3.TabIndex = 16;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Season Handle";
+            // 
+            // SeasonLabel
+            // 
+            SeasonLabel.AutoSize = true;
+            SeasonLabel.Location = new Point(69, 41);
+            SeasonLabel.Name = "SeasonLabel";
+            SeasonLabel.Size = new Size(110, 20);
+            SeasonLabel.TabIndex = 15;
+            SeasonLabel.Text = "Choose season:";
+            // 
+            // SeasonComboBox
+            // 
+            SeasonComboBox.FormattingEnabled = true;
+            SeasonComboBox.Items.AddRange(new object[] { "Winter", "Spring", "Summer", "Autumn" });
+            SeasonComboBox.Location = new Point(69, 64);
+            SeasonComboBox.Name = "SeasonComboBox";
+            SeasonComboBox.Size = new Size(151, 28);
+            SeasonComboBox.TabIndex = 14;
+            // 
+            // SeasonButton
+            // 
+            SeasonButton.Location = new Point(250, 64);
+            SeasonButton.Name = "SeasonButton";
+            SeasonButton.Size = new Size(94, 29);
+            SeasonButton.TabIndex = 13;
+            SeasonButton.Text = "Go!";
+            SeasonButton.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -174,7 +240,12 @@
             Text = "Programming Demo";
             EnumsTabControl.ResumeLayout(false);
             Enums.ResumeLayout(false);
-            Enums.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -182,15 +253,21 @@
 
         private TabControl EnumsTabControl;
         private TabPage Enums;
+        private GroupBox groupBox3;
+        private Label SeasonLabel;
+        private ComboBox SeasonComboBox;
+        private Button SeasonButton;
+        private GroupBox groupBox2;
+        private Label WeekdayLabel;
+        private Button ParseButton;
+        private TextBox WeekdayTextBox;
+        private Label ParsingLabel;
+        private GroupBox groupBox1;
+        private Label ValueListBoxLabel;
+        private Label EnumsListBoxLabel;
+        private Label TextBoxLabel;
+        private TextBox IndexTextBox;
         private ListBox ValuesListBox;
         private ListBox EnumsListBox;
-        private Label textBoxLabel;
-        private TextBox indexTextBox;
-        private Label valueListBoxLabel;
-        private Label enumsListBoxLabel;
-        private Label parsingLabel;
-        private Label weekdayLabel;
-        private Button parseButton;
-        private TextBox weekdayTextBox;
     }
 }
