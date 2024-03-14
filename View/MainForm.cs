@@ -59,13 +59,13 @@ namespace Programming
                     MessageBox.Show("Бррр, холодно");
                     break;
                 case 1:
-                    Enums.BackColor = ColorTranslator.FromHtml("#559c45");
+                    enumsPage.BackColor = ColorTranslator.FromHtml("#559c45");
                     break;
                 case 2:
                     MessageBox.Show("Ура!Солнце!");
                     break;
                 case 3:
-                    Enums.BackColor = ColorTranslator.FromHtml("#e29c45");
+                    enumsPage.BackColor = ColorTranslator.FromHtml("#e29c45");
                     break;
             }
         }

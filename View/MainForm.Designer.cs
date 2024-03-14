@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             EnumsTabControl = new TabControl();
-            Enums = new TabPage();
+            enumsPage = new TabPage();
             SeasonGroupBox = new GroupBox();
             SeasonLabel = new Label();
             SeasonComboBox = new ComboBox();
@@ -46,16 +46,29 @@
             IndexTextBox = new TextBox();
             ValuesListBox = new ListBox();
             EnumsListBox = new ListBox();
+            classesPage = new TabPage();
+            rectanglesGroupBox = new GroupBox();
+            rectangleListBox = new ListBox();
+            lenghtTextBox = new TextBox();
+            widthTextBox = new TextBox();
+            colorTextBox = new TextBox();
+            lengthLabel = new Label();
+            widthLabel = new Label();
+            colorLabel = new Label();
+            findRectangleButton = new Button();
             EnumsTabControl.SuspendLayout();
-            Enums.SuspendLayout();
+            enumsPage.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
             ParsingGroupBox.SuspendLayout();
             EnumerationsGroupBox.SuspendLayout();
+            classesPage.SuspendLayout();
+            rectanglesGroupBox.SuspendLayout();
             SuspendLayout();
             // 
             // EnumsTabControl
             // 
-            EnumsTabControl.Controls.Add(Enums);
+            EnumsTabControl.Controls.Add(enumsPage);
+            EnumsTabControl.Controls.Add(classesPage);
             EnumsTabControl.Dock = DockStyle.Fill;
             EnumsTabControl.Location = new Point(0, 0);
             EnumsTabControl.Name = "EnumsTabControl";
@@ -64,20 +77,20 @@
             EnumsTabControl.TabIndex = 0;
             EnumsTabControl.Tag = "";
             // 
-            // Enums
+            // enumsPage
             // 
-            Enums.AccessibleName = "";
-            Enums.Controls.Add(SeasonGroupBox);
-            Enums.Controls.Add(ParsingGroupBox);
-            Enums.Controls.Add(EnumerationsGroupBox);
-            Enums.ImeMode = ImeMode.NoControl;
-            Enums.Location = new Point(4, 29);
-            Enums.Name = "Enums";
-            Enums.Padding = new Padding(3);
-            Enums.Size = new Size(828, 451);
-            Enums.TabIndex = 0;
-            Enums.Text = "Enums";
-            Enums.UseVisualStyleBackColor = true;
+            enumsPage.AccessibleName = "";
+            enumsPage.Controls.Add(SeasonGroupBox);
+            enumsPage.Controls.Add(ParsingGroupBox);
+            enumsPage.Controls.Add(EnumerationsGroupBox);
+            enumsPage.ImeMode = ImeMode.NoControl;
+            enumsPage.Location = new Point(4, 29);
+            enumsPage.Name = "enumsPage";
+            enumsPage.Padding = new Padding(3);
+            enumsPage.Size = new Size(828, 451);
+            enumsPage.TabIndex = 0;
+            enumsPage.Text = "Enums";
+            enumsPage.UseVisualStyleBackColor = true;
             // 
             // SeasonGroupBox
             // 
@@ -234,6 +247,98 @@
             EnumsListBox.TabIndex = 6;
             EnumsListBox.SelectedIndexChanged += EnumsListBox_SelectedIndexChanged;
             // 
+            // classesPage
+            // 
+            classesPage.Controls.Add(rectanglesGroupBox);
+            classesPage.Location = new Point(4, 29);
+            classesPage.Name = "classesPage";
+            classesPage.Size = new Size(828, 451);
+            classesPage.TabIndex = 1;
+            classesPage.Text = "Classes";
+            classesPage.UseVisualStyleBackColor = true;
+            // 
+            // rectanglesGroupBox
+            // 
+            rectanglesGroupBox.Controls.Add(findRectangleButton);
+            rectanglesGroupBox.Controls.Add(colorLabel);
+            rectanglesGroupBox.Controls.Add(widthLabel);
+            rectanglesGroupBox.Controls.Add(lengthLabel);
+            rectanglesGroupBox.Controls.Add(colorTextBox);
+            rectanglesGroupBox.Controls.Add(widthTextBox);
+            rectanglesGroupBox.Controls.Add(lenghtTextBox);
+            rectanglesGroupBox.Controls.Add(rectangleListBox);
+            rectanglesGroupBox.Location = new Point(3, 3);
+            rectanglesGroupBox.Name = "rectanglesGroupBox";
+            rectanglesGroupBox.Size = new Size(339, 281);
+            rectanglesGroupBox.TabIndex = 0;
+            rectanglesGroupBox.TabStop = false;
+            rectanglesGroupBox.Text = "Rectangles";
+            // 
+            // rectangleListBox
+            // 
+            rectangleListBox.FormattingEnabled = true;
+            rectangleListBox.Location = new Point(6, 26);
+            rectangleListBox.Name = "rectangleListBox";
+            rectangleListBox.Size = new Size(150, 164);
+            rectangleListBox.TabIndex = 0;
+            // 
+            // lenghtTextBox
+            // 
+            lenghtTextBox.Location = new Point(186, 42);
+            lenghtTextBox.Name = "lenghtTextBox";
+            lenghtTextBox.Size = new Size(125, 27);
+            lenghtTextBox.TabIndex = 1;
+            // 
+            // widthTextBox
+            // 
+            widthTextBox.Location = new Point(186, 103);
+            widthTextBox.Name = "widthTextBox";
+            widthTextBox.Size = new Size(125, 27);
+            widthTextBox.TabIndex = 2;
+            // 
+            // colorTextBox
+            // 
+            colorTextBox.Location = new Point(186, 163);
+            colorTextBox.Name = "colorTextBox";
+            colorTextBox.Size = new Size(125, 27);
+            colorTextBox.TabIndex = 3;
+            // 
+            // lengthLabel
+            // 
+            lengthLabel.AutoSize = true;
+            lengthLabel.Location = new Point(186, 19);
+            lengthLabel.Name = "lengthLabel";
+            lengthLabel.Size = new Size(57, 20);
+            lengthLabel.TabIndex = 4;
+            lengthLabel.Text = "Length:";
+            // 
+            // widthLabel
+            // 
+            widthLabel.AutoSize = true;
+            widthLabel.Location = new Point(186, 80);
+            widthLabel.Name = "widthLabel";
+            widthLabel.Size = new Size(52, 20);
+            widthLabel.TabIndex = 5;
+            widthLabel.Text = "Width:";
+            // 
+            // colorLabel
+            // 
+            colorLabel.AutoSize = true;
+            colorLabel.Location = new Point(186, 140);
+            colorLabel.Name = "colorLabel";
+            colorLabel.Size = new Size(48, 20);
+            colorLabel.TabIndex = 6;
+            colorLabel.Text = "Color:";
+            // 
+            // findRectangleButton
+            // 
+            findRectangleButton.Location = new Point(186, 226);
+            findRectangleButton.Name = "findRectangleButton";
+            findRectangleButton.Size = new Size(94, 29);
+            findRectangleButton.TabIndex = 7;
+            findRectangleButton.Text = "Find";
+            findRectangleButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -243,20 +348,23 @@
             Name = "MainForm";
             Text = "Programming Demo";
             EnumsTabControl.ResumeLayout(false);
-            Enums.ResumeLayout(false);
+            enumsPage.ResumeLayout(false);
             SeasonGroupBox.ResumeLayout(false);
             SeasonGroupBox.PerformLayout();
             ParsingGroupBox.ResumeLayout(false);
             ParsingGroupBox.PerformLayout();
             EnumerationsGroupBox.ResumeLayout(false);
             EnumerationsGroupBox.PerformLayout();
+            classesPage.ResumeLayout(false);
+            rectanglesGroupBox.ResumeLayout(false);
+            rectanglesGroupBox.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private TabControl EnumsTabControl;
-        private TabPage Enums;
+        private TabPage enumsPage;
         private Label SeasonLabel;
         private ComboBox SeasonComboBox;
         private Button SeasonButton;
@@ -273,5 +381,15 @@
         private ListBox EnumsListBox;
         public GroupBox SeasonGroupBox;
         public GroupBox EnumerationsGroupBox;
+        private TabPage classesPage;
+        private GroupBox rectanglesGroupBox;
+        private Label colorLabel;
+        private Label widthLabel;
+        private Label lengthLabel;
+        private TextBox colorTextBox;
+        private TextBox widthTextBox;
+        private TextBox lenghtTextBox;
+        private ListBox rectangleListBox;
+        private Button findRectangleButton;
     }
 }
