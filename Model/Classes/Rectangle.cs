@@ -1,20 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-class Rectangle 
+﻿class Rectangle
 {
     private double _rectangleWidth;
-    private double _rectangleHeight;
-    private string _color;
+    private double _rectangleLenght;
     readonly int _id;
     static int _allRectanglesCount;
 
-    public double RectangleHeight
+    public double RectangleLength
     {
-        get { return _rectangleHeight; }
+        get { return _rectangleLenght; }
         set
         {
-            if(value < 0) throw new ArgumentOutOfRangeException();
-            _rectangleHeight = value;
+            if (value < 0) throw new ArgumentOutOfRangeException();
+            _rectangleLenght = value;
         }
     }
     public double RectangleWidth
@@ -26,7 +23,7 @@ class Rectangle
             _rectangleWidth = value;
         }
     }
-    public Color Color { get; set; }
+    public Colors RectangleColor { get; set; }
     public static int AllRectanglesCount
     {
         get { return _allRectanglesCount; }
@@ -37,16 +34,16 @@ class Rectangle
     }
     public Rectangle()
     {
-        RectangleHeight = 10;
+        RectangleLength = 10;
         RectangleWidth = 20;
-        Color = Color.Red;
+        RectangleColor = Colors.White;
         _id = ++_allRectanglesCount;
     }
-    public Rectangle(int height, int width, Color color)
+    public Rectangle(int lenght, int width, Colors color)
     {
-        RectangleHeight = height;
+        RectangleLength = lenght;
         RectangleWidth = width;
-        Color = color;
+        RectangleColor = color;
         _id = ++_allRectanglesCount;
     }
 }
