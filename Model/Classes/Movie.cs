@@ -3,7 +3,7 @@
     private string _name;
     private int _duration;
     private int _yearOfRelease;
-    private int _rating;
+    private double _rating;
 
     public string Name
     {
@@ -19,7 +19,7 @@
         get { return _duration; }
         set
         {
-            if (value == 0) throw new ArgumentException();
+            Validator.AssertOnPositiveValue(value);
             _duration = value;
         }
     }
@@ -28,18 +28,18 @@
         get { return _yearOfRelease; }
         set
         {
-            if (value < 1900 || value > 2025) throw new ArgumentException();
+            Validator.AssertValueInRange(value, 1900, 2025);
             _yearOfRelease = value;
         }
     }
     public Genre GenreOfMovie { get; set; }
 
-    public int Rating
+    public double Rating
     {
         get { return _rating; }
         set
         {
-            if(value < 0 || value > 10) throw new ArgumentException();
+            Validator.AssertValueInRange(value, 0, 10);
             _rating = value;
         }
     }
@@ -50,7 +50,7 @@
         YearOfRelease = 2011;
         Rating = 10;
     }
-    public Movie(string name, int duration, int yearOfRelease, Genre genre, int rating)
+    public Movie(string name, int duration, int yearOfRelease, Genre genre, double rating)
     {
         Name = name;
         Duration = duration;

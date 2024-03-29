@@ -61,6 +61,10 @@
             MovieNameTextBox = new TextBox();
             MoviesListBox = new ListBox();
             rectanglesGroupBox = new GroupBox();
+            labelY = new Label();
+            labelX = new Label();
+            RectangleCenterYCoordinatesTextBox = new TextBox();
+            RectangleCenterXCoordinatesTextBox = new TextBox();
             FindRectangleButton = new Button();
             colorLabel = new Label();
             widthLabel = new Label();
@@ -69,6 +73,8 @@
             WidthTextBox = new TextBox();
             LengthTextBox = new TextBox();
             RectangleListBox = new ListBox();
+            IdTextBox = new TextBox();
+            labelID = new Label();
             EnumsTabControl.SuspendLayout();
             enumsPage.SuspendLayout();
             SeasonGroupBox.SuspendLayout();
@@ -353,6 +359,7 @@
             RatingTextBox.Name = "RatingTextBox";
             RatingTextBox.Size = new Size(125, 27);
             RatingTextBox.TabIndex = 5;
+            RatingTextBox.TextChanged += RatingTextBox_TextChanged;
             // 
             // MovieGenreTextBox
             // 
@@ -360,6 +367,7 @@
             MovieGenreTextBox.Name = "MovieGenreTextBox";
             MovieGenreTextBox.Size = new Size(125, 27);
             MovieGenreTextBox.TabIndex = 4;
+            MovieGenreTextBox.TextChanged += MovieGenreTextBox_TextChanged;
             // 
             // ReleaseYearTextBox
             // 
@@ -367,6 +375,7 @@
             ReleaseYearTextBox.Name = "ReleaseYearTextBox";
             ReleaseYearTextBox.Size = new Size(125, 27);
             ReleaseYearTextBox.TabIndex = 3;
+            ReleaseYearTextBox.TextChanged += ReleaseYearTextBox_TextChanged;
             // 
             // DurationTextBox
             // 
@@ -374,6 +383,7 @@
             DurationTextBox.Name = "DurationTextBox";
             DurationTextBox.Size = new Size(125, 27);
             DurationTextBox.TabIndex = 2;
+            DurationTextBox.TextChanged += DurationTextBox_TextChanged;
             // 
             // MovieNameTextBox
             // 
@@ -381,6 +391,7 @@
             MovieNameTextBox.Name = "MovieNameTextBox";
             MovieNameTextBox.Size = new Size(125, 27);
             MovieNameTextBox.TabIndex = 1;
+            MovieNameTextBox.TextChanged += MovieNameTextBox_TextChanged;
             // 
             // MoviesListBox
             // 
@@ -393,6 +404,12 @@
             // 
             // rectanglesGroupBox
             // 
+            rectanglesGroupBox.Controls.Add(labelID);
+            rectanglesGroupBox.Controls.Add(IdTextBox);
+            rectanglesGroupBox.Controls.Add(labelY);
+            rectanglesGroupBox.Controls.Add(labelX);
+            rectanglesGroupBox.Controls.Add(RectangleCenterYCoordinatesTextBox);
+            rectanglesGroupBox.Controls.Add(RectangleCenterXCoordinatesTextBox);
             rectanglesGroupBox.Controls.Add(FindRectangleButton);
             rectanglesGroupBox.Controls.Add(colorLabel);
             rectanglesGroupBox.Controls.Add(widthLabel);
@@ -403,14 +420,48 @@
             rectanglesGroupBox.Controls.Add(RectangleListBox);
             rectanglesGroupBox.Location = new Point(3, 3);
             rectanglesGroupBox.Name = "rectanglesGroupBox";
-            rectanglesGroupBox.Size = new Size(339, 281);
+            rectanglesGroupBox.Size = new Size(339, 296);
             rectanglesGroupBox.TabIndex = 0;
             rectanglesGroupBox.TabStop = false;
             rectanglesGroupBox.Text = "Rectangles";
             // 
+            // labelY
+            // 
+            labelY.AutoSize = true;
+            labelY.Location = new Point(64, 198);
+            labelY.Name = "labelY";
+            labelY.Size = new Size(20, 20);
+            labelY.TabIndex = 11;
+            labelY.Text = "Y:";
+            // 
+            // labelX
+            // 
+            labelX.AutoSize = true;
+            labelX.Location = new Point(5, 198);
+            labelX.Name = "labelX";
+            labelX.Size = new Size(21, 20);
+            labelX.TabIndex = 10;
+            labelX.Text = "X:";
+            // 
+            // RectangleCenterYCoordinatesTextBox
+            // 
+            RectangleCenterYCoordinatesTextBox.Location = new Point(64, 218);
+            RectangleCenterYCoordinatesTextBox.Name = "RectangleCenterYCoordinatesTextBox";
+            RectangleCenterYCoordinatesTextBox.ReadOnly = true;
+            RectangleCenterYCoordinatesTextBox.Size = new Size(36, 27);
+            RectangleCenterYCoordinatesTextBox.TabIndex = 9;
+            // 
+            // RectangleCenterXCoordinatesTextBox
+            // 
+            RectangleCenterXCoordinatesTextBox.Location = new Point(6, 218);
+            RectangleCenterXCoordinatesTextBox.Name = "RectangleCenterXCoordinatesTextBox";
+            RectangleCenterXCoordinatesTextBox.ReadOnly = true;
+            RectangleCenterXCoordinatesTextBox.Size = new Size(36, 27);
+            RectangleCenterXCoordinatesTextBox.TabIndex = 8;
+            // 
             // FindRectangleButton
             // 
-            FindRectangleButton.Location = new Point(186, 226);
+            FindRectangleButton.Location = new Point(186, 230);
             FindRectangleButton.Name = "FindRectangleButton";
             FindRectangleButton.Size = new Size(94, 29);
             FindRectangleButton.TabIndex = 7;
@@ -477,6 +528,23 @@
             RectangleListBox.Size = new Size(150, 164);
             RectangleListBox.TabIndex = 0;
             RectangleListBox.SelectedIndexChanged += RectangleListBox_SelectedIndexChanged;
+            // 
+            // IdTextBox
+            // 
+            IdTextBox.Location = new Point(123, 218);
+            IdTextBox.Name = "IdTextBox";
+            IdTextBox.ReadOnly = true;
+            IdTextBox.Size = new Size(36, 27);
+            IdTextBox.TabIndex = 12;
+            // 
+            // labelID
+            // 
+            labelID.AutoSize = true;
+            labelID.Location = new Point(123, 197);
+            labelID.Name = "labelID";
+            labelID.Size = new Size(25, 20);
+            labelID.TabIndex = 13;
+            labelID.Text = "Id:";
             // 
             // MainForm
             // 
@@ -545,5 +613,11 @@
         private Label RatingLabel;
         private Button SearchMovieButton;
         private ListBox RectangleListBox;
+        private Label labelY;
+        private Label labelX;
+        private TextBox RectangleCenterYCoordinatesTextBox;
+        private TextBox RectangleCenterXCoordinatesTextBox;
+        private Label labelID;
+        private TextBox IdTextBox;
     }
 }

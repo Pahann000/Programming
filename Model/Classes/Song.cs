@@ -35,10 +35,7 @@
         get { return _duration; }
         set
         {
-            if (value < 1)
-            {
-                throw new ArgumentException("The duration cannot be less than 1 minute");
-            }
+            Validator.AssertOnPositiveValue(value);
             _duration = value;
         }
     }
@@ -48,10 +45,7 @@
         get { return _release; }
         set
         {
-            if (value < 1960)
-            {
-                throw new ArgumentException("There were no players before 1960!");
-            }
+            Validator.AssertValueInRange(value, 1960, 2025);
             _release = value;
         }
     }

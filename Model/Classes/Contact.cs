@@ -1,4 +1,7 @@
-﻿class Contact
+﻿using System.CodeDom;
+using System.Text.RegularExpressions;
+
+class Contact
 {
     private string _firstName;
     private string _lastName;
@@ -9,7 +12,7 @@
         get { return _firstName; }
         set
         {
-            if (value.Length < 0) throw new ArgumentException();
+            AssertStringContainsOnlyLetters(value);
             _firstName = value;
         }
     }
@@ -18,7 +21,7 @@
         get { return _lastName; }
         set
         {
-            if (value.Length < 0) throw new ArgumentException();
+            AssertStringContainsOnlyLetters(value);
             _lastName = value;
         }
     }
@@ -30,6 +33,14 @@
             if(value.Length < 0) throw new ArgumentException();
             _phoneNumber = value;
         }
+    }
+    private string AssertStringContainsOnlyLetters(string value)
+    {
+        if(Regex.IsMatch(value, @"^[a-zA-Z]+$"))
+        {
+            return value;
+        }
+        else { throw new ArgumentException($"{value} is not right. "); }
     }
     public Contact()
     {

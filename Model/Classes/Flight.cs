@@ -26,7 +26,7 @@
         get { return _flightTimeInMinutes; }
         set
         {
-            if (value < 1) throw new ArgumentException();
+            Validator.AssertOnPositiveValue(value);
             _flightTimeInMinutes = value;
         }
     }

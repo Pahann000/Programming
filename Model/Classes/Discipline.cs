@@ -20,7 +20,7 @@ class Discipline
         get { return _grade; }
         set
         {
-            if(value > 5 && value < 1) throw new ArgumentException();
+            Validator.AssertValueInRange(value, 1, 5);
             _grade = value;
         }
     }
@@ -29,7 +29,7 @@ class Discipline
         get { return _semester; }
         set
         {
-            if( value > 8 && value < 1)throw new ArgumentException();
+            Validator.AssertValueInRange(value, 1, 8);
             _semester = value;
         }
     }

@@ -9,7 +9,7 @@
         get { return _hours; }
         set
         {
-            if (value < 0 && value > 23) throw new ArgumentOutOfRangeException();
+            Validator.AssertValueInRange(value, 0, 23);
             _hours = value;
         }
     }
@@ -18,7 +18,7 @@
         get { return _minutes; }
         set
         {
-            if (value < 0 && value > 59) throw new ArgumentOutOfRangeException();
+            Validator.AssertValueInRange(value, 0, 59);
             _minutes = value;
         }
     }
@@ -27,7 +27,7 @@
         get { return _seconds; }
         set
         {
-            if (value < 0 && value > 59) throw new ArgumentOutOfRangeException();
+            Validator.AssertValueInRange(value, 0, 59);
             _seconds = value;
         }
     }

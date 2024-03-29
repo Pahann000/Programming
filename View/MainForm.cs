@@ -18,75 +18,22 @@ namespace Programming
         public MainForm()
         {
             InitializeComponent();
+            object[] SeasonValues = Enum.GetValues(typeof(Season)).Cast<object>().ToArray();
+            SeasonComboBox.Items.AddRange(SeasonValues);
             Random random = new Random();
-            string[] movieTitles = new string[5] { "Dune", "Dune2", "Oppenhaimer", "Barbie", "Terminator" };
+            string[] movieTitles = new string[5] { "Green Mile", "Dune", "The Dark Knight", "Drive", "Terminator" };
             for (int i = 0; i < 5; i++)
             {
-                Rectangle rectangle = new Rectangle(random.Next(0, 20), random.Next(0, 20), Colors.Red);
+                Rectangle rectangle = new Rectangle(Math.Round((random.NextDouble() * 10), 2), Math.Round((random.NextDouble() * 10), 2), Colors.Red, 0, 0);
                 _rectangles[i] = rectangle;
             }
             RectangleListBox.Items.AddRange(_rectangles);
             for (int i = 0; i < 5; i++)
             {
-                Movie movie = new Movie(movieTitles[i], random.Next(60, 300), random.Next(1900, 2025), Genre.Horror, random.Next(1, 10));
+                Movie movie = new Movie(movieTitles[i], random.Next(60, 300), random.Next(1900, 2025), Genre.Horror, Math.Round((random.NextDouble()*10), 1));
                 _movies[i] = movie;
             }
             MoviesListBox.Items.AddRange(_movies);
-        }
-        private void MovieNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                MovieNameTextBox.BackColor = System.Drawing.Color.White;
-                string Name = MovieNameTextBox.Text;
-                _currentMovie.Name = Name;
-            }
-            catch (Exception)
-            {
-                MovieNameTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        private void DurationTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                DurationTextBox.BackColor = System.Drawing.Color.White;
-                int Duration = int.Parse(DurationTextBox.Text);
-                _currentMovie.Duration = Duration;
-            }
-            catch (Exception)
-            {
-                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-
-        private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
-                int Release = int.Parse(ReleaseYearTextBox.Text);
-                _currentMovie.YearOfRelease = Release;
-            }
-            catch (Exception)
-            {
-                ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
-        }
-        private void MovieGenreTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (_currentMovie == null) return;
-            string genre = MovieGenreTextBox.Text;
-            if (TryGetEnumValue(genre, out Genre value))
-            {
-                _currentMovie.GenreOfMovie = value;
-                MovieGenreTextBox.BackColor = System.Drawing.Color.White;
-            }
-            else
-            {
-                MovieGenreTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
         }
         static public bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
@@ -96,19 +43,6 @@ namespace Programming
             }
             value = default;
             return false;
-        }
-        private void RatingTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                RatingTextBox.BackColor = System.Drawing.Color.White;
-                int Rating = int.Parse(RatingTextBox.Text);
-                _currentMovie.Rating = Rating;
-            }
-            catch (Exception)
-            {
-                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
-            }
         }
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
@@ -125,7 +59,6 @@ namespace Programming
             return MaxWidthIndex;
 
         }
-
         private void PopulateSecondListBox<T>()
         {
             Type enumType = typeof(T);
@@ -223,6 +156,9 @@ namespace Programming
             WidthTextBox.Text = _currentRectangle.RectangleWidth.ToString();
             LengthTextBox.Text = _currentRectangle.RectangleLength.ToString();
             ColorTextBox.Text = _currentRectangle.RectangleColor.ToString();
+            RectangleCenterXCoordinatesTextBox.Text = _currentRectangle.CenterOfRectangle.Y.ToString();
+            RectangleCenterYCoordinatesTextBox.Text = _currentRectangle.CenterOfRectangle.X.ToString();
+            IdTextBox.Text = _currentRectangle.Id.ToString();   
         }
         private void LengthTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -260,11 +196,81 @@ namespace Programming
             if (TryGetEnumValue(ColorTextBox.Text, out Colors value))
             {
                 _currentRectangle.RectangleColor = value;
+                ColorTextBox.BackColor = System.Drawing.Color.White;
+            }
+            else
+            {
+                ColorTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+        private void MovieNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                MovieNameTextBox.BackColor = System.Drawing.Color.White;
+                string Name = MovieNameTextBox.Text;
+                _currentMovie.Name = Name;
+            }
+            catch (Exception)
+            {
+                MovieNameTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void DurationTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.White;
+                int Duration = int.Parse(DurationTextBox.Text);
+                _currentMovie.Duration = Duration;
+            }
+            catch (Exception)
+            {
+                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void ReleaseYearTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.White;
+                int Release = int.Parse(ReleaseYearTextBox.Text);
+                _currentMovie.YearOfRelease = Release;
+            }
+            catch (Exception)
+            {
+                ReleaseYearTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void MovieGenreTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (_currentMovie == null) return;
+            string genre = MovieGenreTextBox.Text;
+            if (TryGetEnumValue(genre, out Genre value))
+            {
+                _currentMovie.GenreOfMovie = value;
                 MovieGenreTextBox.BackColor = System.Drawing.Color.White;
             }
             else
             {
                 MovieGenreTextBox.BackColor = System.Drawing.Color.LightPink;
+            }
+        }
+
+        private void RatingTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.White;
+                double Rating = double.Parse(RatingTextBox.Text);
+                _currentMovie.Rating = Rating;
+            }
+            catch (Exception)
+            {
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
         private int FindFilmWithMaxRating(Movie[] movies)
@@ -281,6 +287,7 @@ namespace Programming
             }
             return maxRatingIndex;
         }
+
 
         private void FindRectangleButton_Click(object sender, EventArgs e)
         {
