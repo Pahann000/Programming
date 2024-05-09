@@ -1,18 +1,18 @@
 ﻿class Rectangle
 {
     private double _rectangleWidth;
-    private double _rectangleLenght;
+    private double _rectangleHeight;
     readonly int _id;
     private static int _allRectanglesCount;
     public Point2D CenterOfRectangle;
 
-    public double RectangleLength
+    public double RectangleHeight
     {
-        get { return _rectangleLenght; }
+        get { return _rectangleHeight; }
         set
         {
             Validator.AssertOnPositiveValue(value);
-            _rectangleLenght = value;
+            _rectangleHeight = value;
         }
     }
     public double RectangleWidth
@@ -36,18 +36,18 @@
     }
     public Rectangle()
     {
-        RectangleLength = 10;
+        RectangleHeight = 10;
         RectangleWidth = 20;
         RectangleColor = Colors.White;
         CenterOfRectangle = new Point2D(7, 8);
         _id = ++_allRectanglesCount;
     }
-    public Rectangle(double lenght, double width, Colors color, double _x, double _y)
+    public Rectangle(double height, double width, Colors color, double _x, double _y)
     {
-        RectangleLength = lenght;
+        RectangleHeight = height;
         RectangleWidth = width;
         RectangleColor = color;
-        CenterOfRectangle = new Point2D(_x + RectangleWidth/2, _y + RectangleLength/2);
+        CenterOfRectangle = new Point2D(_x + RectangleWidth/2, _y + RectangleHeight/2);
         _id = ++_allRectanglesCount;
     }
 }
