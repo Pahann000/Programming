@@ -12,7 +12,14 @@ namespace Programming.View.UserControls
 {
     public partial class RectanglesControl : UserControl
     {
+        /// <summary>
+        /// Хранит созданные прямоугольники.
+        /// </summary>
         private static Rectangle[] _rectangles = null;
+
+        /// <summary>
+        /// Хранит данные о текущем прямоугольнике.
+        /// </summary>
         private static Rectangle _currentRectangle = null;
         public RectanglesControl()
         {
@@ -20,6 +27,12 @@ namespace Programming.View.UserControls
             _rectangles = GetRandomRectangles(5);
             InitListBoxRectangles(5);
         }
+
+        /// <summary>
+        /// Созлание прямоугольника.
+        /// </summary>
+        /// <param name="size">Количество прямоугольников.</param>
+        /// <returns>Возращает созданный прямоугольник с рандомными значениями.</returns>
         private Rectangle[] GetRandomRectangles(int size)
         {
             Rectangle[] myRectangles = new Rectangle[size];
@@ -35,6 +48,11 @@ namespace Programming.View.UserControls
 
             return myRectangles;
         }
+
+        /// <summary>
+        /// Инициализация элемента listbox данными.
+        /// </summary>
+        /// <param name="count">Количество прямоугольников.</param>
         private void InitListBoxRectangles(int count)
         {
             for (int i = 0; i < count; i++)
@@ -42,6 +60,12 @@ namespace Programming.View.UserControls
                 RectangleListBox.Items.Add($"Rectangle {i + 1}");
             }
         }
+
+        /// <summary>
+        /// Поиск прямоугольника с максимальной шириной.
+        /// </summary>
+        /// <param name="rectangles"></param>
+        /// <returns>Возращает индекс прямоугольника с максимальной шириной.</returns>
         private int FindRectangleWithMaxWidth(Rectangle[] rectangles)
         {
             double MaxWidth = rectangles[0].RectangleWidth;
@@ -114,6 +138,14 @@ namespace Programming.View.UserControls
                 ColorTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
+        /// <summary>
+        /// Проверка на значение из перечисления.
+        /// </summary>
+        /// <typeparam name="T">Тип.</typeparam>
+        /// <param name="itemName">Название переменной.</param>
+        /// <param name="value">Значение из перечисления.</param>
+        /// <returns></returns>
         static public bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))

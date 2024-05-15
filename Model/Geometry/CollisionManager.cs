@@ -1,7 +1,16 @@
 ﻿using System.Drawing;
 
+/// <summary>
+/// Класс, проверяющий пересечение элементов.
+/// </summary>
 internal class CollisionManager
 {
+    /// <summary>
+    /// Проверяет кольца на пересечение.
+    /// </summary>
+    /// <param name="ring1">Первое кольцо, проверяемое на пересечение.</param>
+    /// <param name="ring2">Второе кольцо, проверяемое на пересечение.</param>
+    /// <returns>Возращает true, если пересекаются и false, если нет </returns>
     public static bool IsCollision(Ring ring1, Ring ring2)
     {
         double path = Math.Sqrt(
@@ -13,6 +22,12 @@ internal class CollisionManager
             !(ring1.InnerRadius + path < ring2.OuterRadius ||
             ring2.InnerRadius + path < ring1.OuterRadius);
     }
+    /// <summary>
+    /// Проверяет прямоугольники на пересечение.
+    /// </summary>
+    /// <param name="rectangle1">Первый прямоугольник, проверяемый на пересечение.</param>
+    /// <param name="rectangle2">Второй прямоугольник, проверяемый на пересечение.</param>
+    /// <returns>Возращает true, если они пересекаются и false, если нет</returns>
     public static bool IsCollision(Rectangle rectangle1, Rectangle rectangle2)
     {
         Point2D region = new Point2D(

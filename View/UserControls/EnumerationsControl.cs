@@ -42,6 +42,10 @@ namespace Programming.View.UserControls
                     break;
             }
         }
+        /// <summary>
+        /// Заполнение элемента listbox элементами.
+        /// </summary>
+        /// <typeparam name="T">Принимаемый тип данных.</typeparam>
         private void PopulateSecondListBox<T>()
         {
             Type enumType = typeof(T);

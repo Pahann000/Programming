@@ -16,6 +16,12 @@ namespace Programming.View.UserControls
         {
             InitializeComponent();
         }
+
+        /// <summary>
+        /// Проверка на день недели.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void WeekdayParsing(object sender, EventArgs e)
         {
             Weekday weekday;

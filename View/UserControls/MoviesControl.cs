@@ -12,7 +12,14 @@ namespace Programming.View.UserControls
 {
     public partial class MoviesControl : UserControl
     {
+        /// <summary>
+        /// Хранит данные о фильмах.
+        /// </summary>
         private static Movie[] _movies = null;
+
+        /// <summary>
+        /// Хранит данные о текущем фильме.
+        /// </summary>
         private static Movie _currentMovie = null;
         public MoviesControl()
         {
@@ -20,6 +27,14 @@ namespace Programming.View.UserControls
             _movies = GetRandomMovies(5);
             InitListBoxMovies(5);
         }
+
+        /// <summary>
+        /// Проверка на значение из перечисления.
+        /// </summary>
+        /// <typeparam name="T">Тип.</typeparam>
+        /// <param name="itemName">Название переменной.</param>
+        /// <param name="value">Значение из перечисления.</param>
+        /// <returns></returns>
         static public bool TryGetEnumValue<T>(string itemName, out T value) where T : struct
         {
             if (Enum.TryParse<T>(itemName, true, out value))
@@ -30,6 +45,11 @@ namespace Programming.View.UserControls
             return false;
         }
 
+        /// <summary>
+        /// Создание фильма 
+        /// </summary>
+        /// <param name="size">Количество фильмов</param>
+        /// <returns>Возращает фильм с рандомными значениями.</returns>
         private Movie[] GetRandomMovies(int size)
         {
             Movie[] myMovies = new Movie[size];
@@ -47,6 +67,10 @@ namespace Programming.View.UserControls
             return myMovies;
         }
 
+        /// <summary>
+        /// Инициализация элемента listbox фильмами.
+        /// </summary>
+        /// <param name="count">Количество фильмов.</param>
         private void InitListBoxMovies(int count)
         {
             for (int i = 0; i < count; i++)
@@ -125,6 +149,12 @@ namespace Programming.View.UserControls
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
             }
         }
+
+        /// <summary>
+        /// Поиск фильма с максимальным рейтингом.
+        /// </summary>
+        /// <param name="movies"></param>
+        /// <returns>Возращает индекс фильма с максимальным рейтингом.</returns>
         private int FindFilmWithMaxRating(Movie[] movies)
         {
             double maxRating = movies[0].Rating;

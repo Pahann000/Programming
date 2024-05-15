@@ -1,4 +1,7 @@
-﻿public enum Manufactures
+﻿/// <summary>
+/// Хранит названия производителей телефонов.
+/// </summary>
+public enum Manufactures
 {
     Samsung,
     Apple,

@@ -12,8 +12,19 @@ namespace Programming.View
 {
     public partial class RectangleCollisionControl : UserControl
     {
+        /// <summary>
+        /// Список, хранящий прямоугольники.
+        /// </summary>
         private static List<Rectangle> _newRectangle = new List<Rectangle>();
+
+        /// <summary>
+        /// Текущий прямоугольник.
+        /// </summary>
         private static Rectangle _currentNewRectangle = null;
+
+        /// <summary>
+        /// Список, хранящий данные о текущем прямоугольнике.
+        /// </summary>
         private static List<Panel> _rectanglePanels = new List<Panel>();
         public RectangleCollisionControl()
         {
@@ -36,6 +47,10 @@ namespace Programming.View
             RectangleRectanglesViewPanel.Controls.Add(newPanel);
             CheckCollision();
         }
+
+        /// <summary>
+        /// Проверяет, пересекаются ли прямоугольники и окрашивает их в красный если пересекаются и в зеленый если нет.
+        /// </summary>
         private void CheckCollision()
         {
             for (int i = 0; i < _rectanglePanels.Count; i++)
@@ -59,6 +74,10 @@ namespace Programming.View
             ListBoxNewRectangle.Items.RemoveAt(ListBoxNewRectangle.SelectedIndex);
             CheckCollision();
         }
+
+        /// <summary>
+        /// Выводит в listbox параметры выбранного прямоугольника.
+        /// </summary>
         private void ChangeTextElemListBoxRectangle()
         {
             ListBoxNewRectangle.Items[ListBoxNewRectangle.SelectedIndex] = $"{_newRectangle[ListBoxNewRectangle.SelectedIndex].Id}. (" +

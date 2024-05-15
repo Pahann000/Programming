@@ -1,7 +1,17 @@
 ﻿using System.Drawing;
 
+/// <summary>
+/// Класс, 
+/// </summary>
 internal class RectangleFactory
 {
+    /// <summary>
+    /// Создает новый прямоугольник. 
+    /// </summary>
+    /// <param name="size">Количество прямоугольников.</param>
+    /// <param name="width">Ширина прямоугольника.</param>
+    /// <param name="height">Высота прямоугольника.</param>
+    /// <returns>Возращает новый прямоугольник со случайными параметрами.</returns>
     public static Rectangle[] Randomize(int size, int width, int height)
     {
         Rectangle[] myRectangles = new Rectangle[size];
