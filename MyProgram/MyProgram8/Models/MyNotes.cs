@@ -1,74 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgram8.Models
+﻿/// <summary>
+/// 
+/// </summary>
+public class MyNotes
 {
     /// <summary>
     /// 
     /// </summary>
-    internal class MyNotes
+    private string _noteTitle;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private string _noteText;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private DateTime _savingTime;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private NotesCategory _noteCategory;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string NoteTitle
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        private string _noteTitle;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private string _noteText;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private DateTime _savingTime;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private string _noteCategory;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string NoteTitle
-        {
-            get { return _noteTitle; }
-            set { NotesValidator.LengthValidator(0, 100, value); _noteTitle = value; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string NoteText
-        {
-            get { return _noteText; }   
-            set { _noteText = value; }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public DateTime SavingTime { get; }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string NoteCategory
-        {
-            get { return NoteCategory; }
-            set { NoteCategory = value; }
-        }
-        public MyNotes()
-        {
-            
-        }
-
-
-
+        get { return _noteTitle; }
+        set { NotesValidator.LengthValidator(0, 100, value); _noteTitle = value; }
     }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public string NoteText
+    {
+        get { return _noteText; }
+        set { _noteText = value; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DateTime SavingTime { get { return _savingTime; } set { _savingTime = value; } }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public NotesCategory NoteCategory { get { return _noteCategory; } set { _noteCategory = value; } }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public MyNotes()
+    {
+        
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="noteTitle"></param>
+    /// <param name="noteText"></param>
+    /// <param name="savedTime"></param>
+    /// <param name="noteCategories"></param>
+    public MyNotes(string noteTitle, string noteText, DateTime savedTime, NotesCategory noteCategories)
+    {
+        _noteTitle = noteTitle;
+        _noteText = noteText;
+        _savingTime = savedTime;
+        _noteCategory = noteCategories;
+    }
+
+
+
 }
+
