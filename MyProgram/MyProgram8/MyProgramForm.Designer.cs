@@ -190,7 +190,6 @@
 
         private Button AddNotesButton;
         private Button DeleteNotesButton;
-        private Button button3;
         private Button ChangeNotesButton;
         private ComboBox CategoryComboBox;
         private ListBox NotesListBox;

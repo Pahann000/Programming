@@ -7,31 +7,19 @@ namespace MyProgram8
         public MyProgramForm()
         {
             InitializeComponent();
-            UpdateNotesListBox();
             CategoryComboBox.Items.AddRange(Enum.GetNames(typeof(NotesCategory)));
+            _notes.Sort((x, y) => y.SavingTime.CompareTo(x.SavingTime));
         }
         /// <summary>
-        /// 
+        /// Хранит данные о заметках.
         /// </summary>
         private static List<MyNotes> _notes = new List<MyNotes>();
 
         /// <summary>
-        /// 
+        /// Хранит данные о текущей заметке.
         /// </summary>
         private static MyNotes _currentNote = null;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void UpdateNotesListBox()
-        {
-            NotesListBox.Items.Clear();
-            foreach (MyNotes note in _notes)
-            {
-                NotesListBox.Items.Add(note.NoteTitle);
-            }
-        }
-
+       
         private void AddNotesButton_Click(object sender, EventArgs e)
         {
             string title = TitleTextBox.Text;
@@ -40,16 +28,13 @@ namespace MyProgram8
             DateTime dateTime = DateTime.Now;
             MyNotes newNote = new MyNotes(title, text, dateTime, category);
             _notes.Insert(0, newNote);
-            UpdateNotesListBox();
+            _notes = Write(_notes);
         }
 
         private void NotesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (NotesListBox.SelectedIndex < 0)
             {
-                TitleTextBox.Enabled = false;
-                NoteTextBox.Enabled = false;
-                CategoryComboBox.Enabled = false;
 
                 TitleTextBox.Clear();
                 NoteTextBox.Clear();
@@ -71,7 +56,7 @@ namespace MyProgram8
             }
         }
         /// <summary>
-        /// 
+        /// Вывод названий заметок в listbox.
         /// </summary>
         private void ChangeTextElemListBoxInstitution()
         {
@@ -86,7 +71,6 @@ namespace MyProgram8
             _currentNote.SavingTime = DateTime.Now;
             ChangeTextElemListBoxInstitution();
             NotesListBox.Sorted = true;
-
             _notes = Write(_notes);
         }
 
@@ -110,7 +94,7 @@ namespace MyProgram8
         }
 
         /// <summary>
-        /// 
+        /// Сохраняет данные.
         /// </summary>
         public void SaveData()
         {
@@ -121,7 +105,7 @@ namespace MyProgram8
         }
 
         /// <summary>
-        /// 
+        /// Загружает данные.
         /// </summary>
         public void LoadData()
         {
@@ -137,17 +121,17 @@ namespace MyProgram8
         }
 
         /// <summary>
-        /// 
+        /// Запись заметок в правильном порядке.
         /// </summary>
-        /// <param name="list"></param>
+        /// <param name="list">Список заметок.</param>
         /// <returns></returns>
         private List<MyNotes> Write(List<MyNotes> list)
         {
+            _notes.Sort((x, y) => y.SavingTime.CompareTo(x.SavingTime));
             NotesListBox.Items.Clear();
-            list = list.OrderBy(s => s.NoteTitle).ToList();
-            for (int i = 0; i < list.Count; i++)
+            foreach (MyNotes note in _notes)
             {
-                NotesListBox.Items.Add($"{list[i].NoteTitle}");
+                NotesListBox.Items.Add(note.NoteTitle);
             }
             return list;
         }
@@ -161,7 +145,6 @@ namespace MyProgram8
         {
             SaveData();
         }
-
 
     }
 }
