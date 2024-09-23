@@ -1,9 +1,14 @@
 ﻿class Customer
 {
     /// <summary>
+    /// Хранит в себе порядковые номера клиентов.
+    /// </summary>
+    private static int _allCustomerCount;
+
+    /// <summary>
     /// Хранит в себе уникальный номер покупателя. 
     /// </summary>
-    static int id = 0;
+    readonly int _id;
 
     /// <summary>
     /// Хранит в себе полное ФИО покупателя.
@@ -16,11 +21,6 @@
     private string _address;
 
     /// <summary>
-    /// Задает уникальный номер покупателя.
-    /// </summary>
-    public static int Id => id;
-
-    /// <summary>
     /// Задает и возращает полное ФИО покупателя.
     /// Задает через проверку с помощью класса <see cref="ValueValidator"/>. ФИО покупателя должно быть не более 200 символов в длину.
     /// </summary>
@@ -30,8 +30,14 @@
         set
         {
             ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
+            _fullName = value;
         }
     }
+
+    /// <summary>
+    /// Возращает уникальный номер товара.
+    /// </summary>
+    public int Id { get { return _id; } }
 
     /// <summary>
     /// Задает и возращает адрес покупателя.
@@ -43,8 +49,14 @@
         set
         {
             ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
+            _address = value;
         }
     }
+
+    /// <summary>
+    /// Хранит данные о количестве товаров.
+    /// </summary>
+    public static int AllCustomerCount { get { return _allCustomerCount; } }
 
     /// <summary>
     /// Экземпляр класса <see cref="Customer"/>.
@@ -53,7 +65,7 @@
     {
         FullName = "Khvorostyanoy Alexey Sergeevich";
         Address = "Tomsk, F. Lytkin st. 18";
-        id++;
+        _id = ++_allCustomerCount;
     }
 
     /// <summary>
@@ -65,6 +77,6 @@
     {
         FullName = fullName;
         Address = address;
-        id++;
+        _id = ++_allCustomerCount;
     }
 }

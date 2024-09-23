@@ -28,11 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            NewCustomerButtonPanel = new Panel();
-            CustomerSaveButton = new Button();
-            AddCustomerButtonPanel = new Panel();
             AddCustomerButton = new Button();
-            DeleteCustomerButtonPanel = new Panel();
             DeleteCustomerButton = new Button();
             CustomerListGroupBox = new GroupBox();
             CustomerListListBox = new ListBox();
@@ -43,43 +39,15 @@
             CustomerIdLabel = new Label();
             CustomerIdTextBox = new TextBox();
             CustomerNameTextBox = new TextBox();
-            groupBox1 = new GroupBox();
-            NewCustomerButtonPanel.SuspendLayout();
-            AddCustomerButtonPanel.SuspendLayout();
-            DeleteCustomerButtonPanel.SuspendLayout();
+            CustomerSaveButton = new Button();
             CustomerListGroupBox.SuspendLayout();
             CustomersGroupBox.SuspendLayout();
             SuspendLayout();
             // 
-            // NewCustomerButtonPanel
-            // 
-            NewCustomerButtonPanel.Controls.Add(CustomerSaveButton);
-            NewCustomerButtonPanel.Location = new Point(277, 516);
-            NewCustomerButtonPanel.Name = "NewCustomerButtonPanel";
-            NewCustomerButtonPanel.Size = new Size(127, 52);
-            NewCustomerButtonPanel.TabIndex = 16;
-            // 
-            // CustomerSaveButton
-            // 
-            CustomerSaveButton.Location = new Point(3, 4);
-            CustomerSaveButton.Name = "CustomerSaveButton";
-            CustomerSaveButton.Size = new Size(120, 45);
-            CustomerSaveButton.TabIndex = 0;
-            CustomerSaveButton.Text = "Save";
-            CustomerSaveButton.UseVisualStyleBackColor = true;
-            CustomerSaveButton.Click += CustomerSaveButton_Click;
-            // 
-            // AddCustomerButtonPanel
-            // 
-            AddCustomerButtonPanel.Controls.Add(AddCustomerButton);
-            AddCustomerButtonPanel.Location = new Point(144, 516);
-            AddCustomerButtonPanel.Name = "AddCustomerButtonPanel";
-            AddCustomerButtonPanel.Size = new Size(127, 52);
-            AddCustomerButtonPanel.TabIndex = 15;
-            // 
             // AddCustomerButton
             // 
-            AddCustomerButton.Location = new Point(3, 3);
+            AddCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            AddCustomerButton.Location = new Point(261, 516);
             AddCustomerButton.Name = "AddCustomerButton";
             AddCustomerButton.Size = new Size(120, 45);
             AddCustomerButton.TabIndex = 0;
@@ -87,17 +55,10 @@
             AddCustomerButton.UseVisualStyleBackColor = true;
             AddCustomerButton.Click += AddCustomerButton_Click;
             // 
-            // DeleteCustomerButtonPanel
-            // 
-            DeleteCustomerButtonPanel.Controls.Add(DeleteCustomerButton);
-            DeleteCustomerButtonPanel.Location = new Point(11, 516);
-            DeleteCustomerButtonPanel.Name = "DeleteCustomerButtonPanel";
-            DeleteCustomerButtonPanel.Size = new Size(127, 52);
-            DeleteCustomerButtonPanel.TabIndex = 14;
-            // 
             // DeleteCustomerButton
             // 
-            DeleteCustomerButton.Location = new Point(3, 3);
+            DeleteCustomerButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            DeleteCustomerButton.Location = new Point(135, 516);
             DeleteCustomerButton.Name = "DeleteCustomerButton";
             DeleteCustomerButton.Size = new Size(120, 45);
             DeleteCustomerButton.TabIndex = 1;
@@ -107,6 +68,7 @@
             // 
             // CustomerListGroupBox
             // 
+            CustomerListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomerListGroupBox.Controls.Add(CustomerListListBox);
             CustomerListGroupBox.Location = new Point(3, 3);
             CustomerListGroupBox.Name = "CustomerListGroupBox";
@@ -117,14 +79,17 @@
             // 
             // CustomerListListBox
             // 
+            CustomerListListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomerListListBox.FormattingEnabled = true;
             CustomerListListBox.Location = new Point(6, 26);
             CustomerListListBox.Name = "CustomerListListBox";
             CustomerListListBox.Size = new Size(389, 464);
             CustomerListListBox.TabIndex = 2;
+            CustomerListListBox.SelectedIndexChanged += CustomerListListBox_SelectedIndexChanged;
             // 
             // CustomersGroupBox
             // 
+            CustomersGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomersGroupBox.BackColor = SystemColors.ButtonHighlight;
             CustomersGroupBox.Controls.Add(CustomerAddressRichTextBox);
             CustomersGroupBox.Controls.Add(CustomerAddressLabel);
@@ -141,6 +106,7 @@
             // 
             // CustomerAddressRichTextBox
             // 
+            CustomerAddressRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerAddressRichTextBox.Location = new Point(6, 133);
             CustomerAddressRichTextBox.Name = "CustomerAddressRichTextBox";
             CustomerAddressRichTextBox.Size = new Size(435, 153);
@@ -185,35 +151,35 @@
             // 
             // CustomerNameTextBox
             // 
+            CustomerNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             CustomerNameTextBox.Location = new Point(87, 72);
             CustomerNameTextBox.Name = "CustomerNameTextBox";
             CustomerNameTextBox.Size = new Size(263, 27);
             CustomerNameTextBox.TabIndex = 5;
             CustomerNameTextBox.TextChanged += CustomerNameTextBox_TextChanged;
             // 
-            // groupBox1
+            // CustomerSaveButton
             // 
-            groupBox1.Location = new Point(410, 312);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(447, 256);
-            groupBox1.TabIndex = 17;
-            groupBox1.TabStop = false;
+            CustomerSaveButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            CustomerSaveButton.Location = new Point(9, 516);
+            CustomerSaveButton.Name = "CustomerSaveButton";
+            CustomerSaveButton.Size = new Size(120, 45);
+            CustomerSaveButton.TabIndex = 0;
+            CustomerSaveButton.Text = "Save";
+            CustomerSaveButton.UseVisualStyleBackColor = true;
+            CustomerSaveButton.Click += CustomerSaveButton_Click;
             // 
             // CustomerTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(groupBox1);
-            Controls.Add(NewCustomerButtonPanel);
-            Controls.Add(AddCustomerButtonPanel);
-            Controls.Add(DeleteCustomerButtonPanel);
+            Controls.Add(CustomerSaveButton);
+            Controls.Add(DeleteCustomerButton);
+            Controls.Add(AddCustomerButton);
             Controls.Add(CustomerListGroupBox);
             Controls.Add(CustomersGroupBox);
             Name = "CustomerTab";
             Size = new Size(860, 600);
-            NewCustomerButtonPanel.ResumeLayout(false);
-            AddCustomerButtonPanel.ResumeLayout(false);
-            DeleteCustomerButtonPanel.ResumeLayout(false);
             CustomerListGroupBox.ResumeLayout(false);
             CustomersGroupBox.ResumeLayout(false);
             CustomersGroupBox.PerformLayout();
@@ -221,11 +187,7 @@
         }
 
         #endregion
-
-        private Panel NewCustomerButtonPanel;
-        private Panel AddCustomerButtonPanel;
         private Button AddCustomerButton;
-        private Panel DeleteCustomerButtonPanel;
         private Button DeleteCustomerButton;
         private GroupBox CustomerListGroupBox;
         private ListBox CustomerListListBox;
@@ -236,7 +198,6 @@
         private Label CustomerIdLabel;
         private TextBox CustomerIdTextBox;
         private TextBox CustomerNameTextBox;
-        private GroupBox groupBox1;
         private Button CustomerSaveButton;
     }
 }

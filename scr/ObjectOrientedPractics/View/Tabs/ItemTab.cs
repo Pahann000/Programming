@@ -127,7 +127,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentItem.Info = ItemInfoRichTextBox.Text;
             _currentItem.Price = Convert.ToDouble(ItemPriceTextBox.Text);
             ChangeTextElemListBoxInstitution();
-            ItemListListBox.Sorted = true;
             
         }
 

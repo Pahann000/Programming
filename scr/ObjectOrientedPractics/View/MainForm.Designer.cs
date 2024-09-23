@@ -82,9 +82,10 @@
             // 
             // customerTab1
             // 
+            customerTab1.Dock = DockStyle.Fill;
             customerTab1.Location = new Point(3, 3);
             customerTab1.Name = "customerTab1";
-            customerTab1.Size = new Size(866, 604);
+            customerTab1.Size = new Size(869, 604);
             customerTab1.TabIndex = 0;
             // 
             // MainForm

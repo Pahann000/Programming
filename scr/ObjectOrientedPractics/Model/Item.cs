@@ -1,6 +1,11 @@
 ﻿class Item
 {
     /// <summary>
+    /// Хранит в себе порядковые номера товаров.
+    /// </summary>
+    private static int _allItemsCount;
+
+    /// <summary>
     /// Хранит в себе уникальный порядковый номер. 
     /// </summary>
     readonly int _id;
@@ -19,11 +24,6 @@
     /// Хранит в себе цену товара.
     /// </summary>
     private double _price;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    private static int _allItemsCount;
 
     /// <summary>
     /// Возращает уникальный номер товара.
@@ -67,9 +67,12 @@
         set
         {
             ValueValidator.AssertNumberInRange(value, 0, 100000, nameof(Price));
+            _price = value;
         }
     }
-
+    /// <summary>
+    /// Хранит данные о количестве покупателей.
+    /// </summary>
     public static int AllItemsCount { get { return _allItemsCount; } }
 
     /// <summary>
