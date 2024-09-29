@@ -39,11 +39,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemAddButton_Click(object sender, EventArgs e)
         {
-            Item newItem = new Item();
-            newItem.Price = 0;
-            newItem.Name = "Item Prototype";
-            newItem.Info = "Empty";
-
+            Item newItem = new Item("Name", "Info", 0);
             _items.Add(newItem);
             ItemListListBox.Items.Add(newItem);
         }
@@ -105,7 +101,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ItemInfoRichTextBox.BackColor = AppColors.trueText;
                 string itemInfo = ItemInfoRichTextBox.Text;
-                _currentItem.Name = itemInfo;
+                _currentItem.Info = itemInfo;
             }
             catch( Exception ) 
             {
@@ -123,6 +119,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemSaveButton_Click(object sender, EventArgs e)
         {
+            if (ItemListListBox.SelectedIndex > 0 ) return;
             _currentItem.Name = ItemNameRichTextBox.Text;
             _currentItem.Info = ItemInfoRichTextBox.Text;
             _currentItem.Price = Convert.ToDouble(ItemPriceTextBox.Text);

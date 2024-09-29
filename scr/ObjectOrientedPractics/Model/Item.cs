@@ -38,7 +38,7 @@
     {
         get { return _name; }
         set {
-            ValueValidator.AssertStringOnLength(value, 200, nameof(Price));
+            ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
             _name = value;
             }
     }
@@ -52,7 +52,7 @@
         get { return _info; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 1000, nameof(Price));
+            ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
             _info = value;
         }
     }

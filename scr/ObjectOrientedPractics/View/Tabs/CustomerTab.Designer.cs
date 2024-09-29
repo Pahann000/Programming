@@ -79,7 +79,6 @@
             // 
             // CustomerListListBox
             // 
-            CustomerListListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomerListListBox.FormattingEnabled = true;
             CustomerListListBox.Location = new Point(6, 26);
             CustomerListListBox.Name = "CustomerListListBox";
@@ -99,7 +98,7 @@
             CustomersGroupBox.Controls.Add(CustomerNameTextBox);
             CustomersGroupBox.Location = new Point(410, 14);
             CustomersGroupBox.Name = "CustomersGroupBox";
-            CustomersGroupBox.Size = new Size(447, 292);
+            CustomersGroupBox.Size = new Size(447, 299);
             CustomersGroupBox.TabIndex = 12;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Selected Customer:";
