@@ -1,15 +1,5 @@
-﻿class Item
+﻿public class Item
 {
-    /// <summary>
-    /// Хранит в себе порядковые номера товаров.
-    /// </summary>
-    private static int _allItemsCount;
-
-    /// <summary>
-    /// Хранит в себе уникальный порядковый номер. 
-    /// </summary>
-    readonly int _id;
-
     /// <summary>
     /// Хранит в себе название товара.
     /// </summary>
@@ -28,7 +18,7 @@
     /// <summary>
     /// Возращает уникальный номер товара.
     /// </summary>
-    public int Id {  get { return _id; } }
+    public int Id { get; private set; }
 
     /// <summary>
     /// Возращает и задает название товара.
@@ -38,7 +28,8 @@
     {
         get { return _name; }
         set {
-            ValueValidator.AssertStringOnLength(value, 200, nameof(Price));
+            ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Name));
+            ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
             _name = value;
             }
     }
@@ -52,7 +43,8 @@
         get { return _info; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 1000, nameof(Price));
+            ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Info));
+            ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
             _info = value;
         }
     }
@@ -66,14 +58,16 @@
         get { return _price; }
         set
         {
+            ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Price));
             ValueValidator.AssertNumberInRange(value, 0, 100000, nameof(Price));
             _price = value;
         }
     }
+
     /// <summary>
-    /// Хранит данные о количестве покупателей.
+    /// Задает категорию товара.
     /// </summary>
-    public static int AllItemsCount { get { return _allItemsCount; } }
+    public Category Category { get; set; }
 
     /// <summary>
     /// Создает экземпляр класса <see cref="Item"/>.
@@ -83,7 +77,8 @@
         Name = "Milk";
         Info = "Used by people to cooking";
         Price = 89.99;
-        _id = ++_allItemsCount;
+        Id = IdGenerator.GetNextId("Item");
+
     }
 
     /// <summary>
@@ -92,12 +87,14 @@
     /// <param name="name">Имя товара. Должно быть не длиннее 200 символов.</param>
     /// <param name="info">Информация о товаре. Должна быть не длиннее 1000 символов.</param>
     /// <param name="price">Цена товара. Должна быть в диапазоне от 0 до 100000.</param>
-    public Item( string name, string info, double price)
+    /// <param name="category">Категория товара.</param>
+    public Item( string name, string info, double price, Category category)
     {
         Name = name;
         Info = info;
         Price = price;
-        _id = ++_allItemsCount;
+        Category = category;
+        Id = IdGenerator.GetNextId("Item");
     }
 
 }

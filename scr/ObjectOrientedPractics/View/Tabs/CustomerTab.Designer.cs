@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Address address2 = new Address();
             AddCustomerButton = new Button();
             DeleteCustomerButton = new Button();
             CustomerListGroupBox = new GroupBox();
             CustomerListListBox = new ListBox();
             CustomersGroupBox = new GroupBox();
-            CustomerAddressRichTextBox = new RichTextBox();
+            CustomerNewAddressControl = new Controls.CustomerAddressControl();
             CustomerAddressLabel = new Label();
             CustomerFullNameLabel = new Label();
             CustomerIdLabel = new Label();
@@ -79,7 +80,6 @@
             // 
             // CustomerListListBox
             // 
-            CustomerListListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             CustomerListListBox.FormattingEnabled = true;
             CustomerListListBox.Location = new Point(6, 26);
             CustomerListListBox.Name = "CustomerListListBox";
@@ -91,7 +91,7 @@
             // 
             CustomersGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomersGroupBox.BackColor = SystemColors.ButtonHighlight;
-            CustomersGroupBox.Controls.Add(CustomerAddressRichTextBox);
+            CustomersGroupBox.Controls.Add(CustomerNewAddressControl);
             CustomersGroupBox.Controls.Add(CustomerAddressLabel);
             CustomersGroupBox.Controls.Add(CustomerFullNameLabel);
             CustomersGroupBox.Controls.Add(CustomerIdLabel);
@@ -99,20 +99,24 @@
             CustomersGroupBox.Controls.Add(CustomerNameTextBox);
             CustomersGroupBox.Location = new Point(410, 14);
             CustomersGroupBox.Name = "CustomersGroupBox";
-            CustomersGroupBox.Size = new Size(447, 292);
+            CustomersGroupBox.Size = new Size(447, 369);
             CustomersGroupBox.TabIndex = 12;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Selected Customer:";
             // 
-            // CustomerAddressRichTextBox
+            // CustomerNewAddressControl
             // 
-            CustomerAddressRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            CustomerAddressRichTextBox.Location = new Point(6, 133);
-            CustomerAddressRichTextBox.Name = "CustomerAddressRichTextBox";
-            CustomerAddressRichTextBox.Size = new Size(435, 153);
-            CustomerAddressRichTextBox.TabIndex = 11;
-            CustomerAddressRichTextBox.Text = "";
-            CustomerAddressRichTextBox.TextChanged += CustomerAddressRichTextBox_TextChanged;
+            address2.Apartment = "";
+            address2.Building = "";
+            address2.City = "";
+            address2.Country = "";
+            address2.Index = 100001;
+            address2.Street = "";
+            CustomerNewAddressControl.Address = address2;
+            CustomerNewAddressControl.Location = new Point(0, 133);
+            CustomerNewAddressControl.Name = "CustomerNewAddressControl";
+            CustomerNewAddressControl.Size = new Size(445, 254);
+            CustomerNewAddressControl.TabIndex = 10;
             // 
             // CustomerAddressLabel
             // 
@@ -143,7 +147,7 @@
             // 
             // CustomerIdTextBox
             // 
-            CustomerIdTextBox.Location = new Point(87, 26);
+            CustomerIdTextBox.Location = new Point(89, 26);
             CustomerIdTextBox.Name = "CustomerIdTextBox";
             CustomerIdTextBox.ReadOnly = true;
             CustomerIdTextBox.Size = new Size(125, 27);
@@ -152,11 +156,10 @@
             // CustomerNameTextBox
             // 
             CustomerNameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            CustomerNameTextBox.Location = new Point(87, 72);
+            CustomerNameTextBox.Location = new Point(88, 72);
             CustomerNameTextBox.Name = "CustomerNameTextBox";
             CustomerNameTextBox.Size = new Size(263, 27);
             CustomerNameTextBox.TabIndex = 5;
-            CustomerNameTextBox.TextChanged += CustomerNameTextBox_TextChanged;
             // 
             // CustomerSaveButton
             // 
@@ -192,12 +195,12 @@
         private GroupBox CustomerListGroupBox;
         private ListBox CustomerListListBox;
         private GroupBox CustomersGroupBox;
-        private RichTextBox CustomerAddressRichTextBox;
         private Label CustomerAddressLabel;
         private Label CustomerFullNameLabel;
         private Label CustomerIdLabel;
         private TextBox CustomerIdTextBox;
         private TextBox CustomerNameTextBox;
         private Button CustomerSaveButton;
+        private Controls.CustomerAddressControl CustomerNewAddressControl;
     }
 }

@@ -20,12 +20,31 @@ namespace ObjectOrientedPractics.View.Tabs
         public ItemTab()
         {
             InitializeComponent();
+            ItemsGroupBox.Enabled = false;
+
         }
 
         /// <summary>
         /// Хранит данные о текущем товаре
         /// </summary>
         private static Item _currentItem = null;
+
+        /// <summary>
+        /// Возвращает и задаёт список товаров
+        /// </summary>
+        public List<Item> Items
+        {
+            get { return _items; }
+            set
+            {
+                _items = value;
+            }
+        }
+        private void ItemTab_Load(object sender, EventArgs e)
+        {
+            ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
+            
+        }
 
         private void DeleteItemButton_Click(object sender, EventArgs e)
         {
@@ -39,11 +58,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemAddButton_Click(object sender, EventArgs e)
         {
-            Item newItem = new Item();
-            newItem.Price = 0;
-            newItem.Name = "Item Prototype";
-            newItem.Info = "Empty";
-
+            Item newItem = new Item("Name", "Info", 0, Category.Сhildish);
             _items.Add(newItem);
             ItemListListBox.Items.Add(newItem);
         }
@@ -56,15 +71,19 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemInfoRichTextBox.Text = string.Empty;
                 ItemNameRichTextBox.Text = string.Empty;
                 ItemIdTextBox.Text = string.Empty;
+                ItemCategoryComboBox.SelectedIndex = -1;
+                ItemsGroupBox.Enabled = false;
             }
 
             else
             {
+                ItemsGroupBox.Enabled = true;
                 _currentItem = _items[ItemListListBox.SelectedIndex];
                 ItemPriceTextBox.Text = _currentItem.Price.ToString();
                 ItemInfoRichTextBox.Text = _currentItem.Info.ToString();
                 ItemNameRichTextBox.Text = _currentItem.Name.ToString();
                 ItemIdTextBox.Text = _currentItem.Id.ToString();
+                ItemCategoryComboBox.Text = _currentItem.Category.ToString();
             }
         }
 
@@ -105,7 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 ItemInfoRichTextBox.BackColor = AppColors.trueText;
                 string itemInfo = ItemInfoRichTextBox.Text;
-                _currentItem.Name = itemInfo;
+                _currentItem.Info = itemInfo;
             }
             catch( Exception ) 
             {
@@ -123,37 +142,13 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemSaveButton_Click(object sender, EventArgs e)
         {
+            if (ItemListListBox.SelectedIndex < 0 ) return;
             _currentItem.Name = ItemNameRichTextBox.Text;
             _currentItem.Info = ItemInfoRichTextBox.Text;
             _currentItem.Price = Convert.ToDouble(ItemPriceTextBox.Text);
+            _currentItem.Category = (Category)ItemCategoryComboBox.SelectedValue;
             ChangeTextElemListBoxInstitution();
             
-        }
-
-        /// <summary>
-        /// Сохраняет данные в файл
-        /// </summary>
-        public void SaveData()
-        {
-            string path = Environment.CurrentDirectory + @"\OOPdata.txt";
-            string data = JsonSerializer.Serialize(_items);
-
-            File.WriteAllText(path, data);
-        }
-
-        /// <summary>
-        /// Загружает данные.
-        /// </summary>
-        public void LoadData()
-        {
-            string path = Environment.CurrentDirectory + @"\OOPdata.txt";
-
-            if (!File.Exists(path)) return;
-
-            string data = File.ReadAllText(path);
-
-            _items = JsonSerializer.Deserialize<List<Item>>(data);
-
         }
     }
 
