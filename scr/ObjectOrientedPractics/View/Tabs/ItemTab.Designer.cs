@@ -33,6 +33,8 @@
             ItemIdTextBox = new TextBox();
             ItemPriceTextBox = new TextBox();
             ItemsGroupBox = new GroupBox();
+            ItemCategoryComboBox = new ComboBox();
+            ItemCategoryLabel = new Label();
             ItemInfoRichTextBox = new RichTextBox();
             ItemNameRichTextBox = new RichTextBox();
             ItemInfoLabel = new Label();
@@ -89,6 +91,8 @@
             // 
             ItemsGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             ItemsGroupBox.BackColor = SystemColors.ButtonHighlight;
+            ItemsGroupBox.Controls.Add(ItemCategoryComboBox);
+            ItemsGroupBox.Controls.Add(ItemCategoryLabel);
             ItemsGroupBox.Controls.Add(ItemInfoRichTextBox);
             ItemsGroupBox.Controls.Add(ItemNameRichTextBox);
             ItemsGroupBox.Controls.Add(ItemInfoLabel);
@@ -104,10 +108,27 @@
             ItemsGroupBox.TabStop = false;
             ItemsGroupBox.Text = "Selected Item:";
             // 
+            // ItemCategoryComboBox
+            // 
+            ItemCategoryComboBox.FormattingEnabled = true;
+            ItemCategoryComboBox.Location = new Point(86, 136);
+            ItemCategoryComboBox.Name = "ItemCategoryComboBox";
+            ItemCategoryComboBox.Size = new Size(218, 28);
+            ItemCategoryComboBox.TabIndex = 15;
+            // 
+            // ItemCategoryLabel
+            // 
+            ItemCategoryLabel.AutoSize = true;
+            ItemCategoryLabel.Location = new Point(6, 136);
+            ItemCategoryLabel.Name = "ItemCategoryLabel";
+            ItemCategoryLabel.Size = new Size(72, 20);
+            ItemCategoryLabel.TabIndex = 14;
+            ItemCategoryLabel.Text = "Category:";
+            // 
             // ItemInfoRichTextBox
             // 
             ItemInfoRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ItemInfoRichTextBox.Location = new Point(14, 314);
+            ItemInfoRichTextBox.Location = new Point(14, 367);
             ItemInfoRichTextBox.Name = "ItemInfoRichTextBox";
             ItemInfoRichTextBox.Size = new Size(288, 168);
             ItemInfoRichTextBox.TabIndex = 12;
@@ -117,7 +138,7 @@
             // ItemNameRichTextBox
             // 
             ItemNameRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            ItemNameRichTextBox.Location = new Point(14, 144);
+            ItemNameRichTextBox.Location = new Point(14, 196);
             ItemNameRichTextBox.Name = "ItemNameRichTextBox";
             ItemNameRichTextBox.Size = new Size(290, 133);
             ItemNameRichTextBox.TabIndex = 11;
@@ -127,7 +148,7 @@
             // ItemInfoLabel
             // 
             ItemInfoLabel.AutoSize = true;
-            ItemInfoLabel.Location = new Point(14, 280);
+            ItemInfoLabel.Location = new Point(6, 344);
             ItemInfoLabel.Name = "ItemInfoLabel";
             ItemInfoLabel.Size = new Size(38, 20);
             ItemInfoLabel.TabIndex = 10;
@@ -136,7 +157,7 @@
             // ItemNameLabel
             // 
             ItemNameLabel.AutoSize = true;
-            ItemNameLabel.Location = new Point(6, 121);
+            ItemNameLabel.Location = new Point(6, 173);
             ItemNameLabel.Name = "ItemNameLabel";
             ItemNameLabel.Size = new Size(52, 20);
             ItemNameLabel.TabIndex = 9;
@@ -204,6 +225,7 @@
             Controls.Add(ItemsGroupBox);
             Name = "ItemTab";
             Size = new Size(860, 600);
+            Load += ItemTab_Load;
             ItemsGroupBox.ResumeLayout(false);
             ItemsGroupBox.PerformLayout();
             ItemsListGroupBox.ResumeLayout(false);
@@ -225,5 +247,7 @@
         private RichTextBox ItemNameRichTextBox;
         private Button ItemSaveButton;
         private Button ItemAddButton;
+        private ComboBox ItemCategoryComboBox;
+        private Label ItemCategoryLabel;
     }
 }
