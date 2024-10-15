@@ -31,28 +31,37 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             ShopTabControl = new TabControl();
             ItemsTabPage = new TabPage();
-            ItemTab = new View.Tabs.ItemTab();
+            ItemNewTab = new View.Tabs.ItemTab();
             CustomerTabPage = new TabPage();
-            customerTab1 = new View.Tabs.CustomerTab();
+            CustomerNewTab = new View.Tabs.CustomerTab();
+            CartTabPage = new TabPage();
+            CartNewTab = new View.Tabs.CartTab();
+            OrderTabPage = new TabPage();
+            OrderNewTab = new View.Tabs.OrderTab();
             ShopTabControl.SuspendLayout();
             ItemsTabPage.SuspendLayout();
             CustomerTabPage.SuspendLayout();
+            CartTabPage.SuspendLayout();
+            OrderTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // ShopTabControl
             // 
             ShopTabControl.Controls.Add(ItemsTabPage);
             ShopTabControl.Controls.Add(CustomerTabPage);
+            ShopTabControl.Controls.Add(CartTabPage);
+            ShopTabControl.Controls.Add(OrderTabPage);
             ShopTabControl.Dock = DockStyle.Fill;
             ShopTabControl.Location = new Point(0, 0);
             ShopTabControl.Name = "ShopTabControl";
             ShopTabControl.SelectedIndex = 0;
             ShopTabControl.Size = new Size(883, 643);
             ShopTabControl.TabIndex = 0;
+            ShopTabControl.SelectedIndexChanged += ShopTabControl_SelectedTabChanged;
             // 
             // ItemsTabPage
             // 
-            ItemsTabPage.Controls.Add(ItemTab);
+            ItemsTabPage.Controls.Add(ItemNewTab);
             ItemsTabPage.Location = new Point(4, 29);
             ItemsTabPage.Name = "ItemsTabPage";
             ItemsTabPage.Padding = new Padding(3);
@@ -61,17 +70,17 @@
             ItemsTabPage.Text = "Items";
             ItemsTabPage.UseVisualStyleBackColor = true;
             // 
-            // ItemTab
+            // ItemNewTab
             // 
-            ItemTab.Dock = DockStyle.Fill;
-            ItemTab.Location = new Point(3, 3);
-            ItemTab.Name = "ItemTab";
-            ItemTab.Size = new Size(869, 604);
-            ItemTab.TabIndex = 0;
+            ItemNewTab.Dock = DockStyle.Fill;
+            ItemNewTab.Location = new Point(3, 3);
+            ItemNewTab.Name = "ItemNewTab";
+            ItemNewTab.Size = new Size(869, 604);
+            ItemNewTab.TabIndex = 0;
             // 
             // CustomerTabPage
             // 
-            CustomerTabPage.Controls.Add(customerTab1);
+            CustomerTabPage.Controls.Add(CustomerNewTab);
             CustomerTabPage.Location = new Point(4, 29);
             CustomerTabPage.Name = "CustomerTabPage";
             CustomerTabPage.Padding = new Padding(3);
@@ -80,13 +89,51 @@
             CustomerTabPage.Text = "Customer";
             CustomerTabPage.UseVisualStyleBackColor = true;
             // 
-            // customerTab1
+            // CustomerNewTab
             // 
-            customerTab1.Dock = DockStyle.Fill;
-            customerTab1.Location = new Point(3, 3);
-            customerTab1.Name = "customerTab1";
-            customerTab1.Size = new Size(869, 604);
-            customerTab1.TabIndex = 0;
+            CustomerNewTab.Dock = DockStyle.Fill;
+            CustomerNewTab.Location = new Point(3, 3);
+            CustomerNewTab.Name = "CustomerNewTab";
+            CustomerNewTab.Size = new Size(869, 604);
+            CustomerNewTab.TabIndex = 0;
+            // 
+            // CartTabPage
+            // 
+            CartTabPage.Controls.Add(CartNewTab);
+            CartTabPage.Location = new Point(4, 29);
+            CartTabPage.Name = "CartTabPage";
+            CartTabPage.Padding = new Padding(3);
+            CartTabPage.Size = new Size(875, 610);
+            CartTabPage.TabIndex = 2;
+            CartTabPage.Text = "Carts";
+            CartTabPage.UseVisualStyleBackColor = true;
+            // 
+            // CartNewTab
+            // 
+            CartNewTab.Customers = null;
+            CartNewTab.Items = null;
+            CartNewTab.Location = new Point(0, 6);
+            CartNewTab.Name = "CartNewTab";
+            CartNewTab.Size = new Size(869, 604);
+            CartNewTab.TabIndex = 0;
+            // 
+            // OrderTabPage
+            // 
+            OrderTabPage.Controls.Add(OrderNewTab);
+            OrderTabPage.Location = new Point(4, 29);
+            OrderTabPage.Name = "OrderTabPage";
+            OrderTabPage.Padding = new Padding(3);
+            OrderTabPage.Size = new Size(875, 610);
+            OrderTabPage.TabIndex = 3;
+            OrderTabPage.Text = "Orders";
+            OrderTabPage.UseVisualStyleBackColor = true;
+            // 
+            // OrderNewTab
+            // 
+            OrderNewTab.Location = new Point(3, 4);
+            OrderNewTab.Name = "OrderNewTab";
+            OrderNewTab.Size = new Size(860, 600);
+            OrderNewTab.TabIndex = 0;
             // 
             // MainForm
             // 
@@ -100,6 +147,8 @@
             ShopTabControl.ResumeLayout(false);
             ItemsTabPage.ResumeLayout(false);
             CustomerTabPage.ResumeLayout(false);
+            CartTabPage.ResumeLayout(false);
+            OrderTabPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -108,7 +157,11 @@
         private TabControl ShopTabControl;
         private TabPage ItemsTabPage;
         private TabPage CustomerTabPage;
-        private View.Tabs.ItemTab ItemTab;
-        private View.Tabs.CustomerTab customerTab1;
+        private View.Tabs.ItemTab ItemNewTab;
+        private View.Tabs.CustomerTab CustomerNewTab;
+        private TabPage CartTabPage;
+        private View.Tabs.CartTab CartNewTab;
+        private TabPage OrderTabPage;
+        private View.Tabs.OrderTab OrderNewTab;
     }
 }

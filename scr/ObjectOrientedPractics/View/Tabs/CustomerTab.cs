@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ObjectOrientedPractics.View.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -15,15 +17,46 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит данные о клиентах.
         /// </summary>
-        private static List<Customer> _customers = new List<Customer>();
+        private List<Customer> _customers = new List<Customer>();
+
         public CustomerTab()
         {
             InitializeComponent();
+            CustomersGroupBox.Enabled = false;
         }
+
+        /// <summary>
+        /// true если данные введены в поля правильно, иначе - false
+        /// </summary>
+        private bool _isDataCorrect = true;
+
         /// <summary>
         /// Хранит данные о текущем клиенте.
         /// </summary>
         private static Customer _currentCustomer = null;
+
+        /// <summary>
+        /// Вызывает и задаёт список товаров
+        /// </summary>
+        public List<Customer> Customers
+        {
+            get { return _customers; }
+            set
+            {
+                _customers = value;
+                UpdateListBox();
+            }
+        }
+
+        /// <summary>
+        /// Обновляет ListBox
+        /// </summary>
+        private void UpdateListBox()
+        {
+            CustomerListListBox.Items.Clear();
+            CustomerListListBox.Items.AddRange(_customers.ToArray());
+        }
+
         private void DeleteCustomerButton_Click(object sender, EventArgs e)
         {
             if (CustomerListListBox.SelectedIndex < 0) { return; }
@@ -36,73 +69,70 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            Customer newCustomer = new Customer("Empty", "Nothing");
+            Customer newCustomer = new Customer("Empty", new Address(100000, "Country", "City", "Street", "Building", "Apartment"), new Cart());
+            newCustomer.FullName = $"Customer #{newCustomer.Id}";
             _customers.Add(newCustomer);
-            CustomerListListBox.Items.Add(newCustomer);
+            CustomerListListBox.Items.Add(newCustomer.Id + ". " + newCustomer.FullName.ToString());
             
-        }
-        /// <summary>
-        /// Добавляет ФИО покупателя в элемент ListBox.
-        /// </summary>
-        private void ChangeTextElemListBoxInstitution()
-        {
-            CustomerListListBox.Items[CustomerListListBox.SelectedIndex] = _customers[CustomerListListBox.SelectedIndex].FullName;
         }
 
         private void CustomerSaveButton_Click(object sender, EventArgs e)
         {
-            _currentCustomer.FullName = CustomerNameTextBox.Text;
-            _currentCustomer.Address = CustomerAddressRichTextBox.Text;
-            ChangeTextElemListBoxInstitution();
-        }
+            if (CustomerListListBox.SelectedItem == null) { return; }
 
-        private void CustomerNameTextBox_TextChanged(object sender, EventArgs e)
-        {
+            _isDataCorrect = true;
+            CustomerSaveButton.Enabled = true; 
+
+            CustomerNameTextBox.BackColor = Color.White;
+
+            if (CustomerNewAddressControl.TryWriteAdressData())
+            {
+                _currentCustomer.Address = CustomerNewAddressControl.Address;
+                CustomerSaveButton.Enabled = true;
+            }
+            else
+            {
+                _isDataCorrect = false;
+                CustomerSaveButton.Enabled = false;
+            }
             if (string.IsNullOrEmpty(CustomerNameTextBox.Text)) return;
+
             try
             {
-                CustomerNameTextBox.BackColor = AppColors.trueText;
-                string customerFullName = CustomerNameTextBox.Text;
-                _currentCustomer.FullName = customerFullName;
+                string newFullName = CustomerNameTextBox.Text;
+                _currentCustomer.FullName = newFullName;
+                CustomerListListBox.Items[CustomerListListBox.SelectedIndex] = CustomerIdTextBox.Text + ". " + CustomerNameTextBox.Text;
+                CustomerSaveButton.Enabled = true;
+                
             }
             catch (Exception)
             {
-                CustomerNameTextBox.BackColor = AppColors.falseText;
+                _isDataCorrect = false;
+                CustomerSaveButton.Enabled = false;
+                CustomerNameTextBox.BackColor = Color.LightPink;
             }
         }
 
-        private void CustomerAddressRichTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(CustomerAddressRichTextBox.Text)) return;
-            try
-            {
-                CustomerAddressRichTextBox.BackColor = AppColors.trueText;
-                string customerAdress = CustomerAddressRichTextBox.Text;
-                _currentCustomer.Address = customerAdress;
-            }
-            catch (Exception)
-            {
-                CustomerAddressRichTextBox.BackColor = AppColors.falseText;
-            }
-        }
 
         private void CustomerListListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (CustomerListListBox.SelectedIndex == -1 )
-            {
-                CustomerNameTextBox.Text = string.Empty;
-                CustomerAddressRichTextBox.Text = string.Empty;
-                CustomerIdTextBox.Text = string.Empty;
+            if (CustomerListListBox.SelectedIndex < 0) 
+            { 
+                return; 
             }
+            if (!_isDataCorrect)
+            {
+                CustomerListListBox.SelectedItem = _currentCustomer;
+                return;
+            }
+            CustomersGroupBox.Enabled = true;
+            _currentCustomer = _customers[CustomerListListBox.SelectedIndex];
 
-            else
-            {
-                _currentCustomer = _customers[CustomerListListBox.SelectedIndex];
-                CustomerNameTextBox.Text = _currentCustomer.FullName.ToString();
-                CustomerAddressRichTextBox.Text = _currentCustomer.Address.ToString();
-                CustomerIdTextBox.Text = _currentCustomer.Id.ToString();
-            }
+            CustomerIdTextBox.Text = _currentCustomer.Id.ToString();
+            CustomerNameTextBox.Text = _currentCustomer.FullName;
+            CustomerNewAddressControl.Address = _currentCustomer.Address;
+
         }
     }
 }

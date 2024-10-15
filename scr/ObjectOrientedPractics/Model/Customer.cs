@@ -1,15 +1,5 @@
-﻿class Customer
+﻿public class Customer
 {
-    /// <summary>
-    /// Хранит в себе порядковые номера клиентов.
-    /// </summary>
-    private static int _allCustomerCount;
-
-    /// <summary>
-    /// Хранит в себе уникальный номер покупателя. 
-    /// </summary>
-    readonly int _id;
-
     /// <summary>
     /// Хранит в себе полное ФИО покупателя.
     /// </summary>
@@ -18,7 +8,17 @@
     /// <summary>
     /// Хранит адрес покупателя.
     /// </summary>
-    private string _address;
+    private Address _address;
+
+    /// <summary>
+    /// Хранит корзину покупателя
+    /// </summary>
+    private Cart _cart;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private List<Order> _order = new List<Order>();
 
     /// <summary>
     /// Задает и возращает полное ФИО покупателя.
@@ -29,6 +29,7 @@
         get { return _fullName; }
         set
         {
+            ValueValidator.CheckStringOnNullOrEmpty(value, nameof(FullName));
             ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
             _fullName = value;
         }
@@ -37,26 +38,38 @@
     /// <summary>
     /// Возращает уникальный номер товара.
     /// </summary>
-    public int Id { get { return _id; } }
+    public int Id { get; private set; }
 
     /// <summary>
     /// Задает и возращает адрес покупателя.
-    /// Задает через проверку с помощью класса <see cref="ValueValidator"/>. Адрес должен быть не более 500 символов в длину.
     /// </summary>
-    public string Address
+    public Address Address
     {
         get { return _address; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 500, nameof(Address));
             _address = value;
         }
     }
+    
+    /// <summary>
+    /// Возращает и задает корзину покупателя.
+    /// </summary>
+    public Cart Cart
+    {
+        get { return _cart; }
+        set { _cart = value; }
+    }
 
     /// <summary>
-    /// Хранит данные о количестве товаров.
+    /// 
     /// </summary>
-    public static int AllCustomerCount { get { return _allCustomerCount; } }
+    public List<Order> Order
+    {
+        get { return _order; }
+        set { _order = value; }
+    }
+
 
     /// <summary>
     /// Экземпляр класса <see cref="Customer"/>.
@@ -64,8 +77,10 @@
     public Customer()
     {
         FullName = "Khvorostyanoy Alexey Sergeevich";
-        Address = "Tomsk, F. Lytkin st. 18";
-        _id = ++_allCustomerCount;
+        Address = new Address();
+        Cart = new Cart();
+        Order = new List<Order>();
+        Id = IdGenerator.GetNextId("Customer");
     }
 
     /// <summary>
@@ -73,10 +88,11 @@
     /// </summary>
     /// <param name="fullName">Полное ФИО. Должно быть не более 200 символов в длину.</param>
     /// <param name="address">Адрес покупателя. Должен быть не более 500 символов в длину.</param>
-    public Customer(string fullName, string address)
+    public Customer(string fullName, Address address, Cart cart)
     {
         FullName = fullName;
         Address = address;
-        _id = ++_allCustomerCount;
+        Cart = cart;
+        Id = IdGenerator.GetNextId("Customer");
     }
 }
