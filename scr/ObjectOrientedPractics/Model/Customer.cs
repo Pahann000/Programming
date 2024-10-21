@@ -16,7 +16,7 @@
     private Cart _cart;
 
     /// <summary>
-    /// 
+    /// Хранит в себе список заказов.
     /// </summary>
     private List<Order> _order = new List<Order>();
 
@@ -62,7 +62,7 @@
     }
 
     /// <summary>
-    /// 
+    /// Задает и возращает список заказов.
     /// </summary>
     public List<Order> Order
     {

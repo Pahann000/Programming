@@ -1,7 +1,10 @@
-﻿public class Cart
+﻿/// <summary>
+/// Хранит данные о корзине товаров покупателя.
+/// </summary>
+public class Cart
 {
     /// <summary>
-    /// Хранит в себе списо товаров.
+    /// Хранит в себе список товаров.
     /// </summary>
     private List<Item> _items = new List<Item>();
 

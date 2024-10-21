@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// 
+/// Перечисление статуса заказа.
 /// </summary>
 public enum OrderStatus
 {

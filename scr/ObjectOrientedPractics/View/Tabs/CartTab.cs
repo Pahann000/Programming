@@ -12,9 +12,14 @@ namespace ObjectOrientedPractics.View.Tabs
 {
     public partial class CartTab : UserControl
     {
-
+        /// <summary>
+        /// Хранит список товаров.
+        /// </summary>
         private List<Item> _items = new List<Item>();
 
+        /// <summary>
+        /// Хранит список покупателей.
+        /// </summary>
         private List<Customer> _customer = new List<Customer>();
 
         public CartTab()
@@ -27,7 +32,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
 
         /// <summary>
-        /// 
+        /// Задает и возращает список покупателей.
         /// </summary>
         public List<Customer> Customers
         {
@@ -40,7 +45,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Задает и возращает список товаров.
         /// </summary>
         public List<Item> Items
         {
@@ -52,7 +57,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Задает и возращает текущего покупателя.
         /// </summary>
         private Customer CurrentCustomer { get; set; }
 
@@ -71,7 +76,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Обновление данных во вкладке.
         /// </summary>
         public void RefreshData()
         {
@@ -80,7 +85,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Перезапись имени покупателя при его изменении.
         /// </summary>
         private void UpdateComboBox()
         {
@@ -92,7 +97,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Изменение стоимости товаров при изменении изначальной стоимости товаров.
         /// </summary>
         private void ChangeCart()
         {

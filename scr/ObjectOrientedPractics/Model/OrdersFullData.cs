@@ -1,4 +1,7 @@
-﻿public class OrdersFullData 
+﻿/// <summary>
+/// Класс для заполнения таблицы данными
+/// </summary>
+public class OrdersFullData 
 {
     public string Id { get; set; }
     public string Date { get; set; }

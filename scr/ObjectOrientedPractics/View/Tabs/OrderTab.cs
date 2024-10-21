@@ -21,17 +21,17 @@ namespace ObjectOrientedPractics.View.Tabs
             OrderStatusComboBox.Enabled = true;
         }
         /// <summary>
-        /// 
+        /// Хранит список покупателей.
         /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
         /// <summary>
-        /// 
+        /// Хранит список товаров.
         /// </summary>
         private List<OrdersFullData> _orderData = new List<OrdersFullData>();
 
         /// <summary>
-        /// 
+        /// Задает и возращает список покупателей.
         /// </summary>
         public List<Customer> Customers
         {
@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Обновляет данные во вкладке.
         /// </summary>
         public void RefreshData()
         {
@@ -52,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Перезаписывает данные о заказе при их изменении в других вкладках
         /// </summary>
         private void UpdateOrders()
         {

@@ -59,6 +59,9 @@ public class Order
     /// </summary>
     public double Amount { get { return _amount; } set { _amount = value; } }
 
+    /// <summary>
+    /// Возращает и задает текущий статус заказа.
+    /// </summary>
     public OrderStatus Status { get { return _status; } set { _status = value; } }
 
     public Order()
