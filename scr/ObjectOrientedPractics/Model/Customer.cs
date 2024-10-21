@@ -70,19 +70,6 @@
         set { _order = value; }
     }
 
-
-    /// <summary>
-    /// Экземпляр класса <see cref="Customer"/>.
-    /// </summary>
-    public Customer()
-    {
-        FullName = "Khvorostyanoy Alexey Sergeevich";
-        Address = new Address();
-        Cart = new Cart();
-        Order = new List<Order>();
-        Id = IdGenerator.GetNextId("Customer");
-    }
-
     /// <summary>
     /// Экземпляр класса <see cref="Customer"/>.
     /// </summary>

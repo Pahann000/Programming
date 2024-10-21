@@ -164,12 +164,16 @@
             // 
             // OrdersDataGridView
             // 
+            OrdersDataGridView.AllowUserToAddRows = false;
+            OrdersDataGridView.AllowUserToDeleteRows = false;
             OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, fullNameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, orderDataGridViewTextBoxColumn });
             OrdersDataGridView.DataSource = OrderDataBindingSourse;
             OrdersDataGridView.Location = new Point(9, 11);
+            OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.Name = "OrdersDataGridView";
+            OrdersDataGridView.ReadOnly = true;
             OrdersDataGridView.RowHeadersWidth = 51;
             OrdersDataGridView.Size = new Size(370, 556);
             OrdersDataGridView.TabIndex = 25;
@@ -181,6 +185,7 @@
             idDataGridViewTextBoxColumn.HeaderText = "Id";
             idDataGridViewTextBoxColumn.MinimumWidth = 6;
             idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            idDataGridViewTextBoxColumn.ReadOnly = true;
             idDataGridViewTextBoxColumn.Width = 125;
             // 
             // dateDataGridViewTextBoxColumn
@@ -189,6 +194,7 @@
             dateDataGridViewTextBoxColumn.HeaderText = "Date";
             dateDataGridViewTextBoxColumn.MinimumWidth = 6;
             dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            dateDataGridViewTextBoxColumn.ReadOnly = true;
             dateDataGridViewTextBoxColumn.Width = 125;
             // 
             // fullNameDataGridViewTextBoxColumn
@@ -197,6 +203,7 @@
             fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
             fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             fullNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // addressDataGridViewTextBoxColumn
@@ -205,6 +212,7 @@
             addressDataGridViewTextBoxColumn.HeaderText = "Address";
             addressDataGridViewTextBoxColumn.MinimumWidth = 6;
             addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            addressDataGridViewTextBoxColumn.ReadOnly = true;
             addressDataGridViewTextBoxColumn.Width = 125;
             // 
             // amountDataGridViewTextBoxColumn
@@ -213,6 +221,7 @@
             amountDataGridViewTextBoxColumn.HeaderText = "Amount";
             amountDataGridViewTextBoxColumn.MinimumWidth = 6;
             amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            amountDataGridViewTextBoxColumn.ReadOnly = true;
             amountDataGridViewTextBoxColumn.Width = 125;
             // 
             // statusDataGridViewTextBoxColumn
@@ -221,6 +230,7 @@
             statusDataGridViewTextBoxColumn.HeaderText = "Status";
             statusDataGridViewTextBoxColumn.MinimumWidth = 6;
             statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            statusDataGridViewTextBoxColumn.ReadOnly = true;
             statusDataGridViewTextBoxColumn.Width = 125;
             // 
             // orderDataGridViewTextBoxColumn
@@ -229,6 +239,7 @@
             orderDataGridViewTextBoxColumn.HeaderText = "Order";
             orderDataGridViewTextBoxColumn.MinimumWidth = 6;
             orderDataGridViewTextBoxColumn.Name = "orderDataGridViewTextBoxColumn";
+            orderDataGridViewTextBoxColumn.ReadOnly = true;
             orderDataGridViewTextBoxColumn.Width = 125;
             // 
             // OrderDataBindingSourse
