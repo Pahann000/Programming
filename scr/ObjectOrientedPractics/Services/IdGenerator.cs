@@ -9,6 +9,8 @@
     /// </summary>
     private static int _counterCustomer;
 
+    private static int _counterOrder;
+
     /// /// <summary>
     /// Возвращает уникальный Id
     /// </summary>
@@ -16,10 +18,16 @@
     /// <returns>Уникальный Id</returns>
     public static int GetNextId(string choice)
     {
-        if (choice == "Item")
-            return ++_counterItem;
-        else
-            return ++_counterCustomer;
+        switch (choice)
+        {
+            case ("Item"):
+                return ++_counterItem;
+            case ("Customer"):
+                return ++_counterCustomer;
+            case ("Order"):
+                return ++_counterOrder;
+        }
+        return -1;
     }
 
 }

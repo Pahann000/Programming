@@ -11,6 +11,16 @@
     private Address _address;
 
     /// <summary>
+    /// Хранит корзину покупателя
+    /// </summary>
+    private Cart _cart;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private List<Order> _order = new List<Order>();
+
+    /// <summary>
     /// Задает и возращает полное ФИО покупателя.
     /// Задает через проверку с помощью класса <see cref="ValueValidator"/>. ФИО покупателя должно быть не более 200 символов в длину.
     /// </summary>
@@ -20,7 +30,7 @@
         set
         {
             ValueValidator.CheckStringOnNullOrEmpty(value, nameof(FullName));
-            ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
+            ValueValidator.AssertStringOnLength(value,  200, nameof(FullName));
             _fullName = value;
         }
     }
@@ -41,6 +51,25 @@
             _address = value;
         }
     }
+    
+    /// <summary>
+    /// Возращает и задает корзину покупателя.
+    /// </summary>
+    public Cart Cart
+    {
+        get { return _cart; }
+        set { _cart = value; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public List<Order> Order
+    {
+        get { return _order; }
+        set { _order = value; }
+    }
+
 
     /// <summary>
     /// Экземпляр класса <see cref="Customer"/>.
@@ -49,6 +78,8 @@
     {
         FullName = "Khvorostyanoy Alexey Sergeevich";
         Address = new Address();
+        Cart = new Cart();
+        Order = new List<Order>();
         Id = IdGenerator.GetNextId("Customer");
     }
 
@@ -57,10 +88,11 @@
     /// </summary>
     /// <param name="fullName">Полное ФИО. Должно быть не более 200 символов в длину.</param>
     /// <param name="address">Адрес покупателя. Должен быть не более 500 символов в длину.</param>
-    public Customer(string fullName, Address address)
+    public Customer(string fullName, Address address, Cart cart)
     {
         FullName = fullName;
         Address = address;
+        Cart = cart;
         Id = IdGenerator.GetNextId("Customer");
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,10 @@ namespace ObjectOrientedPractics.View.Controls
             }
             set
             {
+                if (_address == null)
+                {
+                    _address = new Address(100000, "null", "null", "null", "null", "null");
+                }
                 _address = value;
                 LoadAddress();
             }
@@ -81,7 +86,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 IsDataCorrect = false;
                 CustomerPostIndexTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле Index");
             }
 
             try
@@ -92,7 +96,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 IsDataCorrect = false;
                 CustomerApartmentTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле Apartment");
             }
 
             try
@@ -103,7 +106,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 IsDataCorrect = false;
                 CustomerBuildingTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле Building");
             }
 
             try
@@ -114,7 +116,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 IsDataCorrect = false;
                 CustomerStreetTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле Street");
             }
 
             try
@@ -123,9 +124,9 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch
             {
+
                 IsDataCorrect = false;
                 CustomerCountryTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле Country");
             }
 
             try
@@ -136,7 +137,6 @@ namespace ObjectOrientedPractics.View.Controls
             {
                 IsDataCorrect = false;
                 CustomerCityTextBox.BackColor = AppColors.falseText;
-                MessageBox.Show("Неправильный ввод. Поменяйте значение в поле City ");
             }
 
             return IsDataCorrect;
