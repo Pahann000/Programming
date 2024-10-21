@@ -1,3 +1,5 @@
+using ObjectOrientedPractics.View.Tabs;
+
 namespace ObjectOrientedPractics
 {
     public partial class MainForm : Form
@@ -12,6 +14,17 @@ namespace ObjectOrientedPractics
             InitializeComponent();
             ItemNewTab.Items = _store.Items;
             CustomerNewTab.Customers = _store.Customers;
+            CartNewTab.Items = _store.Items;
+            CartNewTab.Customers = _store.Customers;
+            OrderNewTab.Customers = _store.Customers;
         }
+
+        private void ShopTabControl_SelectedTabChanged(object sender, EventArgs e)
+        {
+            CartNewTab.RefreshData();
+            OrderNewTab.RefreshData();
+        }
+
+
     }
 }

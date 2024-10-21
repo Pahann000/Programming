@@ -115,6 +115,7 @@
             ItemCategoryComboBox.Name = "ItemCategoryComboBox";
             ItemCategoryComboBox.Size = new Size(218, 28);
             ItemCategoryComboBox.TabIndex = 15;
+            ItemCategoryComboBox.SelectedIndexChanged += ItemCategoryComboBox_SelectedIndexChanged;
             // 
             // ItemCategoryLabel
             // 
@@ -130,7 +131,7 @@
             ItemInfoRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             ItemInfoRichTextBox.Location = new Point(14, 367);
             ItemInfoRichTextBox.Name = "ItemInfoRichTextBox";
-            ItemInfoRichTextBox.Size = new Size(288, 168);
+            ItemInfoRichTextBox.Size = new Size(402, 168);
             ItemInfoRichTextBox.TabIndex = 12;
             ItemInfoRichTextBox.Text = "";
             ItemInfoRichTextBox.TextChanged += ItemInfoRichTextBox_TextChanged;
@@ -140,7 +141,7 @@
             ItemNameRichTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             ItemNameRichTextBox.Location = new Point(14, 196);
             ItemNameRichTextBox.Name = "ItemNameRichTextBox";
-            ItemNameRichTextBox.Size = new Size(290, 133);
+            ItemNameRichTextBox.Size = new Size(402, 133);
             ItemNameRichTextBox.TabIndex = 11;
             ItemNameRichTextBox.Text = "";
             ItemNameRichTextBox.TextChanged += ItemNameRichTextBox_TextChanged;

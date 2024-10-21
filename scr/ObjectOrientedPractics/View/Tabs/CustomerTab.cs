@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -68,17 +69,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            Customer newCustomer = new Customer("Empty", new Address(100000, "Country", "City", "Street", "Building", "Apartment"));
+            Customer newCustomer = new Customer("Empty", new Address(100000, "Country", "City", "Street", "Build", "Apart"), new Cart());
+            newCustomer.FullName = $"Customer #{newCustomer.Id}";
             _customers.Add(newCustomer);
-            CustomerListListBox.Items.Add(newCustomer);
+            CustomerListListBox.Items.Add(newCustomer.Id + ". " + newCustomer.FullName.ToString());
             
-        }
-        /// <summary>
-        /// Добавляет ФИО покупателя в элемент ListBox.
-        /// </summary>
-        private void ChangeTextElemListBoxInstitution()
-        {
-            CustomerListListBox.Items[CustomerListListBox.SelectedIndex] = _customers[CustomerListListBox.SelectedIndex].FullName;
         }
 
         private void CustomerSaveButton_Click(object sender, EventArgs e)
@@ -100,13 +95,15 @@ namespace ObjectOrientedPractics.View.Tabs
                 _isDataCorrect = false;
                 CustomerSaveButton.Enabled = false;
             }
-
+            if (string.IsNullOrEmpty(CustomerNameTextBox.Text)) return;
 
             try
             {
                 string newFullName = CustomerNameTextBox.Text;
                 _currentCustomer.FullName = newFullName;
+                CustomerListListBox.Items[CustomerListListBox.SelectedIndex] = CustomerIdTextBox.Text + ". " + CustomerNameTextBox.Text;
                 CustomerSaveButton.Enabled = true;
+                
             }
             catch (Exception)
             {
@@ -114,7 +111,6 @@ namespace ObjectOrientedPractics.View.Tabs
                 CustomerSaveButton.Enabled = false;
                 CustomerNameTextBox.BackColor = Color.LightPink;
             }
-            ChangeTextElemListBoxInstitution();
         }
 
 
