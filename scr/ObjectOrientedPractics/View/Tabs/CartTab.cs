@@ -124,6 +124,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ClearCartButton_Click(object sender, EventArgs e)
         {
+            if (CustomerNameComboBox.SelectedIndex < 0) return;
             CurrentCustomer.Cart.Items.Clear();
             CartItemsListBox.Items.Clear();
 
@@ -153,7 +154,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
         {
-            if (CartItemsListBox.SelectedIndex > -1)
+            if (CartItemsListBox.SelectedIndex > 0)
             {
                 CurrentCustomer.Cart.Items.RemoveAt(CartItemsListBox.SelectedIndex);
                 CartItemsListBox.Items.RemoveAt(CartItemsListBox.SelectedIndex);
@@ -164,6 +165,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
+            if (CustomerNameComboBox.SelectedIndex < 0) return;
             Order currentOrder = new Order();
             currentOrder.Items = new List<Item>(CurrentCustomer.Cart.Items);
             currentOrder.Amount = CurrentCustomer.Cart.Amount;

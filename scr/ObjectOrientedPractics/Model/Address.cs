@@ -40,7 +40,7 @@
         get { return _index; }
         set 
         {
-            ValueValidator.AssertNumberInRange(value, 000000, 999999, nameof(Index));
+            ValueValidator.AssertNumberInRange(value, 100000, 999999, nameof(Index));
             _index = value;
         }
     }
@@ -54,8 +54,8 @@
     {
         get { return _country; }
         set
-        {
-            ValueValidator.AssertStringOnLength(value, 50, nameof(Country));
+        { 
+            ValueValidator.AssertStringOnLength(value,  50, nameof(Country));
             _country = value;
         }
     }
@@ -70,7 +70,7 @@
         get { return _city; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 50, nameof(City));
+            ValueValidator.AssertStringOnLength(value,  50, nameof(City));
             _city = value;
         }
     }
@@ -85,7 +85,7 @@
         get { return _street; }
         set
         {
-            ValueValidator.AssertStringOnLength(value, 100, nameof(Street));
+            ValueValidator.AssertStringOnLength(value , 100, nameof(Street));
             _street = value;
         }
     }
@@ -100,7 +100,7 @@
         get { return _building; }
         set 
         {
-            ValueValidator.AssertStringOnLength(value, 10, nameof(Building));
+            ValueValidator.AssertStringOnLength(value,  10, nameof(Building));
             _building = value;
         }
     }
@@ -114,7 +114,7 @@
     {
         get { return _apartment; }
         set
-        {
+        {   
             ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
             _apartment = value;
         }

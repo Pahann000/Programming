@@ -17,12 +17,22 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             UpdateOrders();
+            OrdersInfoGroupBox.Enabled = false;
+            OrderStatusComboBox.Enabled = true;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         private List<Customer> _customers = new List<Customer>();
 
+        /// <summary>
+        /// 
+        /// </summary>
         private List<OrdersFullData> _orderData = new List<OrdersFullData>();
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        /// <summary>
+        /// 
+        /// </summary>
         public List<Customer> Customers
         {
             get { return _customers; }
@@ -33,11 +43,17 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void RefreshData()
         {
             UpdateOrders();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateOrders()
         {
             OrderDataBindingSourse.Clear();
@@ -72,7 +88,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 OrderIdTextBox.Text = string.Empty;
                 OrderTimeTextBox.Text = string.Empty;
                 OrderStatusComboBox.Text = string.Empty;
-                CustomerOrderAddressControl.Address = null;
+                CustomerOrderAddressControl.Address = new Address(100000, "", "", "", "", "");
                 AmountTextBox.Text = string.Empty;
             }
             else

@@ -21,7 +21,7 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             ItemsGroupBox.Enabled = false;
-            if(_items.Count < 0) UpdateListBox();
+            if (_items.Count < 0) UpdateListBox();
 
         }
 
@@ -44,7 +44,7 @@ namespace ObjectOrientedPractics.View.Tabs
         private void ItemTab_Load(object sender, EventArgs e)
         {
             ItemCategoryComboBox.DataSource = Enum.GetValues(typeof(Category));
-            
+
         }
 
         private void DeleteItemButton_Click(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (ItemListListBox.SelectedItem == null) return;
             _items.RemoveAt(ItemListListBox.SelectedIndex);
             ItemListListBox.Items.RemoveAt(ItemListListBox.SelectedIndex);
-            
+
 
         }
 
@@ -62,7 +62,7 @@ namespace ObjectOrientedPractics.View.Tabs
             newItem.Name = $"Item # {newItem.Id}";
             _items.Add(newItem);
             ItemListListBox.Items.Add(newItem.Id + ". " + newItem.Name.ToString());
-            ItemListListBox.Enabled = true; 
+            ItemListListBox.Enabled = true;
         }
 
         private void ItemListListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemNameRichTextBox.Text = _currentItem.Name.ToString();
                 ItemIdTextBox.Text = _currentItem.Id.ToString();
                 ItemCategoryComboBox.Text = _currentItem.Category.ToString();
-                
+
 
 
             }
@@ -102,7 +102,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Price = itemPrice;
                 ItemListListBox.Enabled = true;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ItemPriceTextBox.BackColor = AppColors.falseText;
                 ItemListListBox.Enabled = false;
@@ -111,7 +111,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemNameRichTextBox_TextChanged(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrEmpty(ItemNameRichTextBox.Text)) return;
             try
             {
@@ -123,7 +123,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
 
             }
-            catch(Exception)
+            catch (Exception)
             {
                 ItemNameRichTextBox.BackColor = AppColors.falseText;
                 ItemListListBox.Enabled = false;
@@ -140,7 +140,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentItem.Info = itemInfo;
                 ItemListListBox.Enabled = true;
             }
-            catch( Exception ) 
+            catch (Exception)
             {
                 ItemInfoRichTextBox.BackColor = AppColors.falseText;
                 ItemListListBox.Enabled = false;
@@ -164,6 +164,14 @@ namespace ObjectOrientedPractics.View.Tabs
             for (int i = 0; i < Items.Count; i++)
             {
                 ItemListListBox.Items.Add(Items[i].Id.ToString() + ". " + Items[i].Name.ToString());
+            }
+        }
+
+        private void ItemCategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ItemCategoryComboBox.SelectedItem is Category selectedCategory && _currentItem != null)
+            {
+                _currentItem.Category = selectedCategory;
             }
         }
     }

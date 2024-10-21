@@ -69,7 +69,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddCustomerButton_Click(object sender, EventArgs e)
         {
-            Customer newCustomer = new Customer("Empty", new Address(100000, "Country", "City", "Street", "Building", "Apartment"), new Cart());
+            Customer newCustomer = new Customer("Empty", new Address(100000, "Country", "City", "Street", "Build", "Apart"), new Cart());
             newCustomer.FullName = $"Customer #{newCustomer.Id}";
             _customers.Add(newCustomer);
             CustomerListListBox.Items.Add(newCustomer.Id + ". " + newCustomer.FullName.ToString());

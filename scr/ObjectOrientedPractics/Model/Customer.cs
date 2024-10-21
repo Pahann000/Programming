@@ -30,7 +30,7 @@
         set
         {
             ValueValidator.CheckStringOnNullOrEmpty(value, nameof(FullName));
-            ValueValidator.AssertStringOnLength(value, 200, nameof(FullName));
+            ValueValidator.AssertStringOnLength(value,  200, nameof(FullName));
             _fullName = value;
         }
     }

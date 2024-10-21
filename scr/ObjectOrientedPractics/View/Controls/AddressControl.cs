@@ -31,6 +31,10 @@ namespace ObjectOrientedPractics.View.Controls
             }
             set
             {
+                if (_address == null)
+                {
+                    _address = new Address(100000, "null", "null", "null", "null", "null");
+                }
                 _address = value;
                 LoadAddress();
             }
@@ -50,26 +54,12 @@ namespace ObjectOrientedPractics.View.Controls
         /// </summary>
         private void LoadAddress()
         {
-            if (this.Address != null)
-            {
-                CustomerPostIndexTextBox.Text = _address.Index.ToString();
-                CustomerCountryTextBox.Text = _address.Country;
-                CustomerCityTextBox.Text = _address.City;
-                CustomerStreetTextBox.Text = _address.Street;
-                CustomerBuildingTextBox.Text = _address.Building;
-                CustomerApartmentTextBox.Text = _address.Apartment;
-
-
-            }
-            else
-            {
-                CustomerPostIndexTextBox.Text = "100000";
-                CustomerCountryTextBox.Text = " ";
-                CustomerCityTextBox.Text = " ";
-                CustomerStreetTextBox.Text = " ";
-                CustomerBuildingTextBox.Text = " ";
-                CustomerApartmentTextBox.Text = " ";
-            }
+            CustomerPostIndexTextBox.Text = _address.Index.ToString();
+            CustomerCountryTextBox.Text = _address.Country;
+            CustomerCityTextBox.Text = _address.City;
+            CustomerStreetTextBox.Text = _address.Street;
+            CustomerBuildingTextBox.Text = _address.Building;
+            CustomerApartmentTextBox.Text = _address.Apartment;
         }
 
         /// <summary>
@@ -134,6 +124,7 @@ namespace ObjectOrientedPractics.View.Controls
             }
             catch
             {
+
                 IsDataCorrect = false;
                 CustomerCountryTextBox.BackColor = AppColors.falseText;
             }
