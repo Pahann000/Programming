@@ -17,12 +17,17 @@ namespace ObjectOrientedPractics
             CartNewTab.Items = _store.Items;
             CartNewTab.Customers = _store.Customers;
             OrderNewTab.Customers = _store.Customers;
+            PriorityOrdersNewTab.Items = _store.Items;
+            
         }
 
         private void ShopTabControl_SelectedTabChanged(object sender, EventArgs e)
         {
             CartNewTab.RefreshData();
             OrderNewTab.RefreshData();
+            
+
+
         }
 
 

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             Address address1 = new Address();
             AmountTextBox = new TextBox();
             TotalAmountLabel = new Label();
             CartItemsListBox = new ListBox();
             OrdersInfoGroupBox = new GroupBox();
+            PriorityPanel = new Panel();
+            OrderLabel = new Label();
+            OrderTimeComboBox = new ComboBox();
             CustomerOrderAddressControl = new Controls.CustomerAddressControl();
             OrderStatusLabel = new Label();
             OrderStatusComboBox = new ComboBox();
@@ -42,17 +44,9 @@
             OrderDateTimeLabel = new Label();
             OrderIdLabel = new Label();
             OrdersDataGridView = new DataGridView();
-            idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dateDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            fullNameDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            addressDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            amountDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            statusDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            orderDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            OrderDataBindingSourse = new BindingSource(components);
             OrdersInfoGroupBox.SuspendLayout();
+            PriorityPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)OrderDataBindingSourse).BeginInit();
             SuspendLayout();
             // 
             // AmountTextBox
@@ -84,6 +78,7 @@
             // 
             OrdersInfoGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             OrdersInfoGroupBox.BackColor = SystemColors.ButtonHighlight;
+            OrdersInfoGroupBox.Controls.Add(PriorityPanel);
             OrdersInfoGroupBox.Controls.Add(CustomerOrderAddressControl);
             OrdersInfoGroupBox.Controls.Add(OrderStatusLabel);
             OrdersInfoGroupBox.Controls.Add(OrderStatusComboBox);
@@ -97,6 +92,33 @@
             OrdersInfoGroupBox.TabIndex = 20;
             OrdersInfoGroupBox.TabStop = false;
             OrdersInfoGroupBox.Text = "Select order:";
+            // 
+            // PriorityPanel
+            // 
+            PriorityPanel.Controls.Add(OrderLabel);
+            PriorityPanel.Controls.Add(OrderTimeComboBox);
+            PriorityPanel.Location = new Point(251, 17);
+            PriorityPanel.Name = "PriorityPanel";
+            PriorityPanel.Size = new Size(202, 125);
+            PriorityPanel.TabIndex = 23;
+            // 
+            // OrderLabel
+            // 
+            OrderLabel.AutoSize = true;
+            OrderLabel.Location = new Point(29, 31);
+            OrderLabel.Name = "OrderLabel";
+            OrderLabel.Size = new Size(115, 20);
+            OrderLabel.TabIndex = 26;
+            OrderLabel.Text = "Priority Options:";
+            // 
+            // OrderTimeComboBox
+            // 
+            OrderTimeComboBox.FormattingEnabled = true;
+            OrderTimeComboBox.Location = new Point(29, 54);
+            OrderTimeComboBox.Name = "OrderTimeComboBox";
+            OrderTimeComboBox.Size = new Size(151, 28);
+            OrderTimeComboBox.TabIndex = 25;
+            OrderTimeComboBox.SelectedIndexChanged += OrderTimeComboBox_SelectedIndexChanged;
             // 
             // CustomerOrderAddressControl
             // 
@@ -128,6 +150,7 @@
             OrderStatusComboBox.Name = "OrderStatusComboBox";
             OrderStatusComboBox.Size = new Size(151, 28);
             OrderStatusComboBox.TabIndex = 20;
+            OrderStatusComboBox.SelectedIndexChanged += OrderStatusComboBox_SelectedIndexChanged;
             // 
             // OrderTimeTextBox
             // 
@@ -166,10 +189,7 @@
             // 
             OrdersDataGridView.AllowUserToAddRows = false;
             OrdersDataGridView.AllowUserToDeleteRows = false;
-            OrdersDataGridView.AutoGenerateColumns = false;
             OrdersDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            OrdersDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, dateDataGridViewTextBoxColumn, fullNameDataGridViewTextBoxColumn, addressDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, statusDataGridViewTextBoxColumn, orderDataGridViewTextBoxColumn });
-            OrdersDataGridView.DataSource = OrderDataBindingSourse;
             OrdersDataGridView.Location = new Point(9, 11);
             OrdersDataGridView.MultiSelect = false;
             OrdersDataGridView.Name = "OrdersDataGridView";
@@ -178,73 +198,6 @@
             OrdersDataGridView.Size = new Size(370, 556);
             OrdersDataGridView.TabIndex = 25;
             OrdersDataGridView.SelectionChanged += OrdersDataGridView_SelectionChanged;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn.HeaderText = "Id";
-            idDataGridViewTextBoxColumn.MinimumWidth = 6;
-            idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            idDataGridViewTextBoxColumn.ReadOnly = true;
-            idDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            dateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            dateDataGridViewTextBoxColumn.ReadOnly = true;
-            dateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // fullNameDataGridViewTextBoxColumn
-            // 
-            fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            fullNameDataGridViewTextBoxColumn.HeaderText = "FullName";
-            fullNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            fullNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            addressDataGridViewTextBoxColumn.MinimumWidth = 6;
-            addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            addressDataGridViewTextBoxColumn.ReadOnly = true;
-            addressDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            amountDataGridViewTextBoxColumn.MinimumWidth = 6;
-            amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            amountDataGridViewTextBoxColumn.ReadOnly = true;
-            amountDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            statusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            statusDataGridViewTextBoxColumn.ReadOnly = true;
-            statusDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // orderDataGridViewTextBoxColumn
-            // 
-            orderDataGridViewTextBoxColumn.DataPropertyName = "Order";
-            orderDataGridViewTextBoxColumn.HeaderText = "Order";
-            orderDataGridViewTextBoxColumn.MinimumWidth = 6;
-            orderDataGridViewTextBoxColumn.Name = "orderDataGridViewTextBoxColumn";
-            orderDataGridViewTextBoxColumn.ReadOnly = true;
-            orderDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // OrderDataBindingSourse
-            // 
-            OrderDataBindingSourse.DataSource = typeof(OrdersFullData);
             // 
             // OrderTab
             // 
@@ -257,10 +210,12 @@
             Controls.Add(OrdersInfoGroupBox);
             Name = "OrderTab";
             Size = new Size(860, 600);
+            Load += OrderTab_Load;
             OrdersInfoGroupBox.ResumeLayout(false);
             OrdersInfoGroupBox.PerformLayout();
+            PriorityPanel.ResumeLayout(false);
+            PriorityPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)OrdersDataGridView).EndInit();
-            ((System.ComponentModel.ISupportInitialize)OrderDataBindingSourse).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -278,13 +233,8 @@
         private Label OrderStatusLabel;
         private Controls.CustomerAddressControl CustomerOrderAddressControl;
         private DataGridView OrdersDataGridView;
-        private BindingSource OrderDataBindingSourse;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn amountDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn orderDataGridViewTextBoxColumn;
+        private Panel PriorityPanel;
+        private Label OrderLabel;
+        private ComboBox OrderTimeComboBox;
     }
 }

@@ -17,8 +17,17 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             InitializeComponent();
             UpdateOrders();
-            OrdersInfoGroupBox.Enabled = false;
+
             OrderStatusComboBox.Enabled = true;
+            OrderTimeComboBox.Enabled = true;
+
+            _orderData.Columns.Add("Id", typeof(string));
+            _orderData.Columns.Add("Date", typeof(string));
+            _orderData.Columns.Add("FullName", typeof(string));
+            _orderData.Columns.Add("Address", typeof(string));
+            _orderData.Columns.Add("Amount", typeof(string));
+            _orderData.Columns.Add("Status", typeof(string));
+
         }
         /// <summary>
         /// Хранит список покупателей.
@@ -28,7 +37,26 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <summary>
         /// Хранит список товаров.
         /// </summary>
-        private List<OrdersFullData> _orderData = new List<OrdersFullData>();
+        private DataTable _orderData = new DataTable();
+
+        /// <summary>
+        /// Текущий заказ
+        /// </summary>
+        private static int _currentIndex = -1;
+
+
+        private static List<Order> _orders = new List<Order>();
+
+
+        /// <summary>
+        /// Выбранный заказ
+        /// </summary>
+        private Order _selectedOrder = new Order();
+
+        /// <summary>
+        /// Выбранный приоритетный заказ
+        /// </summary>
+        private PriorityOrder _selectedPriorityOrder = null;
 
         /// <summary>
         /// Задает и возращает список покупателей.
@@ -51,33 +79,34 @@ namespace ObjectOrientedPractics.View.Tabs
             UpdateOrders();
         }
 
+
+
         /// <summary>
         /// Перезаписывает данные о заказе при их изменении в других вкладках
         /// </summary>
         private void UpdateOrders()
         {
-            OrderDataBindingSourse.Clear();
             OrdersDataGridView.DataSource = null;
             _orderData.Clear();
-            
+
             foreach (var customer in _customers)
             {
                 foreach (var order in customer.Order)
                 {
-                    OrdersFullData orderData = new OrdersFullData();
-                    orderData.Id = order.Id.ToString();
-                    orderData.Address = order.Address;
-                    orderData.Status = order.Status.ToString();
-                    orderData.Date = order.Date.ToString();
-                    orderData.Amount = order.Amount.ToString();
-                    orderData.FullName = customer.FullName;
-                    orderData.Order = order;
+                    DataRow row = _orderData.NewRow();
+                    row["Id"] = order.Id;
+                    row["Date"] = order.Date.ToString();
+                    row["FullName"] = customer.FullName;
+                    row["Address"] = order.Address.ToString();
+                    row["Amount"] = $"{order.Amount:n2}";
+                    row["Status"] = order.Status.ToString();
 
-                    _orderData.Add(orderData);
-                    OrderDataBindingSourse.Add(orderData);
+                    _orderData.Rows.Add(row);
+
+                    _orders.Add(order);
                 }
             }
-            OrdersDataGridView.DataSource = OrderDataBindingSourse;
+            OrdersDataGridView.DataSource = _orderData;
         }
 
         private void OrdersDataGridView_SelectionChanged(object sender, EventArgs e)
@@ -93,17 +122,53 @@ namespace ObjectOrientedPractics.View.Tabs
             }
             else
             {
-                OrdersFullData order = _orderData[OrdersDataGridView.SelectedCells[0].RowIndex];
-                OrderIdTextBox.Text = order.Id;
-                OrderTimeTextBox.Text = order.Date;
-                OrderStatusComboBox.Text = order.Status;
-                CustomerOrderAddressControl.Address = order.Address;
-                for (int i = 0; i < order.Order.Items.Count; i++)
+                _currentIndex = OrdersDataGridView.SelectedCells[0].RowIndex;
+                OrderIdTextBox.Text = _orders[_currentIndex].Id.ToString();
+                OrderTimeTextBox.Text = _orders[_currentIndex].Date.ToString();
+                OrderStatusComboBox.Text = _orders[_currentIndex].Status.ToString();
+                CustomerOrderAddressControl.Address = _orders[_currentIndex].Address;
+                for (int i = 0; i < _orders[_currentIndex].Items.Count; i++)
                 {
-                    CartItemsListBox.Items.Add(order.Order.Items[i].Name);
+                    CartItemsListBox.Items.Add(_orders[_currentIndex].Items[i].Name);
                 }
-                AmountTextBox.Text = order.Amount;
+                AmountTextBox.Text = _orders[_currentIndex].Amount.ToString();
+
+                _selectedOrder = _orders[_currentIndex];
+
+                if (_selectedOrder is PriorityOrder priority)
+                {
+                    _selectedPriorityOrder = priority;
+                    PriorityPanel.Visible = true;
+                    OrderTimeComboBox.Text = _selectedPriorityOrder.OrderTime;
+
+                }
+                else
+                {
+                    _selectedPriorityOrder = null;
+                    PriorityPanel.Visible = false;
+                }
             }
+        }
+
+        private void OrderTab_Load(object sender, EventArgs e)
+        {
+            OrderStatusComboBox.DataSource = Enum.GetValues(typeof(OrderStatus));
+            OrderTimeComboBox.DataSource = PriorityOrder.OrderTimes;
+        }
+
+        private void OrderStatusComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(OrderStatusComboBox.Text)) return;
+            OrderStatus currentStatus = (OrderStatus)OrderStatusComboBox.SelectedIndex;
+            _selectedOrder.Status = currentStatus;
+
+        }
+
+        private void OrderTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_selectedPriorityOrder == null || string.IsNullOrEmpty(OrderTimeComboBox.Text)) return;
+            string currentDateTime = OrderStatusComboBox.SelectedItem.ToString();
+            _selectedPriorityOrder.OrderTime = currentDateTime;
         }
     }
 }

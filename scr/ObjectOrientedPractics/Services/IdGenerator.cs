@@ -9,7 +9,10 @@
     /// </summary>
     private static int _counterCustomer;
 
+
     private static int _counterOrder;
+
+    private static int _counterPriorityOrders;
 
     /// /// <summary>
     /// Возвращает уникальный Id
@@ -26,6 +29,8 @@
                 return ++_counterCustomer;
             case ("Order"):
                 return ++_counterOrder;
+            case ("PriorityOrder"):
+                return ++_counterPriorityOrders;
         }
         return -1;
     }

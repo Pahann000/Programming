@@ -73,7 +73,7 @@ namespace ObjectOrientedPractics.View.Tabs
             newCustomer.FullName = $"Customer #{newCustomer.Id}";
             _customers.Add(newCustomer);
             CustomerListListBox.Items.Add(newCustomer.Id + ". " + newCustomer.FullName.ToString());
-            
+
         }
 
         private void CustomerSaveButton_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomerListListBox.SelectedItem == null) { return; }
 
             _isDataCorrect = true;
-            CustomerSaveButton.Enabled = true; 
+            CustomerSaveButton.Enabled = true;
 
             CustomerNameTextBox.BackColor = Color.White;
 
@@ -103,7 +103,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 _currentCustomer.FullName = newFullName;
                 CustomerListListBox.Items[CustomerListListBox.SelectedIndex] = CustomerIdTextBox.Text + ". " + CustomerNameTextBox.Text;
                 CustomerSaveButton.Enabled = true;
-                
+
             }
             catch (Exception)
             {
@@ -117,9 +117,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CustomerListListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if (CustomerListListBox.SelectedIndex < 0) 
-            { 
-                return; 
+            if (CustomerListListBox.SelectedIndex < 0)
+            {
+                return;
             }
             if (!_isDataCorrect)
             {
@@ -129,10 +129,17 @@ namespace ObjectOrientedPractics.View.Tabs
             CustomersGroupBox.Enabled = true;
             _currentCustomer = _customers[CustomerListListBox.SelectedIndex];
 
+            IsPriorityCheckBox.Checked = _currentCustomer.IsPriority;
             CustomerIdTextBox.Text = _currentCustomer.Id.ToString();
             CustomerNameTextBox.Text = _currentCustomer.FullName;
             CustomerNewAddressControl.Address = _currentCustomer.Address;
 
+        }
+
+        private void IsPriorityCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CustomerListListBox.SelectedIndex < 0) return;
+            _currentCustomer.IsPriority = IsPriorityCheckBox.Checked;
         }
     }
 }

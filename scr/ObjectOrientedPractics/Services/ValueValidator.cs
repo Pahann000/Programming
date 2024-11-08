@@ -90,4 +90,13 @@ class ValueValidator
             throw new ArgumentNullException($"свойство {propertyName} не должно быть null или пустым");
         }
     }
+
+
+    //public static List<string> _orderTimes = new List<string>();
+    //public static string CheckStringOnValue(string str, string propertyName)
+    //{
+    //    if (!_orderTimes.Contains(str)) throw new ArgumentException();
+    //    return str;
+
+    //}
 }

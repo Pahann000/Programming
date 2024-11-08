@@ -21,7 +21,7 @@ public class Order
     /// <summary>
     /// Список товаров
     /// </summary>
-    private List<Item> _items;
+    private List<Item> _items = new List<Item> ();
 
     /// <summary>
     /// Общая цена товаров из списка
@@ -33,7 +33,7 @@ public class Order
     /// <summary>
     /// Возвращает уникальный id
     /// </summary>
-    public int Id { get; private set; }
+    public int Id { get; protected set; }
 
     /// <summary>
     /// Возвращает дату создания заказа
@@ -64,11 +64,18 @@ public class Order
     /// </summary>
     public OrderStatus Status { get { return _status; } set { _status = value; } }
 
-    public Order()
+    public Order(Address address, double amount, OrderStatus status, List<Item> items)
     {
+        Address =  address;
+        Amount = amount;
+        Status = status;
+        Items = items;
         Date = DateTime.Now;
         Id = IdGenerator.GetNextId("Order");
     }
 
-
+    public Order()
+    {
+        
+    }
 }

@@ -51,6 +51,8 @@
             _address = value;
         }
     }
+
+    public bool IsPriority {  get; set; } = false;
     
     /// <summary>
     /// Возращает и задает корзину покупателя.

@@ -38,11 +38,14 @@
             CartNewTab = new View.Tabs.CartTab();
             OrderTabPage = new TabPage();
             OrderNewTab = new View.Tabs.OrderTab();
+            PriorityOrderTabPage = new TabPage();
+            PriorityOrdersNewTab = new View.Tabs.PriorityOrdersTab();
             ShopTabControl.SuspendLayout();
             ItemsTabPage.SuspendLayout();
             CustomerTabPage.SuspendLayout();
             CartTabPage.SuspendLayout();
             OrderTabPage.SuspendLayout();
+            PriorityOrderTabPage.SuspendLayout();
             SuspendLayout();
             // 
             // ShopTabControl
@@ -51,6 +54,7 @@
             ShopTabControl.Controls.Add(CustomerTabPage);
             ShopTabControl.Controls.Add(CartTabPage);
             ShopTabControl.Controls.Add(OrderTabPage);
+            ShopTabControl.Controls.Add(PriorityOrderTabPage);
             ShopTabControl.Dock = DockStyle.Fill;
             ShopTabControl.Location = new Point(0, 0);
             ShopTabControl.Name = "ShopTabControl";
@@ -135,6 +139,24 @@
             OrderNewTab.Size = new Size(860, 600);
             OrderNewTab.TabIndex = 0;
             // 
+            // PriorityOrderTabPage
+            // 
+            PriorityOrderTabPage.Controls.Add(PriorityOrdersNewTab);
+            PriorityOrderTabPage.Location = new Point(4, 29);
+            PriorityOrderTabPage.Name = "PriorityOrderTabPage";
+            PriorityOrderTabPage.Padding = new Padding(3);
+            PriorityOrderTabPage.Size = new Size(875, 610);
+            PriorityOrderTabPage.TabIndex = 4;
+            PriorityOrderTabPage.Text = "PriorityOrder";
+            PriorityOrderTabPage.UseVisualStyleBackColor = true;
+            // 
+            // PriorityOrdersNewTab
+            // 
+            PriorityOrdersNewTab.Location = new Point(6, 6);
+            PriorityOrdersNewTab.Name = "PriorityOrdersNewTab";
+            PriorityOrdersNewTab.Size = new Size(856, 556);
+            PriorityOrdersNewTab.TabIndex = 0;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -149,6 +171,7 @@
             CustomerTabPage.ResumeLayout(false);
             CartTabPage.ResumeLayout(false);
             OrderTabPage.ResumeLayout(false);
+            PriorityOrderTabPage.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -163,5 +186,7 @@
         private View.Tabs.CartTab CartNewTab;
         private TabPage OrderTabPage;
         private View.Tabs.OrderTab OrderNewTab;
+        private TabPage PriorityOrderTabPage;
+        private View.Tabs.PriorityOrdersTab PriorityOrdersNewTab;
     }
 }

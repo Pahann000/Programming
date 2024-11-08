@@ -171,12 +171,20 @@ namespace ObjectOrientedPractics.View.Tabs
         private void CreateOrderButton_Click(object sender, EventArgs e)
         {
             if (CustomerNameComboBox.SelectedIndex < 0) return;
-            Order currentOrder = new Order();
-            currentOrder.Items = new List<Item>(CurrentCustomer.Cart.Items);
-            currentOrder.Amount = CurrentCustomer.Cart.Amount;
-            currentOrder.Status = (OrderStatus)Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray()[0];
-            currentOrder.Address = CurrentCustomer.Address;
-            CurrentCustomer.Order.Add(currentOrder);
+            if (CurrentCustomer.IsPriority)
+            {
+                PriorityOrder priorityOrder = new PriorityOrder(CurrentCustomer.Address, CurrentCustomer.Cart.Amount,
+                (OrderStatus)Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray()[0], new List<Item>(CurrentCustomer.Cart.Items),
+                DateTime.Now.Date.AddDays(3), "9:00-11:00");
+                CurrentCustomer.Order.Add(priorityOrder);
+            }
+            else
+            {
+                Order currentOrder = new Order(CurrentCustomer.Address, CurrentCustomer.Cart.Amount,
+                (OrderStatus)Enum.GetValues(typeof(OrderStatus)).Cast<object>().ToArray()[0], new List<Item>(CurrentCustomer.Cart.Items));
+                CurrentCustomer.Order.Add(currentOrder);
+            }
+            
             CurrentCustomer.Cart.Items.Clear();
             CartItemsListBox.Items.Clear();
 
