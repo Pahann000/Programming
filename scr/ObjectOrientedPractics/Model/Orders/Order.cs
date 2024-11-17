@@ -64,6 +64,10 @@ public class Order
     /// </summary>
     public OrderStatus Status { get { return _status; } set { _status = value; } }
 
+    public double DiscountAmount { get; set; }
+
+    public double Total { get; set; }
+
     public Order(Address address, double amount, OrderStatus status, List<Item> items)
     {
         Address =  address;

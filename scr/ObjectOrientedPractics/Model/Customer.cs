@@ -15,6 +15,8 @@
     /// </summary>
     private Cart _cart;
 
+    private List<IDiscount> _discount = new List<IDiscount>();
+
     /// <summary>
     /// Хранит в себе список заказов.
     /// </summary>
@@ -73,12 +75,19 @@
     }
 
     /// <summary>
+    /// 
+    /// </summary>
+    public List<IDiscount> Discounts {  get; set; }
+ 
+    /// <summary>
     /// Экземпляр класса <see cref="Customer"/>.
     /// </summary>
     /// <param name="fullName">Полное ФИО. Должно быть не более 200 символов в длину.</param>
     /// <param name="address">Адрес покупателя. Должен быть не более 500 символов в длину.</param>
     public Customer(string fullName, Address address, Cart cart)
     {
+        Discounts = new List<IDiscount>();
+        Discounts.Add(new PointsDiscount(0));
         FullName = fullName;
         Address = address;
         Cart = cart;

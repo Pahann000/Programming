@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Address address3 = new Address();
+            Address address1 = new Address();
             AddCustomerButton = new Button();
             DeleteCustomerButton = new Button();
             CustomerListGroupBox = new GroupBox();
             CustomerListListBox = new ListBox();
             CustomersGroupBox = new GroupBox();
+            RemoveDiscountButton = new Button();
+            AddDiscountButton = new Button();
+            DiscountsListBox = new ListBox();
             IsPriorityCheckBox = new CheckBox();
             CustomerNewAddressControl = new Controls.CustomerAddressControl();
             CustomerFullNameLabel = new Label();
@@ -91,6 +94,9 @@
             // 
             CustomersGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             CustomersGroupBox.BackColor = SystemColors.ButtonHighlight;
+            CustomersGroupBox.Controls.Add(RemoveDiscountButton);
+            CustomersGroupBox.Controls.Add(AddDiscountButton);
+            CustomersGroupBox.Controls.Add(DiscountsListBox);
             CustomersGroupBox.Controls.Add(IsPriorityCheckBox);
             CustomersGroupBox.Controls.Add(CustomerNewAddressControl);
             CustomersGroupBox.Controls.Add(CustomerFullNameLabel);
@@ -99,10 +105,38 @@
             CustomersGroupBox.Controls.Add(CustomerNameTextBox);
             CustomersGroupBox.Location = new Point(410, 14);
             CustomersGroupBox.Name = "CustomersGroupBox";
-            CustomersGroupBox.Size = new Size(447, 363);
+            CustomersGroupBox.Size = new Size(447, 583);
             CustomersGroupBox.TabIndex = 12;
             CustomersGroupBox.TabStop = false;
             CustomersGroupBox.Text = "Selected Customer:";
+            // 
+            // RemoveDiscountButton
+            // 
+            RemoveDiscountButton.Location = new Point(315, 491);
+            RemoveDiscountButton.Name = "RemoveDiscountButton";
+            RemoveDiscountButton.Size = new Size(120, 45);
+            RemoveDiscountButton.TabIndex = 14;
+            RemoveDiscountButton.Text = "Remove";
+            RemoveDiscountButton.UseVisualStyleBackColor = true;
+            RemoveDiscountButton.Click += RemoveDiscountButton_Click;
+            // 
+            // AddDiscountButton
+            // 
+            AddDiscountButton.Location = new Point(315, 392);
+            AddDiscountButton.Name = "AddDiscountButton";
+            AddDiscountButton.Size = new Size(120, 45);
+            AddDiscountButton.TabIndex = 13;
+            AddDiscountButton.Text = "Add";
+            AddDiscountButton.UseVisualStyleBackColor = true;
+            AddDiscountButton.Click += AddDiscountButton_Click;
+            // 
+            // DiscountsListBox
+            // 
+            DiscountsListBox.FormattingEnabled = true;
+            DiscountsListBox.Location = new Point(15, 392);
+            DiscountsListBox.Name = "DiscountsListBox";
+            DiscountsListBox.Size = new Size(265, 144);
+            DiscountsListBox.TabIndex = 12;
             // 
             // IsPriorityCheckBox
             // 
@@ -117,13 +151,13 @@
             // 
             // CustomerNewAddressControl
             // 
-            address3.Apartment = "";
-            address3.Building = "";
-            address3.City = "";
-            address3.Country = "";
-            address3.Index = 100001;
-            address3.Street = "";
-            CustomerNewAddressControl.Address = address3;
+            address1.Apartment = "";
+            address1.Building = "";
+            address1.City = "";
+            address1.Country = "";
+            address1.Index = 100001;
+            address1.Street = "";
+            CustomerNewAddressControl.Address = address1;
             CustomerNewAddressControl.Location = new Point(2, 135);
             CustomerNewAddressControl.Name = "CustomerNewAddressControl";
             CustomerNewAddressControl.Size = new Size(445, 251);
@@ -205,5 +239,8 @@
         private Button CustomerSaveButton;
         private Controls.CustomerAddressControl CustomerNewAddressControl;
         private CheckBox IsPriorityCheckBox;
+        private Button RemoveDiscountButton;
+        private Button AddDiscountButton;
+        private ListBox DiscountsListBox;
     }
 }

@@ -79,7 +79,7 @@ namespace ObjectOrientedPractics.View.Tabs
             }
         }
 
-        private void AddItemPrOrderTextBox_Click(object sender, EventArgs e)
+        private void AddItemPrOrderButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
             int index = random.Next(Items.Count);
@@ -89,7 +89,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
-        private void RemoveItemPrOrderTextBox_Click(object sender, EventArgs e)
+        private void RemoveItemPrOrderButton_Click(object sender, EventArgs e)
         {
             if (PrOrderCartItemsListBox.SelectedIndex < 0) return;
             if (PrOrderCartItemsListBox.SelectedIndex + 1 != PrOrderCartItemsListBox.Items.Count)
@@ -107,7 +107,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
-        private void ClearOrderPrOrderTextBox_Click(object sender, EventArgs e)
+        private void ClearOrderPrOrderButton_Click(object sender, EventArgs e)
         {
             _currentPriorityOrder = null;
 

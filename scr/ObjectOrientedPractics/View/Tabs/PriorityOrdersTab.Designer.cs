@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Address address1 = new Address();
+            Address address2 = new Address();
             PrOrderCartItemsListBox = new ListBox();
             PrOrderAmountTextBox = new TextBox();
             TotalAmountLabel = new Label();
-            ClearOrderPrOrderTextBox = new Button();
-            AddItemPrOrderTextBox = new Button();
-            RemoveItemPrOrderTextBox = new Button();
+            ClearOrderPrOrderButton = new Button();
+            AddItemPrOrderButton = new Button();
+            RemoveItemPrOrderButton = new Button();
             OrdersInfoGroupBox = new GroupBox();
             PriorityOrderLabel1 = new Label();
             PriorityOrderComboBox = new ComboBox();
@@ -73,35 +73,35 @@
             TotalAmountLabel.TabIndex = 43;
             TotalAmountLabel.Text = "Amount:";
             // 
-            // ClearOrderPrOrderTextBox
+            // ClearOrderPrOrderButton
             // 
-            ClearOrderPrOrderTextBox.Location = new Point(525, 444);
-            ClearOrderPrOrderTextBox.Name = "ClearOrderPrOrderTextBox";
-            ClearOrderPrOrderTextBox.Size = new Size(112, 45);
-            ClearOrderPrOrderTextBox.TabIndex = 40;
-            ClearOrderPrOrderTextBox.Text = "Clear Order";
-            ClearOrderPrOrderTextBox.UseVisualStyleBackColor = true;
-            ClearOrderPrOrderTextBox.Click += ClearOrderPrOrderTextBox_Click;
+            ClearOrderPrOrderButton.Location = new Point(525, 444);
+            ClearOrderPrOrderButton.Name = "ClearOrderPrOrderButton";
+            ClearOrderPrOrderButton.Size = new Size(112, 45);
+            ClearOrderPrOrderButton.TabIndex = 40;
+            ClearOrderPrOrderButton.Text = "Clear Order";
+            ClearOrderPrOrderButton.UseVisualStyleBackColor = true;
+            ClearOrderPrOrderButton.Click += ClearOrderPrOrderTextBox_Click;
             // 
-            // AddItemPrOrderTextBox
+            // AddItemPrOrderButton
             // 
-            AddItemPrOrderTextBox.Location = new Point(9, 503);
-            AddItemPrOrderTextBox.Name = "AddItemPrOrderTextBox";
-            AddItemPrOrderTextBox.Size = new Size(112, 45);
-            AddItemPrOrderTextBox.TabIndex = 39;
-            AddItemPrOrderTextBox.Text = "Add Item";
-            AddItemPrOrderTextBox.UseVisualStyleBackColor = true;
-            AddItemPrOrderTextBox.Click += AddItemPrOrderTextBox_Click;
+            AddItemPrOrderButton.Location = new Point(9, 503);
+            AddItemPrOrderButton.Name = "AddItemPrOrderButton";
+            AddItemPrOrderButton.Size = new Size(112, 45);
+            AddItemPrOrderButton.TabIndex = 39;
+            AddItemPrOrderButton.Text = "Add Item";
+            AddItemPrOrderButton.UseVisualStyleBackColor = true;
+            AddItemPrOrderButton.Click += AddItemPrOrderTextBox_Click;
             // 
-            // RemoveItemPrOrderTextBox
+            // RemoveItemPrOrderButton
             // 
-            RemoveItemPrOrderTextBox.Location = new Point(136, 503);
-            RemoveItemPrOrderTextBox.Name = "RemoveItemPrOrderTextBox";
-            RemoveItemPrOrderTextBox.Size = new Size(112, 45);
-            RemoveItemPrOrderTextBox.TabIndex = 38;
-            RemoveItemPrOrderTextBox.Text = "Remove Item";
-            RemoveItemPrOrderTextBox.UseVisualStyleBackColor = true;
-            RemoveItemPrOrderTextBox.Click += RemoveItemPrOrderTextBox_Click;
+            RemoveItemPrOrderButton.Location = new Point(136, 503);
+            RemoveItemPrOrderButton.Name = "RemoveItemPrOrderButton";
+            RemoveItemPrOrderButton.Size = new Size(112, 45);
+            RemoveItemPrOrderButton.TabIndex = 38;
+            RemoveItemPrOrderButton.Text = "Remove Item";
+            RemoveItemPrOrderButton.UseVisualStyleBackColor = true;
+            RemoveItemPrOrderButton.Click += RemoveItemPrOrderTextBox_Click;
             // 
             // OrdersInfoGroupBox
             // 
@@ -142,13 +142,13 @@
             // 
             // PriorityOrderAddressControl
             // 
-            address1.Apartment = "507";
-            address1.Building = "18";
-            address1.City = "Tomsk";
-            address1.Country = "Russia";
-            address1.Index = 100001;
-            address1.Street = "F. Lytkin st.";
-            PriorityOrderAddressControl.Address = address1;
+            address2.Apartment = "507";
+            address2.Building = "18";
+            address2.City = "Tomsk";
+            address2.Country = "Russia";
+            address2.Index = 100001;
+            address2.Street = "F. Lytkin st.";
+            PriorityOrderAddressControl.Address = address2;
             PriorityOrderAddressControl.Location = new Point(6, 137);
             PriorityOrderAddressControl.Name = "PriorityOrderAddressControl";
             PriorityOrderAddressControl.Size = new Size(457, 227);
@@ -213,9 +213,9 @@
             Controls.Add(PrOrderCartItemsListBox);
             Controls.Add(PrOrderAmountTextBox);
             Controls.Add(TotalAmountLabel);
-            Controls.Add(ClearOrderPrOrderTextBox);
-            Controls.Add(AddItemPrOrderTextBox);
-            Controls.Add(RemoveItemPrOrderTextBox);
+            Controls.Add(ClearOrderPrOrderButton);
+            Controls.Add(AddItemPrOrderButton);
+            Controls.Add(RemoveItemPrOrderButton);
             Name = "PriorityOrdersTab";
             Size = new Size(685, 552);
             Load += PriorityOrdersTab_Load;
@@ -230,9 +230,9 @@
         private ListBox PrOrderCartItemsListBox;
         private TextBox PrOrderAmountTextBox;
         private Label TotalAmountLabel;
-        private Button ClearOrderPrOrderTextBox;
-        private Button AddItemPrOrderTextBox;
-        private Button RemoveItemPrOrderTextBox;
+        private Button ClearOrderPrOrderButton;
+        private Button AddItemPrOrderButton;
+        private Button RemoveItemPrOrderButton;
         private GroupBox OrdersInfoGroupBox;
         private Label PriorityOrderLabel1;
         private ComboBox PriorityOrderComboBox;

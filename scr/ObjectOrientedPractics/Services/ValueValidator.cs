@@ -91,12 +91,22 @@ class ValueValidator
         }
     }
 
-
-    //public static List<string> _orderTimes = new List<string>();
-    //public static string CheckStringOnValue(string str, string propertyName)
-    //{
-    //    if (!_orderTimes.Contains(str)) throw new ArgumentException();
-    //    return str;
-
-    //}
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="propertyName"></param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException"></exception>
+    public static bool AssertOnPositiveValue(int value, string propertyName)
+    {
+        if (value >= 0)
+        {
+            return true;
+        }
+        else
+        {
+            throw new ArgumentException($"{propertyName} должен быть больше 0");
+        }
+    }
 }

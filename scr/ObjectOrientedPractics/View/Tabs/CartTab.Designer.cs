@@ -37,10 +37,15 @@
             CustomerNameLabel = new Label();
             ClearCartButton = new Button();
             TotalAmountLabel = new Label();
-            AmountTextBox = new TextBox();
             CreateOrderButton = new Button();
             RemoveItemButton = new Button();
             AddItemToCartButton = new Button();
+            DiscountsCheckedListBox = new CheckedListBox();
+            DiscountAmountLabel = new Label();
+            AmountLabel = new Label();
+            NeZnayLabel = new Label();
+            NeYebuLabel = new Label();
+            YaHueyLabel = new Label();
             CartItemsListGroupBox.SuspendLayout();
             CustomerCartGroupBox.SuspendLayout();
             SuspendLayout();
@@ -117,7 +122,7 @@
             // 
             // ClearCartButton
             // 
-            ClearCartButton.Location = new Point(727, 352);
+            ClearCartButton.Location = new Point(686, 481);
             ClearCartButton.Name = "ClearCartButton";
             ClearCartButton.Size = new Size(112, 45);
             ClearCartButton.TabIndex = 14;
@@ -128,22 +133,16 @@
             // TotalAmountLabel
             // 
             TotalAmountLabel.AutoSize = true;
-            TotalAmountLabel.Location = new Point(774, 286);
+            TotalAmountLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            TotalAmountLabel.Location = new Point(724, 559);
             TotalAmountLabel.Name = "TotalAmountLabel";
-            TotalAmountLabel.Size = new Size(65, 20);
+            TotalAmountLabel.Size = new Size(40, 20);
             TotalAmountLabel.TabIndex = 15;
-            TotalAmountLabel.Text = "Amount:";
-            // 
-            // AmountTextBox
-            // 
-            AmountTextBox.Location = new Point(686, 309);
-            AmountTextBox.Name = "AmountTextBox";
-            AmountTextBox.Size = new Size(153, 27);
-            AmountTextBox.TabIndex = 16;
+            TotalAmountLabel.Text = "0.00";
             // 
             // CreateOrderButton
             // 
-            CreateOrderButton.Location = new Point(289, 352);
+            CreateOrderButton.Location = new Point(323, 483);
             CreateOrderButton.Name = "CreateOrderButton";
             CreateOrderButton.Size = new Size(112, 45);
             CreateOrderButton.TabIndex = 17;
@@ -153,7 +152,7 @@
             // 
             // RemoveItemButton
             // 
-            RemoveItemButton.Location = new Point(510, 352);
+            RemoveItemButton.Location = new Point(517, 483);
             RemoveItemButton.Name = "RemoveItemButton";
             RemoveItemButton.Size = new Size(112, 45);
             RemoveItemButton.TabIndex = 18;
@@ -171,14 +170,77 @@
             AddItemToCartButton.UseVisualStyleBackColor = true;
             AddItemToCartButton.Click += AddItemToCartButton_Click;
             // 
+            // DiscountsCheckedListBox
+            // 
+            DiscountsCheckedListBox.BackColor = SystemColors.Control;
+            DiscountsCheckedListBox.BorderStyle = BorderStyle.None;
+            DiscountsCheckedListBox.FormattingEnabled = true;
+            DiscountsCheckedListBox.Location = new Point(289, 298);
+            DiscountsCheckedListBox.Name = "DiscountsCheckedListBox";
+            DiscountsCheckedListBox.Size = new Size(276, 176);
+            DiscountsCheckedListBox.TabIndex = 20;
+            DiscountsCheckedListBox.SelectedIndexChanged += DiscountsCheckedListBox_SelectedIndexChanged;
+            // 
+            // DiscountAmountLabel
+            // 
+            DiscountAmountLabel.AutoSize = true;
+            DiscountAmountLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            DiscountAmountLabel.Location = new Point(724, 454);
+            DiscountAmountLabel.Name = "DiscountAmountLabel";
+            DiscountAmountLabel.Size = new Size(40, 20);
+            DiscountAmountLabel.TabIndex = 22;
+            DiscountAmountLabel.Text = "0.00";
+            // 
+            // AmountLabel
+            // 
+            AmountLabel.AutoSize = true;
+            AmountLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 204);
+            AmountLabel.Location = new Point(724, 334);
+            AmountLabel.Name = "AmountLabel";
+            AmountLabel.Size = new Size(40, 20);
+            AmountLabel.TabIndex = 23;
+            AmountLabel.Text = "0.00";
+            // 
+            // NeZnayLabel
+            // 
+            NeZnayLabel.AutoSize = true;
+            NeZnayLabel.Location = new Point(653, 334);
+            NeZnayLabel.Name = "NeZnayLabel";
+            NeZnayLabel.Size = new Size(65, 20);
+            NeZnayLabel.TabIndex = 24;
+            NeZnayLabel.Text = "Amount:";
+            // 
+            // NeYebuLabel
+            // 
+            NeYebuLabel.AutoSize = true;
+            NeYebuLabel.Location = new Point(591, 454);
+            NeYebuLabel.Name = "NeYebuLabel";
+            NeYebuLabel.Size = new Size(127, 20);
+            NeYebuLabel.TabIndex = 25;
+            NeYebuLabel.Text = "Discount Amount:";
+            // 
+            // YaHueyLabel
+            // 
+            YaHueyLabel.AutoSize = true;
+            YaHueyLabel.Location = new Point(616, 559);
+            YaHueyLabel.Name = "YaHueyLabel";
+            YaHueyLabel.Size = new Size(102, 20);
+            YaHueyLabel.TabIndex = 26;
+            YaHueyLabel.Text = "Total Amount:";
+            // 
             // CartTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(YaHueyLabel);
+            Controls.Add(NeYebuLabel);
+            Controls.Add(NeZnayLabel);
+            Controls.Add(AmountLabel);
+            Controls.Add(DiscountAmountLabel);
+            Controls.Add(DiscountsCheckedListBox);
             Controls.Add(AddItemToCartButton);
             Controls.Add(RemoveItemButton);
             Controls.Add(CreateOrderButton);
-            Controls.Add(AmountTextBox);
             Controls.Add(TotalAmountLabel);
             Controls.Add(ClearCartButton);
             Controls.Add(CartItemsListGroupBox);
@@ -207,10 +269,15 @@
         private ListBox CartItemsListBox;
         private Button ClearCartButton;
         private Label TotalAmountLabel;
-        private TextBox AmountTextBox;
         private Button CreateOrderButton;
         private Button RemoveItemButton;
         private Button AddItemToCartButton;
         private Label CartItemLabel;
+        private CheckedListBox DiscountsCheckedListBox;
+        private Label DiscountAmountLabel;
+        private Label AmountLabel;
+        private Label NeZnayLabel;
+        private Label NeYebuLabel;
+        private Label YaHueyLabel;
     }
 }
