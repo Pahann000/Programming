@@ -222,13 +222,13 @@ namespace ObjectOrientedPractics.View.Tabs
             if (CustomerNameComboBox.SelectedIndex < 0) return;
 
             double discountAmount = 0;
-            List<IDiscount> selectedDiscounts = new List<IDiscount>(); // Список выбранных скидок
+            List<IDiscount> selectedDiscounts = new List<IDiscount>(); 
 
             foreach (int index in DiscountsCheckedListBox.CheckedIndices)
             {
                 var discount = CurrentCustomer.Discounts[index];
                 discountAmount += discount.Apply(CurrentCustomer.Cart.Items);
-                selectedDiscounts.Add(discount); // Добавляем в список выбранных
+                selectedDiscounts.Add(discount); 
             }
 
             if (CurrentCustomer.IsPriority)
@@ -260,6 +260,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обновление предметов в корзине.
+        /// </summary>
         private void UpdateCartItemsListBox()
         {
             CartItemsListBox.Items.Clear();

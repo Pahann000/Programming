@@ -1,4 +1,4 @@
-﻿public class PointsDiscount: IDiscount
+﻿public class PointsDiscount: IDiscount, IComparable<PointsDiscount>
 {
     /// <summary>
     /// Количество баллов.

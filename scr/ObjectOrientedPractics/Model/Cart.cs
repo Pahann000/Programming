@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Хранит данные о корзине товаров покупателя.
 /// </summary>
-public class Cart
+public class Cart : ICloneable
 {
     /// <summary>
     /// Хранит в себе список товаров.
@@ -23,7 +23,7 @@ public class Cart
     /// </summary>
     public double Amount
     {
-        get 
+        get
         {
             if (_items == null || _items.Count == 0)
                 return 0.0;
@@ -35,5 +35,12 @@ public class Cart
             }
             return totalCost;
         }
+    }
+
+    public object Clone()
+    {
+        Cart copy = new();
+        copy.Items.AddRange([.. Items]);
+        return copy;
     }
 }

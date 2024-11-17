@@ -75,7 +75,7 @@
     }
 
     /// <summary>
-    /// 
+    /// Возращает и задает список скидок.
     /// </summary>
     public List<IDiscount> Discounts {  get; set; }
  
@@ -84,6 +84,7 @@
     /// </summary>
     /// <param name="fullName">Полное ФИО. Должно быть не более 200 символов в длину.</param>
     /// <param name="address">Адрес покупателя. Должен быть не более 500 символов в длину.</param>
+    /// <param name="cart">Корзина покупателя. </param>
     public Customer(string fullName, Address address, Cart cart)
     {
         Discounts = new List<IDiscount>();

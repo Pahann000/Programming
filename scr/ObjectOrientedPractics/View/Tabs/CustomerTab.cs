@@ -166,7 +166,7 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Обновление списка скидок.
         /// </summary>
         private void UpdateDiscounts()
         {

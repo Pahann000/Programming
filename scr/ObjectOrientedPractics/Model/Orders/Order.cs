@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// Хранит данные о заказе
 /// </summary>
-public class Order
+public class Order : IEquatable<Order>
 {
     /// <summary>
     /// Уникальный id
@@ -64,10 +64,23 @@ public class Order
     /// </summary>
     public OrderStatus Status { get { return _status; } set { _status = value; } }
 
+    /// <summary>
+    /// Вощращает и задает сумму скидки.
+    /// </summary>
     public double DiscountAmount { get; set; }
 
+    /// <summary>
+    /// Возращает и задает итоговую стоимость.
+    /// </summary>
     public double Total { get; set; }
 
+    /// <summary>
+    /// Экземпляр класса <see cref="Order">
+    /// </summary>
+    /// <param name="address"> Адрес доставки.</param>
+    /// <param name="amount">Стоимость заказа.</param>
+    /// <param name="status">Статус заказа.</param>
+    /// <param name="items">Список товаров.</param>
     public Order(Address address, double amount, OrderStatus status, List<Item> items)
     {
         Address =  address;
@@ -78,8 +91,20 @@ public class Order
         Id = IdGenerator.GetNextId("Order");
     }
 
+    /// <summary>
+    /// Пустой экземпляр класса <see cref="Order"/>
+    /// </summary>
     public Order()
     {
         
+    }
+
+    public bool Equals(Order? order2)
+    {
+        if (order2 == null)
+            return false;
+        if (object.ReferenceEquals(this, order2))
+            return true;
+        return (Id == order2.Id);
     }
 }

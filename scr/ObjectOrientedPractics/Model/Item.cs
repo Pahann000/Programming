@@ -1,4 +1,4 @@
-﻿public class Item
+﻿public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
 {
     /// <summary>
     /// Хранит в себе название товара.
@@ -95,6 +95,39 @@
         Price = price;
         Category = category;
         Id = IdGenerator.GetNextId("Item");
+    }
+
+    public object Clone()
+    {
+        return new Item(Name, Info, Price, Category);
+    }
+
+    /// <inheritdoc/>
+    public bool Equals(Item? item2)
+    {
+        if (item2 == null)
+            return false;
+        if (object.ReferenceEquals(this, item2))
+            return true;
+        return (Id == item2.Id);
+    }
+
+    public int CompareTo(Item? item2)
+    {
+        if (item2 == null)
+            return 1;
+        if (object.ReferenceEquals(this, item2))
+            return 0;
+
+        if (Price < item2.Price)
+        {
+            return -1;
+        }
+        else if (Price == item2.Price)
+        {
+            return 0;
+        }
+        return 1;
     }
 
 }

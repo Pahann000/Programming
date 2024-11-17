@@ -1,4 +1,6 @@
-﻿public class Address
+﻿using System.Reflection;
+
+public class Address :  ICloneable, IEquatable<Address>
 {
     /// <summary>
     /// Хранит в себе почтовый индекс.
@@ -152,5 +154,33 @@
         Street = street;
         Building = building;
         Apartment = apartment;
+    }
+
+    public object Clone()
+    {
+        return new Address(Index, Country, City, Street, Building, Apartment);
+    }
+
+    public bool Equals(Address? address2)
+    {
+        if (address2 == null)
+            return false;
+        if (object.ReferenceEquals(this, address2))
+            return true;
+
+        PropertyInfo[] properties = typeof(Address).GetProperties();
+
+        foreach (PropertyInfo property in properties)
+        {
+            var value1 = property.GetValue(this);
+            var value2 = property.GetValue(address2);
+
+            if (value1 == null && value2 == null)
+                continue;
+            if (value1 == null || value2 == null || value1 != value2)
+                return false; // Если одно из значений null или они не равны
+        }
+
+        return true;
     }
 }

@@ -158,6 +158,9 @@ namespace ObjectOrientedPractics.View.Tabs
 
         }
 
+        /// <summary>
+        /// Обновление списка товаров.
+        /// </summary>
         private void UpdateListBox()
         {
             ItemListListBox.Items.Clear();

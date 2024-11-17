@@ -1,4 +1,4 @@
-﻿public class PercentDiscount: IDiscount
+﻿public class PercentDiscount: IDiscount, IComparable<PercentDiscount>
 {
     /// <summary>
     /// Категория товаров, на которые распространяется скидка.
