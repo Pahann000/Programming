@@ -1,4 +1,6 @@
-﻿public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
+﻿using System.Reflection.Metadata.Ecma335;
+
+public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
 {
     /// <summary>
     /// Хранит в себе название товара.
@@ -16,6 +18,21 @@
     private double _price;
 
     /// <summary>
+    /// 
+    /// </summary>
+    public event EventHandler NameChanged;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public event EventHandler InfoChanged;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public event EventHandler PriceChanged;
+
+    /// <summary>
     /// Возращает уникальный номер товара.
     /// </summary>
     public int Id { get; private set; }
@@ -31,6 +48,7 @@
             ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Name));
             ValueValidator.AssertStringOnLength(value, 200, nameof(Name));
             _name = value;
+            NameChanged?.Invoke(this, EventArgs.Empty);
             }
     }
 
@@ -46,6 +64,7 @@
             ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Info));
             ValueValidator.AssertStringOnLength(value, 1000, nameof(Info));
             _info = value;
+            NameChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -61,6 +80,7 @@
             ValueValidator.CheckStringOnNullOrEmpty(value, nameof(Price));
             ValueValidator.AssertNumberInRange(value, 0, 100000, nameof(Price));
             _price = value;
+            PriceChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 

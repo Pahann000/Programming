@@ -33,6 +33,11 @@ public class Address :  ICloneable, IEquatable<Address>
     private string _apartment;
 
     /// <summary>
+    /// 
+    /// </summary>
+    public event EventHandler AddressChanged;
+
+    /// <summary>
     /// Задает и возращает почтовый индекс.
     /// Задает через проверку с помощью класса <see cref="ValueValidator"/>.
     /// Почтовый индекс должен быть шестизначный целым числом.
@@ -44,6 +49,7 @@ public class Address :  ICloneable, IEquatable<Address>
         {
             ValueValidator.AssertNumberInRange(value, 100000, 999999, nameof(Index));
             _index = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -59,6 +65,7 @@ public class Address :  ICloneable, IEquatable<Address>
         { 
             ValueValidator.AssertStringOnLength(value,  50, nameof(Country));
             _country = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -74,6 +81,7 @@ public class Address :  ICloneable, IEquatable<Address>
         {
             ValueValidator.AssertStringOnLength(value,  50, nameof(City));
             _city = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -89,6 +97,7 @@ public class Address :  ICloneable, IEquatable<Address>
         {
             ValueValidator.AssertStringOnLength(value , 100, nameof(Street));
             _street = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -104,6 +113,7 @@ public class Address :  ICloneable, IEquatable<Address>
         {
             ValueValidator.AssertStringOnLength(value,  10, nameof(Building));
             _building = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -119,6 +129,7 @@ public class Address :  ICloneable, IEquatable<Address>
         {   
             ValueValidator.AssertStringOnLength(value, 10, nameof(Apartment));
             _apartment = value;
+            AddressChanged?.Invoke(this, EventArgs.Empty);
         }
 
     }

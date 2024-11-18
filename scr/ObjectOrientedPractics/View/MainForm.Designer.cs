@@ -95,6 +95,7 @@
             // 
             // CustomerNewTab
             // 
+            CustomerNewTab.Discounts = (List<IDiscount>)resources.GetObject("CustomerNewTab.Discounts");
             CustomerNewTab.Dock = DockStyle.Fill;
             CustomerNewTab.Location = new Point(3, 3);
             CustomerNewTab.Name = "CustomerNewTab";

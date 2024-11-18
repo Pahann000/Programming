@@ -14,9 +14,15 @@ namespace ObjectOrientedPractics.View.Tabs
     public partial class ItemTab : UserControl
     {
         /// <summary>
+        /// Событие изменения товара.
+        /// </summary>
+        public event EventHandler ItemsChanged;
+
+        /// <summary>
         /// Хранит данные о созданных товарах
         /// </summary>
         private static List<Item> _items = new List<Item>();
+
         public ItemTab()
         {
             InitializeComponent();
@@ -60,7 +66,15 @@ namespace ObjectOrientedPractics.View.Tabs
         }
 
         /// <summary>
-        /// 
+        /// Обновление данных
+        /// </summary>
+        public void RefreshData()
+        {
+            Refresh();
+        }
+
+        /// <summary>
+        /// Поиск и фильтрация товаров
         /// </summary>
         private void Refresh()
         {
@@ -104,6 +118,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemListListBox.Items.RemoveAt(ItemListListBox.SelectedIndex);
             _isRefreshed = false;
             Refresh();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
 
 
 
@@ -118,6 +133,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemListListBox.Enabled = true;
             _isRefreshed = false;
             Refresh();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         private void ItemListListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -156,6 +172,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 double itemPrice = double.Parse(ItemPriceTextBox.Text);
                 _currentItem.Price = itemPrice;
                 ItemListListBox.Enabled = true;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception)
             {
@@ -176,6 +193,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 ItemListListBox.Enabled = true;
                 _isRefreshed = false;
                 Refresh();
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception)
             {
@@ -193,6 +211,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 string itemInfo = ItemInfoRichTextBox.Text;
                 _currentItem.Info = itemInfo;
                 ItemListListBox.Enabled = true;
+                ItemsChanged?.Invoke(this, EventArgs.Empty);
             }
             catch (Exception)
             {
@@ -209,6 +228,7 @@ namespace ObjectOrientedPractics.View.Tabs
             _currentItem.Price = Convert.ToDouble(ItemPriceTextBox.Text);
             _currentItem.Category = (Category)ItemCategoryComboBox.SelectedValue;
             UpdateListBox();
+            ItemsChanged?.Invoke(this, EventArgs.Empty);
 
         }
 

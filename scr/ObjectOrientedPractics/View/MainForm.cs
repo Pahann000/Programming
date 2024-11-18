@@ -18,16 +18,26 @@ namespace ObjectOrientedPractics
             CartNewTab.Customers = _store.Customers;
             OrderNewTab.Customers = _store.Customers;
             PriorityOrdersNewTab.Items = _store.Items;
-            
+            ItemNewTab.ItemsChanged += Tabs_DataChanges;
+
         }
 
         private void ShopTabControl_SelectedTabChanged(object sender, EventArgs e)
         {
             CartNewTab.RefreshData();
             OrderNewTab.RefreshData();
-            
+        }
 
-
+        /// <summary>
+        /// Событие для обновления данных
+        /// </summary>
+        /// <param name="sender">Ссылка на объект, зажигающий событие</param>
+        /// <param name="e">Данные о событие</param>
+        private void Tabs_DataChanges(object sender, EventArgs e)
+        {
+            ItemNewTab.RefreshData();
+            CartNewTab.RefreshData();
+            OrderNewTab.RefreshData();
         }
 
 
