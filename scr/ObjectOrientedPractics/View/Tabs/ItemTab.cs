@@ -22,8 +22,20 @@ namespace ObjectOrientedPractics.View.Tabs
             InitializeComponent();
             ItemsGroupBox.Enabled = false;
             if (_items.Count < 0) UpdateListBox();
+            SortComboBox.Items.AddRange(["Name", "Cost (Ascending)", "Cost (Descending)"]);
+            SortComboBox.SelectedIndex = 0;
 
         }
+
+        /// <summary>
+        /// Флаг фильтрации
+        /// </summary>
+        private bool _isRefreshed = false;
+
+        /// <summary>
+        /// Отсортировванные товары
+        /// </summary>
+        private List<Item> sortedItems;
 
         /// <summary>
         /// Хранит данные о текущем товаре
@@ -38,8 +50,46 @@ namespace ObjectOrientedPractics.View.Tabs
             get { return _items; }
             set
             {
-                _items = value;
+                if (value != null)
+                {
+
+                    _items = value;
+                    Refresh();
+                }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void Refresh()
+        {
+            if (Items == null) return;
+            if (_isRefreshed)
+            {
+                _isRefreshed = false;
+                return;
+            }
+            var filteredItems = DataTools.Filter(Items, (item) => item.Name.Contains(FindTextBox.Text, StringComparison.OrdinalIgnoreCase));
+            switch (SortComboBox.SelectedIndex)
+            {
+                case 1:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => item1.Price > item2.Price);
+                    break;
+                case 2:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => item1.Price < item2.Price);
+                    break;
+                default:
+                    sortedItems = DataTools.Sort(filteredItems, (item1, item2) => string.Compare(item1.Name, item2.Name, StringComparison.OrdinalIgnoreCase) > 0);
+                    break;
+            }
+            ItemListListBox.Items.Clear();
+
+            for (int i = 0; i < sortedItems.Count; i++)
+            {
+                ItemListListBox.Items.Add(sortedItems[i].Name);
+            }
+            _isRefreshed = true;
         }
         private void ItemTab_Load(object sender, EventArgs e)
         {
@@ -52,6 +102,9 @@ namespace ObjectOrientedPractics.View.Tabs
             if (ItemListListBox.SelectedItem == null) return;
             _items.RemoveAt(ItemListListBox.SelectedIndex);
             ItemListListBox.Items.RemoveAt(ItemListListBox.SelectedIndex);
+            _isRefreshed = false;
+            Refresh();
+
 
 
         }
@@ -63,6 +116,8 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.Add(newItem);
             ItemListListBox.Items.Add(newItem.Id + ". " + newItem.Name.ToString());
             ItemListListBox.Enabled = true;
+            _isRefreshed = false;
+            Refresh();
         }
 
         private void ItemListListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -80,7 +135,7 @@ namespace ObjectOrientedPractics.View.Tabs
             else
             {
                 ItemsGroupBox.Enabled = true;
-                _currentItem = _items[ItemListListBox.SelectedIndex];
+                _currentItem = _items[_items.IndexOf(sortedItems[ItemListListBox.SelectedIndex])];
                 ItemPriceTextBox.Text = _currentItem.Price.ToString();
                 ItemInfoRichTextBox.Text = _currentItem.Info.ToString();
                 ItemNameRichTextBox.Text = _currentItem.Name.ToString();
@@ -119,9 +174,8 @@ namespace ObjectOrientedPractics.View.Tabs
                 string itemName = ItemNameRichTextBox.Text;
                 _currentItem.Name = itemName;
                 ItemListListBox.Enabled = true;
-                ;
-
-
+                _isRefreshed = false;
+                Refresh();
             }
             catch (Exception)
             {
@@ -149,7 +203,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void ItemSaveButton_Click(object sender, EventArgs e)
         {
-            if (ItemListListBox.SelectedIndex > 0 ) return;
+            if (ItemListListBox.SelectedIndex > 0) return;
             _currentItem.Name = ItemNameRichTextBox.Text;
             _currentItem.Info = ItemInfoRichTextBox.Text;
             _currentItem.Price = Convert.ToDouble(ItemPriceTextBox.Text);
@@ -166,7 +220,7 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemListListBox.Items.Clear();
             for (int i = 0; i < Items.Count; i++)
             {
-                ItemListListBox.Items.Add(Items[i].Id.ToString() + ". " + Items[i].Name.ToString());
+                ItemListListBox.Items.Add(Items[i].Name.ToString());
             }
         }
 
@@ -176,6 +230,18 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 _currentItem.Category = selectedCategory;
             }
+        }
+
+        private void FindTextBox_TextChanged(object sender, EventArgs e)
+        {
+            _isRefreshed = false;
+            Refresh();
+        }
+
+        private void SortComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _isRefreshed = false;
+            Refresh();
         }
     }
 

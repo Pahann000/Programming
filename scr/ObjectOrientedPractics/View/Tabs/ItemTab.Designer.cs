@@ -44,6 +44,10 @@
             ItemsListGroupBox = new GroupBox();
             ItemSaveButton = new Button();
             ItemAddButton = new Button();
+            FindTextBox = new TextBox();
+            FindLabel = new Label();
+            SortComboBox = new ComboBox();
+            OrderByLabel = new Label();
             ItemsGroupBox.SuspendLayout();
             ItemsListGroupBox.SuspendLayout();
             SuspendLayout();
@@ -65,7 +69,7 @@
             ItemListListBox.FormattingEnabled = true;
             ItemListListBox.Location = new Point(6, 26);
             ItemListListBox.Name = "ItemListListBox";
-            ItemListListBox.Size = new Size(389, 464);
+            ItemListListBox.Size = new Size(389, 324);
             ItemListListBox.TabIndex = 2;
             ItemListListBox.SelectedIndexChanged += ItemListListBox_SelectedIndexChanged;
             // 
@@ -186,9 +190,9 @@
             // 
             ItemsListGroupBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             ItemsListGroupBox.Controls.Add(ItemListListBox);
-            ItemsListGroupBox.Location = new Point(3, 3);
+            ItemsListGroupBox.Location = new Point(9, 52);
             ItemsListGroupBox.Name = "ItemsListGroupBox";
-            ItemsListGroupBox.Size = new Size(401, 507);
+            ItemsListGroupBox.Size = new Size(401, 376);
             ItemsListGroupBox.TabIndex = 8;
             ItemsListGroupBox.TabStop = false;
             ItemsListGroupBox.Text = "Items";
@@ -215,10 +219,49 @@
             ItemAddButton.UseVisualStyleBackColor = true;
             ItemAddButton.Click += ItemAddButton_Click;
             // 
+            // FindTextBox
+            // 
+            FindTextBox.Location = new Point(55, 19);
+            FindTextBox.Name = "FindTextBox";
+            FindTextBox.Size = new Size(349, 27);
+            FindTextBox.TabIndex = 9;
+            FindTextBox.TextChanged += FindTextBox_TextChanged;
+            // 
+            // FindLabel
+            // 
+            FindLabel.AutoSize = true;
+            FindLabel.Location = new Point(9, 22);
+            FindLabel.Name = "FindLabel";
+            FindLabel.Size = new Size(40, 20);
+            FindLabel.TabIndex = 10;
+            FindLabel.Text = "Find:";
+            // 
+            // SortComboBox
+            // 
+            SortComboBox.FormattingEnabled = true;
+            SortComboBox.Location = new Point(74, 462);
+            SortComboBox.Name = "SortComboBox";
+            SortComboBox.Size = new Size(330, 28);
+            SortComboBox.TabIndex = 11;
+            SortComboBox.SelectedIndexChanged += SortComboBox_SelectedIndexChanged;
+            // 
+            // OrderByLabel
+            // 
+            OrderByLabel.AutoSize = true;
+            OrderByLabel.Location = new Point(18, 465);
+            OrderByLabel.Name = "OrderByLabel";
+            OrderByLabel.Size = new Size(50, 20);
+            OrderByLabel.TabIndex = 12;
+            OrderByLabel.Text = "label1";
+            // 
             // ItemTab
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(OrderByLabel);
+            Controls.Add(SortComboBox);
+            Controls.Add(FindLabel);
+            Controls.Add(FindTextBox);
             Controls.Add(ItemAddButton);
             Controls.Add(DeleteItemButton);
             Controls.Add(ItemSaveButton);
@@ -231,6 +274,7 @@
             ItemsGroupBox.PerformLayout();
             ItemsListGroupBox.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -250,5 +294,9 @@
         private Button ItemAddButton;
         private ComboBox ItemCategoryComboBox;
         private Label ItemCategoryLabel;
+        private TextBox FindTextBox;
+        private Label FindLabel;
+        private ComboBox SortComboBox;
+        private Label OrderByLabel;
     }
 }

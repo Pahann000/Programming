@@ -81,7 +81,7 @@
             ClearOrderPrOrderButton.TabIndex = 40;
             ClearOrderPrOrderButton.Text = "Clear Order";
             ClearOrderPrOrderButton.UseVisualStyleBackColor = true;
-            ClearOrderPrOrderButton.Click += ClearOrderPrOrderTextBox_Click;
+            ClearOrderPrOrderButton.Click += ClearOrderPrOrderButton_Click;
             // 
             // AddItemPrOrderButton
             // 
@@ -91,7 +91,7 @@
             AddItemPrOrderButton.TabIndex = 39;
             AddItemPrOrderButton.Text = "Add Item";
             AddItemPrOrderButton.UseVisualStyleBackColor = true;
-            AddItemPrOrderButton.Click += AddItemPrOrderTextBox_Click;
+            AddItemPrOrderButton.Click += AddItemPrOrderButton_Click;
             // 
             // RemoveItemPrOrderButton
             // 
@@ -101,7 +101,7 @@
             RemoveItemPrOrderButton.TabIndex = 38;
             RemoveItemPrOrderButton.Text = "Remove Item";
             RemoveItemPrOrderButton.UseVisualStyleBackColor = true;
-            RemoveItemPrOrderButton.Click += RemoveItemPrOrderTextBox_Click;
+            RemoveItemPrOrderButton.Click += RemoveItemPrOrderButton_Click;
             // 
             // OrdersInfoGroupBox
             // 
