@@ -61,7 +61,6 @@
             ShopTabControl.SelectedIndex = 0;
             ShopTabControl.Size = new Size(883, 643);
             ShopTabControl.TabIndex = 0;
-            ShopTabControl.SelectedIndexChanged += ShopTabControl_SelectedTabChanged;
             // 
             // ItemsTabPage
             // 

@@ -22,12 +22,6 @@ namespace ObjectOrientedPractics
 
         }
 
-        private void ShopTabControl_SelectedTabChanged(object sender, EventArgs e)
-        {
-            CartNewTab.RefreshData();
-            OrderNewTab.RefreshData();
-        }
-
         /// <summary>
         /// Событие для обновления данных
         /// </summary>

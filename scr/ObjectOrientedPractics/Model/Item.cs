@@ -18,17 +18,17 @@ public class Item : ICloneable, IEquatable<Item>, IComparable<Item>
     private double _price;
 
     /// <summary>
-    /// 
+    /// Событие изменения названия.
     /// </summary>
     public event EventHandler NameChanged;
 
     /// <summary>
-    /// 
+    /// Событие изменения информации.
     /// </summary>
     public event EventHandler InfoChanged;
 
     /// <summary>
-    /// 
+    /// Событие изменения стоимости.
     /// </summary>
     public event EventHandler PriceChanged;
 
