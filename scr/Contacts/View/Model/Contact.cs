@@ -11,10 +11,19 @@ namespace View.Model
     /// </summary>
     public class Contact
     {
+        /// <summary>
+        /// Хранит имя человека
+        /// </summary>
         private string _name;
 
+        /// <summary>
+        /// Хранит адрес электронной почты
+        /// </summary>
         private string _email;
 
+        /// <summary>
+        /// Хранит номер телефона
+        /// </summary>
         private string _phone;
 
         /// <summary>
@@ -40,7 +49,6 @@ namespace View.Model
         /// <param name="phone">Номер телефона контакта.</param>
         public Contact(string name, string email, string phone)
         {
-            // Присвоение значений свойствам.
             Name = name;
             Email = email;
             Phone = phone;

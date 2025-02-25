@@ -14,10 +14,19 @@ namespace View.ViewModel
     /// </summary>
     public class LoadCommand : ICommand
     {
+        /// <summary>
+        /// Событие, вызывающееся при изменении условий влияющих на возможность выполнения
+        /// </summary>
         public event EventHandler? CanExecuteChanged;
 
+        /// <summary>
+        /// Передает данные из класса ContactSerializer
+        /// </summary>
         private ContactSerializer _serializer;
 
+        /// <summary>
+        /// Передает данные из класса MainVM
+        /// </summary>
         private MainVM _mainVM;
 
         /// <summary>

@@ -13,7 +13,9 @@ namespace View.Model.Services
     /// </summary>
     public class ContactSerializer
     {
-
+        /// <summary>
+        /// Хранит путь до необходимого дериктория с файлом. Доступен только на чтение.
+        /// </summary>
         private readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
         "Contact", "contacts.json");
 

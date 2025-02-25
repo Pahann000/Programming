@@ -14,13 +14,19 @@ namespace View.ViewModel
     /// </summary>
     public class SaveCommand : ICommand
     {
-        // Событие, которое возникает при изменении состояния команды.
+        /// <summary>
+        /// Событие, вызывающееся при изменении условий влияющих на возможность выполнения
+        /// </summary>
         public event EventHandler? CanExecuteChanged;
 
-        // Приватное поле для сериализатора контактов.
+        /// <summary>
+        /// Передает данные из класса ContactSerializer
+        /// </summary>
         private ContactSerializer _serializer;
 
-        // Приватное поле для главного ViewModel.
+        /// <summary>
+        /// Передает данные из класса MainVM
+        /// </summary>
         private MainVM _mainVM;
 
         /// <summary>
@@ -41,7 +47,7 @@ namespace View.ViewModel
         /// <returns>Всегда возвращает true, указывая, что команда может быть выполнена.</returns>
         public bool CanExecute(object? parameter)
         {
-            return true; // Команда всегда доступна для выполнения.
+            return true; 
         }
 
         /// <summary>
@@ -51,7 +57,6 @@ namespace View.ViewModel
         /// <param name="parameter">Дополнительный параметр (не используется).</param>
         public void Execute(object? parameter)
         {
-            // Сохраняет контакт с помощью сериализатора.
             _serializer.SaveContact(_mainVM.Contact);
         }
     }
