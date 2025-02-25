@@ -11,7 +11,6 @@ namespace View.Model
     /// </summary>
     public class Contact
     {
-        
         /// <summary>
         /// Свойство для получения или установки имени контакта.
         /// </summary>
