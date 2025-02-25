@@ -29,17 +29,17 @@ namespace View.Model
         /// <summary>
         /// Свойство для получения или установки имени контакта.
         /// </summary>
-        public string Name { get { return _name; } set { _name = value; } }
+        public string Name { get; set; }
 
         /// <summary>
         /// Свойство для получения или установки электронной почты контакта.
         /// </summary>
-        public string Email { get { return _email; } set { _email = value; } }
+        public string Email { get; set; }
 
         /// <summary>
         /// Свойство для получения или установки номера телефона контакта.
         /// </summary>
-        public string Phone { get { return _phone; } set { _phone = value; } }
+        public string Phone { get; set; } 
 
         /// <summary>
         /// Конструктор для создания объекта Contact с указанными именем, электронной почтой и номером телефона.
