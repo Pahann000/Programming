@@ -11,21 +11,7 @@ namespace View.Model
     /// </summary>
     public class Contact
     {
-        /// <summary>
-        /// Хранит имя человека
-        /// </summary>
-        private string _name;
-
-        /// <summary>
-        /// Хранит адрес электронной почты
-        /// </summary>
-        private string _email;
-
-        /// <summary>
-        /// Хранит номер телефона
-        /// </summary>
-        private string _phone;
-
+        
         /// <summary>
         /// Свойство для получения или установки имени контакта.
         /// </summary>
