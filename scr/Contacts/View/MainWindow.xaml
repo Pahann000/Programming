@@ -33,12 +33,11 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="16*"></ColumnDefinition>
-            <ColumnDefinition Width="119*"/>
-            <ColumnDefinition Width="135*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <GroupBox Header="Edit Contact" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="3,3,3,3">
+        <GroupBox Header="Edit Contact" Grid.Row="0" Grid.Column="0">
             <StackPanel>
                 <Label Content="Name:"/>
                 <TextBox Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
@@ -50,7 +49,7 @@
                 <TextBox Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Read Contact" Grid.Row="0" Grid.Column="2" Margin="3,3,3,3">
+        <GroupBox Header="Read Contact" Grid.Row="0" Grid.Column="1">
             <StackPanel>
                 <Label Content="Name:"/>
                 <Label Content="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -63,7 +62,7 @@
             </StackPanel>
         </GroupBox>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Left" Margin="108,392,0,0" Grid.RowSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right">
             <Button Content="Save" Height="25" Width="75" VerticalAlignment="Top" Command="{Binding SaveCommand, Mode=OneWay}"></Button>
             <Button Content="Load" Height="25" Width="75" VerticalAlignment="Top" Command="{Binding LoadCommand, Mode=OneWay}"></Button>
         </StackPanel>

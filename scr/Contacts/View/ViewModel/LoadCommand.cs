@@ -58,10 +58,6 @@ namespace View.ViewModel
         public void Execute(object? parameter)
         {
             _mainVM.Contact = _serializer.LoadContact();
-
-            _mainVM.OnPropertyChanged(nameof(_mainVM.Name));
-            _mainVM.OnPropertyChanged(nameof(_mainVM.Email));
-            _mainVM.OnPropertyChanged(nameof(_mainVM.Phone));
         }
     }
 }

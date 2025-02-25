@@ -55,7 +55,10 @@ namespace View.ViewModel
             set
             {
                 _contact = value;
-                OnPropertyChanged(nameof(Contact)); 
+                OnPropertyChanged(nameof(Contact));
+                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(Email));
+                OnPropertyChanged(nameof(Phone));
             }
         }
 
