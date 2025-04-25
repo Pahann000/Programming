@@ -1,4 +1,4 @@
-﻿using ContactCollection.ViewModel;
+﻿using ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

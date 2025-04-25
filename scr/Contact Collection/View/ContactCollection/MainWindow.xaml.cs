@@ -8,20 +8,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ContactCollection.ViewModel;
+using ViewModel;
 
-namespace ContactCollection;
-
-/// <summary>
-/// Interaction logic for MainWindow.xaml
-/// </summary>
-public partial class MainWindow : Window
+namespace ContactCollection
 {
-    public MainWindow()
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-        this.DataContext = new MainVM();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
     }
-
-    
 }

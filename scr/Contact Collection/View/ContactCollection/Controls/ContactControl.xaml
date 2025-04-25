@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:ContactCollection.Controls"
-             xmlns:vm="clr-namespace:ContactCollection.ViewModel"
+             xmlns:local="clr-namespace:ContactCollection.Controls" xmlns:converters="clr-namespace:ContactCollection.Converters" xmlns:viewmodel="clr-namespace:ViewModel;assembly=ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:MainVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <vm:BooleanInverseConverter x:Key="BooleanInverse"/>
+        <converters:BooleanInverseConverter x:Key="BooleanInverse"/>
     </UserControl.Resources>
     <Grid>
         <StackPanel Grid.Column="2" Background="White" >
@@ -32,7 +31,7 @@
                     <Label Content="Name:"/>
                     <TextBox x:Name="NameTextBox" IsReadOnly="{Binding IsEditMode, Converter={StaticResource BooleanInverse}}" Margin="0, 3, 0, 3">
                         <TextBox.Text>
-                            <Binding Path="CurrentContact.Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="SelectedContact.Name" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
@@ -42,7 +41,7 @@
                     <Label Content="Phone number:"/>
                     <TextBox x:Name="PhoneTextBox"  IsReadOnly="{Binding IsEditMode, Converter={StaticResource BooleanInverse}}" Margin="0, 3, 0, 3" PreviewTextInput="PhoneNumberTextBox_PreviewTextInput" DataObject.Pasting="PhoneNumberTextBox_Pasting">
                         <TextBox.Text>
-                            <Binding Path="CurrentContact.PhoneNumber" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="SelectedContact.PhoneNumber" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
@@ -52,7 +51,7 @@
                     <Label Content="Email:"/>
                     <TextBox x:Name="EmailTextBox" IsReadOnly="{Binding IsEditMode, Converter={StaticResource BooleanInverse}}" Margin="0, 3, 0, 3">
                         <TextBox.Text>
-                            <Binding Path="CurrentContact.Email" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="SelectedContact.Email" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>

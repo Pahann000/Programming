@@ -4,93 +4,95 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactCollection"
+        xmlns:conv="clr-namespace:ContactCollection.Converters"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel" xmlns:controls="clr-namespace:ContactCollection.Controls"
         mc:Ignorable="d"
-        Title="Contacts" Height="516" Width="710" MinWidth="730"
-        xmlns:vm="clr-namespace:ContactCollection.ViewModel"
-        xmlns:controls="clr-namespace:ContactCollection.Controls">
-
-    <Window.DataContext>
-        <vm:MainVM/>
-    </Window.DataContext>
+        Title="Contacts" Height="516" Width="710" MinWidth="730">
 
     <Window.Resources>
-        <vm:BoolToVisibilityConverter x:Key="BooleanToVisibility"/>
-        <vm:BooleanInverseConverter x:Key="BooleanInverse"/>
+        <conv:BoolToVisibilityConverter x:Key="BooleanToVisibility"/>
+        <conv:BooleanInverseConverter x:Key="BooleanInverse"/>
         <DataTemplate x:Key="contactTemplate">
             <StackPanel Margin="3" Orientation="Horizontal">
-                <Image Width="40" Height="40" Source="C:\Users\скда\source\repos\Programming\scr\Contact Collection\View\ContactCollection\new_contact.png" Margin="0,0,8,0" VerticalAlignment="Center"/>
+                <Image Width="40" Height="40" Source="C:\Users\скда\source\repos\Programm1ng\scr\Contact Collection\View\ContactCollection\new_contact.png" Margin="0,0,8,0" VerticalAlignment="Center"/>
                 <StackPanel>
                     <TextBlock FontSize="12" FontWeight="SemiBold" Text="{Binding Name}"/>
                     <TextBlock FontSize="10" Text="{Binding PhoneNumber}"/>
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+        
         <Style TargetType="TextBox">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="ToolTip"
                         Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                     <Setter Property="Foreground" Value="Red"/>
-                    <Setter Property="Margin" Value="3"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
     </Window.Resources>
+    
+    <Window.DataContext>
+        <vm:MainVM/>
+    </Window.DataContext>
 
     <Grid>
-        <Grid.Resources>
-            <Style TargetType="{x:Type Label}">
-                <Setter Property="Margin" Value="3"/>
-            </Style>
-            <Style TargetType="{x:Type Button}">
-                <Setter Property="Margin" Value="3"/>
-                <Setter Property="Height" Value="25"/>
-                <Setter Property="Width" Value="70"/>
-            </Style>
-        </Grid.Resources>
-
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="260*"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="540*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Column="0">
-            <Grid DockPanel.Dock="Top" Height="30">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <!-- Разделитель -->
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="3"/>
 
-                <Label Content="Find:" Grid.Column="0"/>
-                <TextBox x:Name="SearchTextBox" Height="20" Grid.Column="1"/>
+        <!-- Левая колонка -->
+        <Grid Grid.Column="0" Background="#f8f8f8">
+            <Grid Margin="8">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Список и поиск -->
+                <Grid Grid.Row="0">
+                    <Label Content="Find:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                    <TextBox x:Name="SearchTextBox" Margin="38,6,0,0" VerticalAlignment="Top"/>
+                    <ListBox 
+                        SelectedItem="{Binding SelectedContact}" 
+                        IsTextSearchEnabled="False" 
+                        Margin="0,29,0,0" 
+                        ItemsSource="{Binding Contacts}"
+                        ItemTemplate="{StaticResource contactTemplate}"/>
+                </Grid>
+
+                <!-- Кнопки -->
+                <Grid Grid.Row="1" Margin="0, 3, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="AddButton" Command="{Binding AddContactCommand}" Content="Add" Grid.Column="0"/>
+                    <Button x:Name="EditButton" Command="{Binding EditContactCommand}" IsEnabled="{Binding SelectedContact}" Content="Edit" Grid.Column="2"/>
+                    <Button x:Name="RemoveButton" Command="{Binding RemoveContactCommand}" IsEnabled="{Binding SelectedContact}" Content="Remove" Grid.Column="4"/>
+                </Grid>
             </Grid>
+        </Grid>
 
-            <Grid DockPanel.Dock="Bottom">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <!-- Правая колонка -->
+        <Grid Grid.Column="2">
+            <controls:ContactControl/>
 
-                <Button x:Name="AddButton" Content="Add" Grid.Column="0" Command="{Binding AddCommand}"/>
-
-                <Button x:Name="EditButton" Content="Edit" Grid.Column="1"
-                    Command="{Binding EditCommand}" CommandParameter="{Binding CurrentContact}"/>
-
-                <Button x:Name="RemoveButton" Content="Remove" Grid.Column="2" 
-                    Command="{Binding RemoveCommand}" CommandParameter="{Binding CurrentContact}"/>
-            </Grid>
-
-            <ListBox x:Name="ContactsListBox" ItemTemplate="{StaticResource contactTemplate}" ItemsSource="{Binding Contacts}" SelectedItem="{Binding CurrentContact}"/>
-        </DockPanel>
-
-        <GridSplitter Grid.Column="1" Width="10" Visibility="Hidden"/>
-
-        <StackPanel Grid.Column="2" RenderTransformOrigin="0.483,0.678">
-            <controls:ContactControl  VerticalAlignment="Top"/>
-            <Button x:Name="ApplyButton" Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibility}}" Content="Apply" Command="{Binding ApplyCommand}" RenderTransformOrigin="0.509,0.523" Margin="100,50,100,3"  />
-        </StackPanel>
-
+            <!-- Кнопка Apply -->
+            <Button Grid.Column="1" Content="Apply" Width="75" Height="25"
+                    Margin="103,50,8,8" HorizontalAlignment="left" 
+                    Visibility="{Binding IsEditMode, Converter={StaticResource BooleanToVisibility}}"  
+                    Command="{Binding ApplyContactCommand}"/>
+        </Grid>
     </Grid>
 </Window>

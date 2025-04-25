@@ -6,12 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace ContactCollection.ViewModel
+namespace ContactCollection.Converters
 {
     /// <summary>
     /// Инвертирует булево значение (true меняется на false и наоборот).
     /// </summary>
-    class BooleanInverseConverter : IValueConverter
+    public class BooleanInverseConverter : IValueConverter
     {
         ///<inheritdoc/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
